@@ -14,9 +14,7 @@ class App extends Component {
         <QuestionZone/>
         <AnswerZone/>
 
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+there is no footer, this is just plaintext.exe
       </div>
     );
   }

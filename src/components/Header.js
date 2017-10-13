@@ -11,7 +11,7 @@ class Header extends Component {
 render() {
   return (
     <div>
-This is my header
+This is my empty header. 👶 babies are also empty head-ers
     </div>
   )
 }
