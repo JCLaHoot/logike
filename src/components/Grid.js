@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import './Grid.css';
 
 const Grid = ({cells}) => {
@@ -10,11 +10,11 @@ if(!cells) {
 Takes an array of arrays, and creates a grid, pupulating each
 cell with the elements in the inner arrays.
 */
-const buildGrid = (data) => {
+const buildGrid = (cells) => {
   return(
-    <table>
+    <table className="grid">
       <tbody>{
-        data.map(function(row, y) {
+        cells.map(function(row, y) {
           return(<tr key={y}>{
             row.map(function(cell, x){
               return(<td key={x}>{cell}</td>);
@@ -26,9 +26,7 @@ const buildGrid = (data) => {
 }
 
     return (
-      <div className="grid">
-      {buildGrid(cells)}
-      </div>
+      buildGrid(cells)
     )
 
 };

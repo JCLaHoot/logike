@@ -1,10 +1,12 @@
-import React, { PropTypes } from 'react';
-import Grid from 'Grid';
+import React from 'react';
 
-const LogicalCondition = (props) => {
+import Grid from './Grid.js';
+
+const LogicalCondition = ({cells, selectorImg}) => {
   return (
     <div>
-      <Grid/>
+      <img src={selectorImg}/>
+      <Grid cells={cells}/>
     </div>
   )
 }

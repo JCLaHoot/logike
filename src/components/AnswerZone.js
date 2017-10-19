@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Grid from './Grid.js';
 
 class AnswerZone extends Component {
 
@@ -15,6 +16,7 @@ This is an answer zone ⬇️
 
 <br/>
 <br/>
+<Grid/>
 <br/>
 
 

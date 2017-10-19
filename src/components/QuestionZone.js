@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import LogicalCondition from './LogicalCondition.js';
 import Grid from './Grid.js';
 
 // This is useless. ignore it. I use it to copypasta nonsense into the matrix
@@ -15,15 +16,29 @@ class QuestionZone extends Component {
   }
 }
 
+// builds an array of arrays of LogicalConditions
+buildLogicalConditions = () => {
+  var cells = [];
+    for (var y = 0; y < 3; y++) {
+      var row = [];
+        for (var x = 0; x < 3; x++) {
+          row.push(<LogicalCondition
+                    selectorImg="http://via.placeholder.com/30x30"
+                    cells={[["yes", "no", "no"],
+                            ["no", "maybe", "no"],
+                            ["no", "no", "no"]]}
+                    />);
+        }
+      cells.push(row);
+    }
+  return cells;
+}
 
 render() {
   return (
     <div>
 This is a question zone ⬇️
-      <Grid cells={[[<Grid/>,<Grid/>,<Grid/>],
-                  [<Grid/>,<Grid/>,<Grid/>],
-                  [<Grid/>,<Grid/>,<Grid/>]]}
-                  />
+      <Grid cells={this.buildLogicalConditions()}/>
 This is a question zone ⬆️
     </div>
   )
