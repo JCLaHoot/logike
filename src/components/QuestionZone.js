@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import LogicalCondition from './LogicalCondition.js';
 import Grid from './Grid.js';
 
+
 // This is useless. ignore it. I use it to copypasta nonsense into the matrix
 // cells ={[["some data", "a cat", <h1>an h1</h1>],
 //         ["🍇🍍🍉🍐🍉", "🦊🐭🦊🐭🐰🐭", "kinder surprise"],
@@ -10,24 +11,28 @@ import Grid from './Grid.js';
 class QuestionZone extends Component {
 
 
-  constructor(props) {
+  constructor({props, puzzle}) {
   super(props);
   this.state = {
+    puzzle: puzzle
   }
 }
 
+// ❔✅❌
+
 // builds an array of arrays of LogicalConditions
-buildLogicalConditions = () => {
+buildLogicalConditions = (puzzle) => {
   var cells = [];
+  var puzzleIndex = 0;
     for (var y = 0; y < 3; y++) {
       var row = [];
         for (var x = 0; x < 3; x++) {
           row.push(<LogicalCondition
-                    selectorImg="http://via.placeholder.com/30x30"
-                    cells={[["yes", "no", "no"],
-                            ["no", "maybe", "no"],
-                            ["no", "no", "no"]]}
+                    selectorImg={puzzle[puzzleIndex].selectorImg}
+                    selectorName={puzzle[puzzleIndex].selectorName}
+                    cells={puzzle[puzzleIndex].logicCells}
                     />);
+          puzzleIndex++; //iterates through shapes
         }
       cells.push(row);
     }
@@ -38,7 +43,7 @@ render() {
   return (
     <div>
 This is a question zone ⬇️
-      <Grid cells={this.buildLogicalConditions()}/>
+      <Grid cells={this.buildLogicalConditions(this.state.puzzle)}/>
 This is a question zone ⬆️
     </div>
   )
