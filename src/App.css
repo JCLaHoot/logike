@@ -5,3 +5,9 @@
 img {
   width: 6em;
 }
+
+.drop-zone {
+  background-color: #E3E3E3;
+  width: 6em;
+  height: 6em;
+}
