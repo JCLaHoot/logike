@@ -1,12 +1,21 @@
 // image assets
-import Shapes from '../assets/Shapes.js';
+import Entities from './Entities.js';
 // ❔✅❌
+
+var ob = {
+  entityProperty: "red-square",
+  position:
+    [[true, null, null],
+    [null, null, null],
+    [null , null, null]]
+
+};
 
 
 const Puzzle = [
   {
-  selectorImg: Shapes[0].src,
-  selectorName: Shapes[0].alt,
+  selectorImg: Entities[0].img,
+  selectorName: Entities[0].name,
   logicCells: [
     ["✅","❌","❌"],
     ["❌","❌","❌"],
@@ -14,8 +23,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[1].src,
-  selectorName: Shapes[1].alt,
+  selectorImg: Entities[1].img,
+  selectorName: Entities[1].name,
   logicCells: [
     ["❌","✅","❌"],
     ["❌","❌","❌"],
@@ -23,8 +32,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[2].src,
-  selectorName: Shapes[2].alt,
+  selectorImg: Entities[2].img,
+  selectorName: Entities[2].name,
   logicCells: [
     ["❌","❌","❌"],
     ["❌","✅","❌"],
@@ -32,8 +41,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[3].src,
-  selectorName: Shapes[3].alt,
+  selectorImg: Entities[3].img,
+  selectorName: Entities[3].name,
   logicCells: [
     ["❌","❌","❌"],
     ["❌","❌","❌"],
@@ -41,8 +50,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[4].src,
-  selectorName: Shapes[4].alt,
+  selectorImg: Entities[4].img,
+  selectorName: Entities[4].name,
   logicCells: [
     ["❌","❌","✅"],
     ["❌","❌","❌"],
@@ -50,8 +59,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[5].src,
-  selectorName: Shapes[5].alt,
+  selectorImg: Entities[5].img,
+  selectorName: Entities[5].name,
   logicCells: [
     ["❌","❌","❌"],
     ["✅","❌","❌"],
@@ -59,8 +68,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[6].src,
-  selectorName: Shapes[6].alt,
+  selectorImg: Entities[6].img,
+  selectorName: Entities[6].name,
   logicCells: [
     ["❌","❌","❌"],
     ["❌","❌","✅"],
@@ -68,8 +77,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[7].src,
-  selectorName: Shapes[7].alt,
+  selectorImg: Entities[7].img,
+  selectorName: Entities[7].name,
   logicCells: [
     ["❌","❌","❌"],
     ["❌","❌","❌"],
@@ -77,8 +86,8 @@ const Puzzle = [
     ]
   },
   {
-  selectorImg: Shapes[8].src,
-  selectorName: Shapes[8].alt,
+  selectorImg: Entities[8].img,
+  selectorName: Entities[8].name,
   logicCells: [
     ["❌","❌","❌"],
     ["❌","❌","❌"],

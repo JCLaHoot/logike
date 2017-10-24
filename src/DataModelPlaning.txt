@@ -1,0 +1,25 @@
+Components:
+App
+  Header
+  QuestionZone
+    Puzzle
+      Grid
+        LogicalConditions
+          Entity Properties
+          Location
+            Absolute
+            OR
+            Relative to other Entity Properties
+            Logic Checks
+              null (blank square)
+              is here
+              isn't here
+                relative to entity property
+  AnswerZone
+    EntityBin
+      Entities (draggable)
+    Grid
+      DropZone (returns entity and location)
+    Validation Button
+      Validates whether entities and locations
+      correspond to the logical conditions in the puzzle

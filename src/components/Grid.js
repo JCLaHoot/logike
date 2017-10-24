@@ -17,7 +17,7 @@ const buildGrid = (cells) => {
         cells.map(function(row, y) {
           return(<tr key={y}>{
             row.map(function(cell, x){
-              return(<td key={x}>{cell}</td>);
+              return(<td key={x}>{cell} {x}, {y}</td>);
             })
           }</tr>);
         })
