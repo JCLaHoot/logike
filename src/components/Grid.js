@@ -1,11 +1,19 @@
 import React from "react";
 import './Grid.css';
 
+// makes transformations on the cell level in a 2d array
+export const twoDMap = (twoDimensionalArray, mapFunction) => {
+  return twoDimensionalArray.map((row, y) => {
+    return row.map(mapFunction);
+  })
+}
+
 const Grid = ({cells}) => {
 // prevents crashes in the event that an empty grid is used.
 if(!cells) {
   return "Empty Grid Component";
 }
+
 /*
 Takes an array of arrays, and creates a grid, pupulating each
 cell with the elements in the inner arrays.
@@ -17,7 +25,7 @@ const buildGrid = (cells) => {
         cells.map(function(row, y) {
           return(<tr key={y}>{
             row.map(function(cell, x){
-              return(<td key={x}>{cell} {x}, {y}</td>);
+              return(<td key={x}>{cell}</td>);
             })
           }</tr>);
         })

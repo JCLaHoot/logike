@@ -1,15 +1,16 @@
 import React, {Component} from "react";
 
 import Grid from './Grid.js';
-import SelectorBin from './SelectorBin.js';
+import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
 
 class AnswerZone extends Component {
 
-  constructor({props, puzzle}) {
+  constructor({props, puzzle, entities}) {
   super(props);
   this.state = {
-    puzzle: puzzle
+    puzzle: puzzle,
+    entities: entities
   }
 }
 
@@ -27,11 +28,12 @@ dropZoneFactory = () => {
   return cells
 }
 
+// TODO: EntityBin needs to be populated using the puzzle, to get the right # of entities.
 render() {
   return (
     <div>
 This is an answer zone ⬇️
-<SelectorBin puzzle={this.state.puzzle}/>
+<EntityBin entities={this.state.entities}/>
 
 <br/>
 <Grid cells={this.dropZoneFactory()}/>

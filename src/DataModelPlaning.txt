@@ -5,16 +5,16 @@ App
     Puzzle
       Grid
         LogicalConditions
-          Entity Properties
+          EntityProperty (s)
           Location
             Absolute
             OR
-            Relative to other Entity Properties
+            Relative to other entityProperty (s) (defined by grid size)
             Logic Checks
               null (blank square)
               is here
               isn't here
-                relative to entity property
+                relative to entityProperty
   AnswerZone
     EntityBin
       Entities (draggable)
@@ -23,3 +23,14 @@ App
     Validation Button
       Validates whether entities and locations
       correspond to the logical conditions in the puzzle
+
+
+      Validation
+
+      for builder:
+        - can't have isHere and isNotHere for same entityProperty.
+        - can't have more isHere for given entityProperty than there are entities that have that entityProperty.
+        - can't have more isNotHere for given entityProperty than there are entities that don't have that entityProperty
+
+      general:
+      if LogicalCondition Grid is smaller than Puzzle Grid, LogicalCondition has relative positioning, otherwise the positioning is absolute.

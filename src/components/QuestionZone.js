@@ -1,15 +1,9 @@
 import React, {Component} from "react";
 import LogicalCondition from './LogicalCondition.js';
-import Grid from './Grid.js';
+import Grid, {twoDMap} from './Grid.js';
 
-
-// This is useless. ignore it. I use it to copypasta nonsense into the matrix
-// cells ={[["some data", "a cat", <h1>an h1</h1>],
-//         ["🍇🍍🍉🍐🍉", "🦊🐭🦊🐭🐰🐭", "kinder surprise"],
-//         [323, 4324, "fsdfgdsfsadf"]]}
 
 class QuestionZone extends Component {
-
 
   constructor({props, puzzle}) {
   super(props);
@@ -20,24 +14,35 @@ class QuestionZone extends Component {
 
 // ❔✅❌
 
-// builds an array of arrays of LogicalConditions
+// builds a 2d array of LogicalConditions
 buildLogicalConditions = (puzzle) => {
-  var cells = [];
-  var puzzleIndex = 0;
-    for (var y = 0; y < 3; y++) {
-      var row = [];
-        for (var x = 0; x < 3; x++) {
-          row.push(<LogicalCondition
-                    selectorImg={puzzle[puzzleIndex].selectorImg}
-                    selectorName={puzzle[puzzleIndex].selectorName}
-                    cells={puzzle[puzzleIndex].logicCells}
-                    />);
-          puzzleIndex++; //iterates through shapes
+  return twoDMap(puzzle, (puzzleCell, x) => {
+
+// converts logicCell values to symbols for the UI
+    var visualizeLogicCells = (logicCell, x) => {
+          switch (logicCell) {
+            case null:
+              return null;
+            case true:
+              return "✅";
+            case false:
+              return "❌";
+            default:
+              return "";
+          }
         }
-      cells.push(row);
-    }
-  return cells;
+        // THE PROBLEM ⬇️
+        // console.log(x, y); //it says y is undefined, even though it's defined in the scope of twoDMap
+
+    return (<LogicalCondition
+              selectorImg={puzzleCell.selectorImg}
+              selectorName={puzzleCell.selectorName}
+              cells={twoDMap(puzzleCell.logicCells, visualizeLogicCells)}
+              />)
+  });
 }
+
+
 
 render() {
   return (

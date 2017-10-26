@@ -10,53 +10,57 @@ import redTriangle from '../assets/red_triangle.png';
 import blueTriangle from '../assets/blue_triangle.png';
 import yellowTriangle from '../assets/yellow_triangle.png';
 
-
+// an entity the main element that is manipulated in the puzzle.
+// it has properties, a name based on the properties,
+// a common name which may differ from the name, and an image
 class Entity {
-  constructor(name, properties, img) {
-    this.name = name;
+  constructor(commonName, properties, img) {
     this.properties = properties; // an array;
+    this.name = Object.values(properties).join("-");
+    this.commonName = commonName; // for display purposes ONLY
     this.img = img;
   }
 }
 
-const properties = {
-   groupName: "shapes",
-   color: [{name:"red", img:""}, {name:"blue", img:""}, {name:"yellow", img:""}],
-   shape: [{name:"square", img:""}, {name:"circle", img:""}, {name:"triangle", img:""}]
+// TODO: allow for custom adding of key-value pairs
+// TODO: add images for key-value pairs
+ class Properties {
+   constructor(color, shape) {
+     this.color = color;
+     this.shape = shape;
+   }
  }
 
 
 const Entities = [
-  new Entity("red square",
-              [properties.color[0].name, properties.shape[0]],
+  new Entity("red Square",
+              new Properties("red", "square"),
               redSquare),
-  new Entity("blue square",
-              [properties.color[1].name, properties.shape[0]],
+  new Entity("blue Square",
+              new Properties("blue", "square"),
               blueSquare),
-  new Entity("yellow square",
-              [properties.color[2].name, properties.shape[0]],
+  new Entity("yellow Square",
+              new Properties("yellow", "square"),
               yellowSquare),
-  new Entity("red circle",
-              [properties.color[0].name, properties.shape[1]],
+  new Entity("red-circle",
+              new Properties("red", "circle"),
               redCircle),
-  new Entity("blue circle",
-              [properties.color[1].name, properties.shape[1]],
+  new Entity("blue-circle",
+              new Properties("blue", "circle"),
               blueCircle),
-  new Entity("yellow circle",
-              [properties.color[2].name, properties.shape[1]],
+  new Entity("yellow-circle",
+              new Properties("yellow", "circle"),
               yellowCircle),
-  new Entity("red triangle",
-              [properties.color[0].name, properties.shape[2]],
+  new Entity("red-triangle",
+              new Properties("red", "triangle"),
               redTriangle),
-  new Entity("blue triangle",
-              [properties.color[1].name, properties.shape[2]],
+  new Entity("blue-triangle",
+              new Properties("blue", "triangle"),
               blueTriangle),
-  new Entity("yellow triangle",
-              [properties.color[2].name, properties.shape[2]],
+  new Entity("yellow-triangle",
+              new Properties("yellow", "triangle"),
               yellowTriangle)
 ]
-
-
 
 
 export default Entities;

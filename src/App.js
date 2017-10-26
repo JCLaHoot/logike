@@ -7,7 +7,7 @@ import Header from './components/Header.js';
 import QuestionZone from './components/QuestionZone.js';
 import AnswerZone from './components/AnswerZone.js';
 
-import Puzzle from './components/Puzzle.js';
+import Puzzle, {entities} from './components/Puzzle.js';
 
 
 class App extends Component {
@@ -15,7 +15,8 @@ class App extends Component {
   constructor(props) {
   super(props);
   this.state = {
-    puzzle:Puzzle
+    puzzle:Puzzle,
+    entities: entities
   }
 }
 
@@ -25,7 +26,8 @@ class App extends Component {
       <div className="App">
         <Header/>
         <QuestionZone puzzle={this.state.puzzle}/>
-        <AnswerZone puzzle={this.state.puzzle}/>
+        <AnswerZone puzzle={this.state.puzzle}
+                    entities={this.state.entities}/>
 
 there is no footer, this is just plaintext.exe
       </div>
