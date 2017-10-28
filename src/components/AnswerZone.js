@@ -14,13 +14,23 @@ class AnswerZone extends Component {
   }
 }
 
+
+ onChangeHandler = (event) => {
+  console.log(event.target.value, " at ", event.target.valueOf("location"));
+
+}
+
+// TODO: add a param for the puzzle size
 dropZoneFactory = () => {
   var cells = [];
   for (var y = 0; y < 3; y++) {
       var row = []
       for (var x = 0; x < 3; x++) {
         row.push(
-          <DropZone/>
+          <DropZone
+            x={x}
+            y={y}
+            changeHandler={this.onChangeHandler}/>
         )
       }
       cells.push(row);

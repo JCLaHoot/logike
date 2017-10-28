@@ -15,6 +15,10 @@ export const entities = Entities;
 // the selected entity (or entities) is, or isn't.
 // entity(ies) location can be absolute, or relative, depending on
 // whether the logicCells size matches the finished puzzle size.
+// true: the selector is here
+// false: the selector is NOT here
+// null: the selector might be here
+// entity-property: indicates where another entity or entity property is relative to the selector.
 const Puzzle = [
   [{
   selectorImg: Entities[0].img,

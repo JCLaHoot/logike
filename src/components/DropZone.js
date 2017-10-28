@@ -1,21 +1,13 @@
-import React, {Component} from "react";
+import React from 'react';
 
-class DropZone extends Component {
+const DropZone = ({changeHandler, x, y}) => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
-
-  render() {
     return (
       <div className="drop-zone">
-        <input></input>
+        <input location={[x, y]} onChange={changeHandler}></input>
 
       </div>
     )
-  }
 
 }
 
