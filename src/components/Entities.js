@@ -1,5 +1,3 @@
-import React from 'react';
-
 import redSquare from '../assets/red_square.png';
 import blueSquare from '../assets/blue_square.png';
 import yellowSquare from '../assets/yellow_square.png';

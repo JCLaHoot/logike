@@ -4,7 +4,7 @@ import './Grid.css';
 // makes transformations on the cell level in a 2d array
 export const twoDMap = (twoDimensionalArray, mapFunction) => {
   return twoDimensionalArray.map((row, y) => {
-    return row.map(mapFunction);
+    return row.map(mapFunction, y);
   })
 }
 
