@@ -28,15 +28,10 @@ validate = () => {
   //    check whethere the location of the entity is "false" or an entity property
   //    that matches the entity.
   // 4. return true for the cell if checks are passed
-  var ans;
-  // ans = twoDMap(this.state.userAns, (ansCell, x) => {
-  //   console.log(ansCell, x);
-  // });
   // TODO: fix my twoDMap function to simplify this code
+  var ans;
   ans = this.state.userAns.map((row, y) => {
-    // the check that happens for each cell of the ans.
     return row.map((cell, x) => {
-      console.log(cell);
       if( //checks all conditions for cell
         this.state.puzzle.some((puzzleRow) =>{
           return puzzleRow.some((puzzleCell) => {
@@ -44,23 +39,24 @@ validate = () => {
             var matchesSelector = cell == puzzleCell.selectorName;
             // TODO: add condition to check for coordiantes of irregular grids
             if(matchesSelector) {
+              // at the position of input, either the selector is supposed to be there, or is allowed to
               if (puzzleCell.logicCells[y][x] || puzzleCell.logicCells[y][x] == null) {
                 return true;
               }
               else {
-                return false;
+                return false; // input isn't supposed to be here.
               }
             }
-
           })
         })
-        ) {
+      ) // all conditions for cell input are true
+       {
         return true;
       }
       else {
         return false;
       }
-    })
+    })  
   });
 
 console.log(ans)

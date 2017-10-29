@@ -2,9 +2,20 @@ import React from "react";
 import './Grid.css';
 
 // makes transformations on the cell level in a 2d array
-export const twoDMap = (twoDimensionalArray, mapFunction) => {
-  return twoDimensionalArray.map((row, y) => {
-    return row.map(mapFunction, y);
+//  export const twoDMap = (twoDimensionalArray, mapFunction) => {
+//   return twoDimensionalArray.map((row, y) => {
+//     this.y = y;
+//     mapFunction.bind(this);
+//     return row.map(mapFunction);
+//   })
+// }
+
+export const twoDMap = (array, transform) => {
+  return array.map((row, y) => {
+    var mapped = [];
+    for (var x = 0; x < row.length; x++)
+      mapped.push(transform(row[x], x, y));
+    return mapped;
   })
 }
 
