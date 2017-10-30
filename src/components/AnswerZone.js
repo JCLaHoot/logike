@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import Grid, {twoDMap} from './Grid.js';
+import Grid, {deepMap, deepEvery} from './Grid.js';
 import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
 
@@ -13,55 +13,77 @@ class AnswerZone extends Component {
     entities: entities,
     userAns: [[null, null, null],
               [null, null, null],
-              [null, null, null]] // TODO: generate programatically based on puzzle size
+              [null, null, null]], // TODO: generate programatically based on puzzle size
+    validAns: "null"
   }
 }
 
-
+// validates the answer that the user has entered using the following steps:
+// 1. check each logicCell in puzzle
+// 2. if selector is a property of entity
+//    check whether the location of the entity is "true" or null
+//    in the logicCell
+// 3. if selector isn't a property of entity
+//    check whethere the location of the entity is "false" or an entity property
+//    that matches the entity.
+// 4. return true for the cell if checks are passed
+// 5. set validAns state to true if all puzzle cells are valid
 validate = () => {
   console.log("validating...");
-  // 1. check each logicCell in puzzle
-  // 2. if selector is a property of entity
-  //    check whether the location of the entity is "true" or null
-  //    in the logicCell
-  // 3. if selector isn't a property of entity
-  //    check whethere the location of the entity is "false" or an entity property
-  //    that matches the entity.
-  // 4. return true for the cell if checks are passed
-  // TODO: fix my twoDMap function to simplify this code
-  var ans;
-  ans = this.state.userAns.map((row, y) => {
-    return row.map((cell, x) => {
-      if( //checks all conditions for cell
-        this.state.puzzle.some((puzzleRow) =>{
-          return puzzleRow.some((puzzleCell) => {
-            // checks whether the selector matches the input or not.
-            var matchesSelector = cell == puzzleCell.selectorName;
-            // TODO: add condition to check for coordiantes of irregular grids
-            if(matchesSelector) {
-              // at the position of input, either the selector is supposed to be there, or is allowed to
-              if (puzzleCell.logicCells[y][x] || puzzleCell.logicCells[y][x] == null) {
-                return true;
-              }
-              else {
-                return false; // input isn't supposed to be here.
-              }
-            }
-          })
-        })
-      ) // all conditions for cell input are true
-       {
+
+  var validationArray;
+  validationArray = deepMap(this.state.puzzle, (puzzleCell, xAns, yAns) => {
+    var selector = puzzleCell.selectorName;
+
+// TODO: add condition to check for coordiantes of irregular grids
+//       This will check against all x,y pairs that are possible for the logicCell
+//       and return true if ANY of them are true.
+// This is the check that's performed on every single logic cell in a puzzle cell
+    var check = (logicCell, x, y) => {
+      // TODO: improve check for matchesSelector to include partial selectors
+      var matchesSelector = selector == this.state.userAns[y][x];
+
+      var selectorCanBeHere = false;
+        if(logicCell == null) {
+          selectorCanBeHere = true;
+        }
+      var selectorIsHere = false
+        if(logicCell) {
+          selectorIsHere = true;
+        }
+
+      if ((matchesSelector
+          &&
+          (selectorCanBeHere || selectorIsHere))
+          // matches selector in specific cell, therefore the cell needs to contain true or null
+          ||
+          (!matchesSelector
+          &&
+          (!selectorIsHere || typeof logicCell == "string")))
+          // doesn't match selector, therefore the cell must contain false or another selector
+           {
         return true;
       }
       else {
         return false;
       }
-    })  
-  });
+    }
+//  only returns true if all of the conditions in the check are passed
+    return deepEvery(puzzleCell.logicCells, check);
+  })
 
-console.log(ans)
 
-}
+  console.log(validationArray);
+  var valid = deepEvery(validationArray, (i) => {return i});
+  var validString;
+  if(valid) {
+    validString = "valid-true";
+  } else {
+    validString = "valid-false";
+  }
+  this.setState({validAns: validString});
+
+  }
 
 // logs the user input to the state onChange.
  onChangeHandler = (event) => {
@@ -75,6 +97,7 @@ console.log(ans)
 
 
 // TODO: add a param for the puzzle size
+// creates the dropzones and gives them onChangeHandlers. They absolutely need x and y params
 dropZoneFactory = () => {
   var cells = [];
   for (var y = 0; y < 3; y++) {
@@ -96,18 +119,22 @@ dropZoneFactory = () => {
 // TODO: EntityBin needs to be populated using the puzzle, to get the right # of entities.
 render() {
   return (
-    <div>
-This is an answer zone ⬇️
-<EntityBin entities={this.state.entities}/>
-<br/>
-<Grid cells={this.dropZoneFactory()}/>
-  <br/>
-<button onClick={this.validate}>Validate</button>
-<br/>
-This is an answer zone ⬆️
-    </div>
+      <div className="answer-zone">
+        This is an answer zone ⬇️
+        <EntityBin entities={this.state.entities}/>
+        <br/>
+        <div className={this.state.validAns}>
+          <Grid cells={this.dropZoneFactory()}/>
+        </div>
+        <br/>
+        <button onClick={this.validate}>Validate</button>
+        <br/>
+        This is an answer zone ⬆️
+      </div>
+
   );
 }
+
 
 };
 

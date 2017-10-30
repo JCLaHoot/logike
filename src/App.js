@@ -25,9 +25,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <QuestionZone puzzle={this.state.puzzle}/>
-        <AnswerZone puzzle={this.state.puzzle}
-                    entities={this.state.entities}/>
+        <div className="group">
+          <QuestionZone puzzle={this.state.puzzle}/>
+          <AnswerZone puzzle={this.state.puzzle}
+                      entities={this.state.entities}/>
+        </div>
+
 
 there is no footer, this is just plaintext.exe
       </div>

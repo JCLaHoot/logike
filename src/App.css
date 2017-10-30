@@ -1,13 +1,173 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 .App {
   text-align: center;
+  font-family: "Roboto",sans-serif;
+  color: #424242;
 }
 
-img {
-  width: 6em;
+/*
+RESPONSIVE TEXT & LAYOUT
+*/
+
+body {
+  font-size: 80%; }
+
+.grid {
+  width: 95%;
 }
 
-.drop-zone {
-  background-color: #E3E3E3;
-  width: 6em;
-  height: 6em;
+
+
+@media (min-width: 601px) {
+  body {
+    font-size: 100%; }
+  .grid {
+    width: 85%;
+  }
+
+  }
+
+@media (min-width: 993px) {
+  body {
+    font-size: 120%; }
+  .grid {
+    width: 80%;
+  }
+  .question-zone {
+    width: 50%;
+    float: left;
+
+  }
+
+  .answer-zone {
+    width: 50%;
+    float: left;
+  }
+  }
+
+@media (min-width: 1200px) {
+  body {
+    font-size: 140%; }
+  .grid {
+    width: 70%;
+  }
+  }
+
+
+
+  /*
+  TEXT STYLES
+  */
+
+h1 {
+  font-size: 4em; }
+h2 {
+  font-size: 3.5em; }
+h3 {
+  font-size: 3em; }
+h4 {
+  font-size: 2.5em; }
+h5 {
+  font-size: 2em; }
+h6 {
+  font-size: 1.5em; }
+p {
+  font-size: 1em;
+  color: #616161;
+ }
+
+ /*
+  ========================================
+  Clearfix
+  ========================================
+*/
+
+.group:before,
+.group:after {
+  content: "";
+  display: table;
 }
+.group:after {
+  clear: both;
+}
+.group {
+  clear: both;
+  *zoom: 1;
+}
+
+
+
+  /*
+  Layout
+  */
+
+  .grid {
+    margin: 0 auto;
+  }
+
+  .grid td {
+    width: 33%;
+    height: 2em;
+  }
+
+
+  .grid img {
+    width: 50%;
+  }
+
+  img {
+    width: 20%;
+  }
+
+
+  .entity-bin {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .entity-bin img {
+    max-width: 5em;
+  }
+
+  /*
+  Validation feedback
+  */
+
+  .drop-zone {
+    background-color: #E3E3E3;
+    height: 6em;
+  }
+
+
+  .valid-false .drop-zone  {
+    background: #FF9385;
+  }
+
+  .valid-true .drop-zone  {
+    background: #8DFF8C;
+  }
+
+  /*
+  inputs
+  */
+
+  .drop-zone input {
+    /*background-color: #E3E3E3;*/
+    height: 1.5em;
+    width: 7em;
+    border-radius: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: none;
+    margin-top: 3em;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+    /*height: 6em;*/
+  }
+
+  .drop-zone input:focus {
+    outline: none;
+  }

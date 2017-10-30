@@ -2,22 +2,27 @@ import React from "react";
 import './Grid.css';
 
 // makes transformations on the cell level in a 2d array
-//  export const twoDMap = (twoDimensionalArray, mapFunction) => {
-//   return twoDimensionalArray.map((row, y) => {
-//     this.y = y;
-//     mapFunction.bind(this);
-//     return row.map(mapFunction);
-//   })
-// }
-
-export const twoDMap = (array, transform) => {
-  return array.map((row, y) => {
+export const deepMap = (twoDimensionalArray, transform) => {
+  return twoDimensionalArray.map((row, y) => {
     var mapped = [];
     for (var x = 0; x < row.length; x++)
       mapped.push(transform(row[x], x, y));
     return mapped;
   })
 }
+
+// returns true if every cell in a 2d array is true
+export const deepEvery = (twoDimensionalArray, check) => {
+  return twoDimensionalArray.every((row, y) => {
+    for (var x = 0; x < row.length; x++) {
+      if (!check(row[x], x, y)) {
+        return false;
+      }
+    }
+    return true;
+  })
+}
+
 
 const Grid = ({cells}) => {
 // prevents crashes in the event that an empty grid is used.

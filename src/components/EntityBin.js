@@ -15,7 +15,7 @@ const EntityBin = ({entities}) => {
   }
 
   return (
-    <div>
+    <div className="entity-bin">
       {ImageFactory(entities)}
     </div>
   );
