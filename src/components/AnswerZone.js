@@ -11,6 +11,7 @@ class AnswerZone extends Component {
   this.state = {
     puzzle: puzzle,
     entities: entities,
+    selectedEntity: null,
     userAns: [[null, null, null],
               [null, null, null],
               [null, null, null]], // TODO: generate programatically based on puzzle size
@@ -86,6 +87,7 @@ validate = () => {
   }
 
 // logs the user input to the state onChange.
+// TODO get rid of this and replace it with the interactive model.
  onChangeHandler = (event) => {
   // console.log(event.target.value, " at ", event.target.valueOf("location"));
   var x = event.target.attributes["x"].value;
@@ -93,6 +95,23 @@ validate = () => {
   var ans = this.state.userAns;
   ans[y][x] = event.target.value;
   this.setState({userAns: ans});
+}
+
+// takes the entity from the EntityBin and saves it in the AnswerZone state
+entityOnClick = (event) => {
+  this.setState({selectedEntity: event.target});
+}
+
+// moves the selected entity into the dropZone onClick.
+// This implementation will precede react-dnd.
+moveEntity = (event) => {
+  if(this.state.selectedEntity == null) {
+    return;
+  }
+  // console.log(event.target);
+  event.target.append(this.state.selectedEntity);
+
+  this.setState({selectedEntity: null}); //deselects entity
 }
 
 
@@ -105,6 +124,7 @@ dropZoneFactory = () => {
       for (var x = 0; x < 3; x++) {
         row.push(
           <DropZone
+            onClickHandler={this.moveEntity}
             x={x}
             y={y}
             changeHandler={this.onChangeHandler}/>
@@ -121,7 +141,7 @@ render() {
   return (
       <div className="answer-zone">
         This is an answer zone ⬇️
-        <EntityBin entities={this.state.entities}/>
+        <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
         <br/>
         <div className={this.state.validAns}>
           <Grid cells={this.dropZoneFactory()}/>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const EntityBin = ({entities}) => {
+const EntityBin = ({entities, entityOnClick}) => {
 
   const ImageFactory = (entities) => {
     return (
@@ -9,6 +9,7 @@ const EntityBin = ({entities}) => {
                   key={entity.name}
                   src={entity.img}
                   alt={entity.name}
+                  onClick={entityOnClick}
                   />)
       })
     );
