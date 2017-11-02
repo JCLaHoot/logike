@@ -4,22 +4,18 @@ import './Grid.css';
 // makes transformations on the cell level in a 2d array
 export const deepMap = (twoDimensionalArray, transform) => {
   return twoDimensionalArray.map((row, y) => {
-    var mapped = [];
-    for (var x = 0; x < row.length; x++)
-      mapped.push(transform(row[x], x, y));
-    return mapped;
+    return row.map((cell, x) => {
+      return transform(cell, x, y);
+    })
   })
 }
 
 // returns true if every cell in a 2d array is true
 export const deepEvery = (twoDimensionalArray, check) => {
   return twoDimensionalArray.every((row, y) => {
-    for (var x = 0; x < row.length; x++) {
-      if (!check(row[x], x, y)) {
-        return false;
-      }
-    }
-    return true;
+    return row.every((cell, x) => {
+      return check(cell, x, y);
+    })
   })
 }
 
