@@ -29,7 +29,7 @@ class QuestionZone extends Component {
             case false:
               return "❌";
             default:
-              return "";
+              return logicCell;
           }
         }
 // returns the UI contents of each puzzleCell (which contails logicCells)

@@ -11,6 +11,7 @@ class AnswerZone extends Component {
   this.state = {
     puzzleLogic: puzzle.logic,
     entities: puzzle.entities,
+    availableEntities: puzzle.entityCount,
     selectedEntity: null,
     userAns: this.createEmptyGrid(puzzle.size.x,puzzle.size.y),
     validAns: "null" //TODO use a bool here... 😡 this is DEFINITELY not legit
@@ -18,10 +19,15 @@ class AnswerZone extends Component {
 }
 
 createEmptyGrid = (xSize, ySize) => {
-  var outerArray = new Array(ySize);
-  var innerArray = new Array(xSize);
-  outerArray.fill(innerArray);
-  return outerArray;
+  var grid = [];
+  for (var y = 0; y < ySize; y++) {
+    var row = [];
+    for (var x = 0; x < xSize; x++) {
+      row.push(null);
+    }
+    grid.push(row);
+  }
+  return grid;
 }
 
 // validates the answer that the user has entered using the following steps:
@@ -35,19 +41,32 @@ createEmptyGrid = (xSize, ySize) => {
 // 4. return true for the cell if checks are passed
 // 5. set validAns state to true if all puzzle cells are valid
 validate = () => {
+  // checks to make sure that all entities have been placed
+  if(this.state.availableEntities != 0) {
+    console.log("some blocks haven't been placed!")
+    return;
+  }
+
+
   console.log("validating...");
+
+// TODO: create method to normalize irregular grids.
+// if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
+  // var originalLogic = this.state.puzzleLogic;
+  // deepMap(originalLogic, (puzzleCell) => {
+  //   console.log(puzzleCell.logicCells);
+  // })
+
 
   var validationArray;
   validationArray = deepMap(this.state.puzzleLogic, (puzzleCell, xAns, yAns) => {
     var selector = puzzleCell.selectorName;
 
-// TODO: add condition to check for coordiantes of irregular grids
-//       This will check against all x,y pairs that are possible for the logicCell
-//       and return true if ANY of them are true.
+
 // This is the check that's performed on every single logic cell in a puzzle cell
     var check = (logicCell, x, y) => {
       // TODO: improve check for matchesSelector to include partial selectors
-      var matchesSelector = selector == this.state.userAns[y][x];
+      var matchesSelector = selector === this.state.userAns[y][x];
 
       var selectorCanBeHere = false;
         if(logicCell == null) {
@@ -65,7 +84,7 @@ validate = () => {
           ||
           (!matchesSelector
           &&
-          (!selectorIsHere || typeof logicCell == "string")))
+          (!selectorIsHere || typeof logicCell === "string")))
           // doesn't match selector, therefore the cell must contain false or another selector
            {
         return true;
@@ -79,7 +98,7 @@ validate = () => {
   })
 
 
-  console.log(validationArray);
+  console.log("validation array: ", validationArray);
   var valid = deepEvery(validationArray, (i) => {return i});
   var validString;
   if(valid) {
@@ -103,6 +122,13 @@ moveEntity = (event) => {
   if(this.state.selectedEntity == null) {
     return;
   }
+
+// checks if the item was taken from the entity bin, and decrements the availableEntities count if it was
+  if(this.state.selectedEntity.parentElement.className === "entity-bin") {
+    var availableEntities = this.state.availableEntities - 1;
+    this.setState({availableEntities: availableEntities});
+  }
+
   // places the entity in the selected dropZone
   event.target.append(this.state.selectedEntity);
 
@@ -146,6 +172,7 @@ render() {
   return (
       <div className="answer-zone">
         This is an answer zone ⬇️
+        {this.state.availableEntities}
         <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
         <br/>
         <div className={this.state.validAns}>

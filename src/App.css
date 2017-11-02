@@ -115,11 +115,18 @@ p {
 
 
   .grid img {
-    width: 50%;
+    width: 33%;
   }
 
   img {
     width: 20%;
+  }
+
+  .logical-condition .grid td {
+    width: 2em;
+    height: 2em;
+    min-width: 2em;
+
   }
 
 

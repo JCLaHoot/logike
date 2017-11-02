@@ -282,7 +282,7 @@ logic:
 ]
 
 // Difficile
-/*const Puzzle = [
+/*[
   [
     {
   selectorImg: Entities[0].img,
@@ -357,7 +357,7 @@ logic:
     ]
   }]
 
-];*/
+]*/
 
 // Très difficile
 /*const Puzzle = [
@@ -408,6 +408,7 @@ logic:
   }]
 
 ];*/
+
 ,
 size: {
   x: 3,
