@@ -86,32 +86,34 @@ validate = () => {
 
   }
 
-// logs the user input to the state onChange.
-// TODO get rid of this and replace it with the interactive model.
- onChangeHandler = (event) => {
-  // console.log(event.target.value, " at ", event.target.valueOf("location"));
-  var x = event.target.attributes["x"].value;
-  var y = event.target.attributes["y"].value;
-  var ans = this.state.userAns;
-  ans[y][x] = event.target.value;
-  this.setState({userAns: ans});
-}
 
 // takes the entity from the EntityBin and saves it in the AnswerZone state
 entityOnClick = (event) => {
   this.setState({selectedEntity: event.target});
 }
 
-// moves the selected entity into the dropZone onClick.
+// moves the selected entity into the dropZone onClick, and log userAns
 // This implementation will precede react-dnd.
 moveEntity = (event) => {
   if(this.state.selectedEntity == null) {
     return;
   }
-  // console.log(event.target);
+  // places the entity in the selected dropZone
   event.target.append(this.state.selectedEntity);
 
-  this.setState({selectedEntity: null}); //deselects entity
+// stores the x,y vals of the dropZone
+  var x = event.target.attributes["x"].value;
+  var y = event.target.attributes["y"].value;
+
+// gets the current userAns in order to add new vals
+  var ans = this.state.userAns;
+  ans[y][x] = this.state.selectedEntity.attributes["name"].value;
+
+  //deselects entity and adds new ans
+  this.setState({
+    userAns: ans,
+    electedEntity: null
+  });
 }
 
 
@@ -126,8 +128,7 @@ dropZoneFactory = () => {
           <DropZone
             onClickHandler={this.moveEntity}
             x={x}
-            y={y}
-            changeHandler={this.onChangeHandler}/>
+            y={y}/>
         );
       };
       cells.push(row);

@@ -9,6 +9,7 @@ const EntityBin = ({entities, entityOnClick}) => {
                   key={entity.name}
                   src={entity.img}
                   alt={entity.name}
+                  name={entity.name}
                   onClick={entityOnClick}
                   />)
       })

@@ -3,8 +3,7 @@ import React from 'react';
 const DropZone = ({changeHandler, x, y, onClickHandler}) => {
 
     return (
-      <div className="drop-zone" onClick={onClickHandler}>
-        <input x={x} y={y} onChange={changeHandler}></input>
+      <div className="drop-zone" x={x} y={y} onClick={onClickHandler}>
       </div>
     )
 
