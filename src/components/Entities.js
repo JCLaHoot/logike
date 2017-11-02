@@ -11,6 +11,7 @@ import yellowTriangle from '../assets/yellow_triangle.png';
 // an entity the main element that is manipulated in the puzzle.
 // it has properties, a name based on the properties,
 // a common name which may differ from the name, and an image
+// TODO: allow for custom adding of images without hardcoding it here.
 class Entity {
   constructor(commonName, properties, img) {
     this.properties = properties; // an array;

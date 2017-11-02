@@ -2,7 +2,7 @@ import React from "react";
 
 const EntityBin = ({entities, entityOnClick}) => {
 
-  const ImageFactory = (entities) => {
+  const imageFactory = (entities) => {
     return (
       entities.map(function(entity) {
         return (<img
@@ -18,7 +18,7 @@ const EntityBin = ({entities, entityOnClick}) => {
 
   return (
     <div className="entity-bin">
-      {ImageFactory(entities)}
+      {imageFactory(entities)}
     </div>
   );
 };

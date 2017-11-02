@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
   super(props);
   this.state = {
-    puzzle:Puzzle,
+    puzzle: Puzzle,
     entities: entities
   }
 }
@@ -26,9 +26,8 @@ class App extends Component {
       <div className="App">
         <Header/>
         <div className="group">
-          <QuestionZone puzzle={this.state.puzzle}/>
-          <AnswerZone puzzle={this.state.puzzle}
-                      entities={this.state.entities}/>
+          <QuestionZone puzzleLogic={this.state.puzzle.logic}/>
+          <AnswerZone puzzle={this.state.puzzle}/>
         </div>
 
 

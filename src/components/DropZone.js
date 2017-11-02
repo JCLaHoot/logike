@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DropZone = ({changeHandler, x, y, onClickHandler}) => {
+const DropZone = ({x, y, onClickHandler}) => {
 
     return (
       <div className="drop-zone" x={x} y={y} onClick={onClickHandler}>

@@ -6,18 +6,18 @@ import Grid, {deepMap}  from './Grid.js';
 
 class QuestionZone extends Component {
 
-  constructor({props, puzzle}) {
+  constructor({props, puzzleLogic}) {
     super(props);
     this.state = {
-      puzzle: puzzle
+      puzzleLogic
     };
   }
 
 // ❔✅❌
 
   // builds a 2d array of LogicalConditions
-  buildLogicalConditions = (puzzle) => {
-    return deepMap(puzzle, (puzzleCell, x, y) => {
+  buildLogicalConditions = (puzzleLogic) => {
+    return deepMap(puzzleLogic, (puzzleCell, x, y) => {
 
 // converts logicCell values to symbols for the UI
     var visualizeLogicCells = (logicCell, x, y) => {
@@ -46,7 +46,7 @@ class QuestionZone extends Component {
     return (
         <div className="question-zone">
           This is a question zone ⬇️
-          <Grid cells={this.buildLogicalConditions(this.state.puzzle)}/>
+          <Grid cells={this.buildLogicalConditions(this.state.puzzleLogic)}/>
           This is a question zone ⬆️
         </div>
     )

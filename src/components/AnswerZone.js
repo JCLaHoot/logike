@@ -6,17 +6,22 @@ import DropZone from './DropZone.js';
 
 class AnswerZone extends Component {
 
-  constructor({props, puzzle, entities}) {
+  constructor({props, puzzle}) {
   super(props);
   this.state = {
-    puzzle: puzzle,
-    entities: entities,
+    puzzleLogic: puzzle.logic,
+    entities: puzzle.entities,
     selectedEntity: null,
-    userAns: [[null, null, null],
-              [null, null, null],
-              [null, null, null]], // TODO: generate programatically based on puzzle size
-    validAns: "null"
+    userAns: this.createEmptyGrid(puzzle.size.x,puzzle.size.y),
+    validAns: "null" //TODO use a bool here... 😡 this is DEFINITELY not legit
   }
+}
+
+createEmptyGrid = (xSize, ySize) => {
+  var outerArray = new Array(ySize);
+  var innerArray = new Array(xSize);
+  outerArray.fill(innerArray);
+  return outerArray;
 }
 
 // validates the answer that the user has entered using the following steps:
@@ -33,7 +38,7 @@ validate = () => {
   console.log("validating...");
 
   var validationArray;
-  validationArray = deepMap(this.state.puzzle, (puzzleCell, xAns, yAns) => {
+  validationArray = deepMap(this.state.puzzleLogic, (puzzleCell, xAns, yAns) => {
     var selector = puzzleCell.selectorName;
 
 // TODO: add condition to check for coordiantes of irregular grids
@@ -112,18 +117,17 @@ moveEntity = (event) => {
   //deselects entity and adds new ans
   this.setState({
     userAns: ans,
-    electedEntity: null
+    selectedEntity: null
   });
 }
 
 
-// TODO: add a param for the puzzle size
 // creates the dropzones and gives them onChangeHandlers. They absolutely need x and y params
 dropZoneFactory = () => {
   var cells = [];
-  for (var y = 0; y < 3; y++) {
+  for (var y = 0; y < this.props.puzzle.size.y; y++) {
       var row = [];
-      for (var x = 0; x < 3; x++) {
+      for (var x = 0; x < this.props.puzzle.size.x; x++) {
         row.push(
           <DropZone
             onClickHandler={this.moveEntity}

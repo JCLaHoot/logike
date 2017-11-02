@@ -5,10 +5,6 @@ import Entities from './Entities.js';
  //I know it's not super legit, but I want entities to be tied to the puzzle
 export const entities = Entities;
 
-
-//TODO convert the puzzle array into an object,
-//TODO add metadata for puzzle size, entity list, number of entities.
-
 // a 2d array of cells. Each cell contains an entity (or entity property)
 // that acts as a selector. Each selector has a name.
 // The selector is used along with the logicCells to determine where
@@ -20,6 +16,9 @@ export const entities = Entities;
 // null: the selector might be here
 // entity-property: indicates where another entity or entity property is relative to the selector.
 //
+
+const Puzzle = {
+logic:
 
 // CUSTOM PUZZLE
 // const Puzzle = [
@@ -196,7 +195,7 @@ export const entities = Entities;
 ];*/
 
 // MOYEN
-const Puzzle = [
+[
   [
     {
   selectorImg: Entities[0].img,
@@ -280,7 +279,7 @@ const Puzzle = [
     ]
   }]
 
-];
+]
 
 // Difficile
 /*const Puzzle = [
@@ -360,7 +359,6 @@ const Puzzle = [
 
 ];*/
 
-
 // Très difficile
 /*const Puzzle = [
   [
@@ -410,5 +408,16 @@ const Puzzle = [
   }]
 
 ];*/
+,
+size: {
+  x: 3,
+  y: 3
+},
+entities: entities,
+entityCount: 9
+
+}
+
+
 
 export default Puzzle;
