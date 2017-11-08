@@ -30,6 +30,8 @@ createEmptyGrid = (xSize, ySize) => {
   return grid;
 }
 
+
+
 // validates the answer that the user has entered using the following steps:
 // 1. check each logicCell in puzzle
 // 2. if selector is a property of entity
@@ -41,21 +43,80 @@ createEmptyGrid = (xSize, ySize) => {
 // 4. return true for the cell if checks are passed
 // 5. set validAns state to true if all puzzle cells are valid
 validate = () => {
-  // checks to make sure that all entities have been placed
-  if(this.state.availableEntities != 0) {
-    console.log("some blocks haven't been placed!")
-    return;
-  }
 
+  // // checks to make sure that all entities have been placed
+  // if(this.state.availableEntities != 0) {
+  //   console.log("some blocks haven't been placed!")
+  //   return;
+  // }
 
   console.log("validating...");
 
-// TODO: create method to normalize irregular grids.
-// if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
-  // var originalLogic = this.state.puzzleLogic;
-  // deepMap(originalLogic, (puzzleCell) => {
-  //   console.log(puzzleCell.logicCells);
-  // })
+
+// helper functions to get dimensions of grids TODO: move this somewhere better
+  var getGridY = (grid) => {
+    return grid.length;
+  }
+  var getGridX = (grid) => {
+    var rowLengths = grid.map((row) => {
+      return row.length;
+    })
+    return Math.max(...rowLengths);
+  }
+
+  var sameSizeAsPuzzle = (puzzle, logicCell) => {
+    if( getGridY(logicCell) == puzzle.size.y
+        &&
+        getGridX(logicCell) == puzzle.size.x) {
+          return true;
+        }
+        else {
+          return false;
+        }
+  };
+
+
+  // TODO: create method to normalize irregular grids.
+  // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
+ var normalizeLogic = (puzzle) => {
+   var originalLogic = this.state.puzzleLogic;
+   console.log("originalLogic", originalLogic);
+
+// TODO: turn into function?
+   var newLogic = deepMap(originalLogic, (puzzleCell) => {
+     if(sameSizeAsPuzzle(puzzle, puzzleCell.logicCells)) {
+       return puzzleCell;
+     }
+     else { // Puzzle and logicCells are different size
+      //  TODO: add check for whether the logicCells contains a selector (thus not needing to be the same size as the puzzle)
+       var newGrid = this.createEmptyGrid(puzzle.size.x, puzzle.size.y);
+       var logicX = getGridX(puzzleCell.logicCells);
+       var logicY = getGridY(puzzleCell.logicCells);
+
+       var fillX = puzzle.size.x - logicX;
+       var fillY = puzzle.size.y - logicY;
+      //  empty grid used to map over the puzzle the correct amount of times and expose the offset indexes.
+       var fillingMatrix = this.createEmptyGrid(fillX+1,fillY+1);
+
+      //  maps using the fillingMatrix to go through every damn combination and add them to a new grid
+       deepMap(fillingMatrix, (placeholderCell,x,y) => {
+         deepMap(puzzleCell.logicCells, (logicCell, innerX, innerY) => {
+           newGrid[y+innerY][x+innerX] = logicCell;
+         })
+       })
+
+      //  puzzleCell.logicCells = [["different"]];
+       return newGrid;
+     }
+   });
+
+   console.log("newLogic: ", newLogic);
+
+ }
+
+normalizeLogic(this.props.puzzle);
+
+
 
 
   var validationArray;
@@ -172,7 +233,6 @@ render() {
   return (
       <div className="answer-zone">
         This is an answer zone ⬇️
-        {this.state.availableEntities}
         <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
         <br/>
         <div className={this.state.validAns}>
