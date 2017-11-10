@@ -9,6 +9,7 @@ class AnswerZone extends Component {
   constructor({props, puzzle}) {
   super(props);
   this.state = {
+    puzzle: puzzle,
     puzzleLogic: puzzle.logic,
     entities: puzzle.entities,
     availableEntities: puzzle.entityCount,
@@ -65,23 +66,20 @@ validate = () => {
   }
 
 // generates a list of all possible selectors based on the list of names and properties of entities;
-// TODO: I mean, if the cell contents was just a "property" or "selector" type object then we wouldn't even have to check the list... but I'll need this code later anyway... I KNOW THIS IS AWFUL
   var fetchAllProperties = (entities) => {
     var list = [];
-
-    //
+    // lists all the names of entities used (since they are sometimes selectors)
     entities.list.forEach((entity) => {
       list.push(entity.name);
     })
+    // lists all selectors, regardless of type
     for (var property in entities.PROPERTIES) {
-      console.log(entities.PROPERTIES[property]);
       list = list.concat(entities.PROPERTIES[property]);
     }
-    console.log("property list: ",list);
     return list;
-    //TODO: list all properties and not just names
   }
 
+// checks whether the logicCells is the same size as the puzzle
   var sameSizeAsPuzzle = (puzzle, logicCells) => {
     if( getGridY(logicCells) == puzzle.size.y
         &&
@@ -93,11 +91,13 @@ validate = () => {
         }
   };
 
+// checks whether the logicCells contains a selector
   var containsSelector = (logicCells) => {
+    var entityProperties = fetchAllProperties(this.state.entities);
     return deepSome(logicCells, (logicCell) => {
       if( typeof logicCell == "string"
           &&
-          logicCell ) {
+          entityProperties.includes(logicCell)) {
             return true;
           }
           else {
@@ -111,18 +111,17 @@ validate = () => {
   // TODO: create method to normalize irregular logic grids (make them the same size as the puzzle)
   // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
  var normalizeLogic = (puzzle) => {
-   var originalLogic = this.state.puzzleLogic;
+   const originalLogic = puzzle.logic;
    console.log("originalLogic", originalLogic);
-
-   console.log(fetchAllProperties(puzzle.entities));
 
 // TODO: turn into function?
    var newLogic = deepMap(originalLogic, (puzzleCell) => {
-     if(sameSizeAsPuzzle(puzzle, puzzleCell.logicCells)) {
+     if(sameSizeAsPuzzle(puzzle, puzzleCell.logicCells)
+        ||
+        containsSelector(puzzleCell.logicCells)) {
        return puzzleCell;
      }
      else { // Puzzle and logicCells are different size
-      //  TODO: add check for whether the logicCells contains a selector (thus not needing to be the same size as the puzzle)
        var newGrid = this.createEmptyGrid(puzzle.size.x, puzzle.size.y);
        var logicX = getGridX(puzzleCell.logicCells);
        var logicY = getGridY(puzzleCell.logicCells);
@@ -174,21 +173,27 @@ validate = () => {
          }
 
 
-       return newGrid;
+         // puzzleCell.logicCells = newGrid;
+         // return puzzleCell;
+       var newPuzzleCell = puzzleCell;
+       newPuzzleCell.logicCells = newGrid; // for some reason puzzleCell.logicCells is ALSO changing
+       return newPuzzleCell;
+       // TODO: fix problem where entire originalLogic gets new logic for no reason... it's not fatal but its weird.
      }
    });
 
-   console.log("newLogic: ", newLogic);
+   return newLogic;
 
  }
 
-normalizeLogic(this.props.puzzle);
+
+// console.log("normalized logic: ", normalizeLogic(this.state.puzzle));
 
 
 
-
+// TODO: validate cases where logicCells contain selectors
   var validationArray;
-  validationArray = deepMap(this.state.puzzleLogic, (puzzleCell, xAns, yAns) => {
+  validationArray = deepMap(normalizeLogic(this.state.puzzle), (puzzleCell, xAns, yAns) => {
     var selector = puzzleCell.selectorName;
 
 
@@ -280,9 +285,9 @@ moveEntity = (event) => {
 // creates the dropzones and gives them onChangeHandlers. They absolutely need x and y params
 dropZoneFactory = () => {
   var cells = [];
-  for (var y = 0; y < this.props.puzzle.size.y; y++) {
+  for (var y = 0; y < this.state.puzzle.size.y; y++) {
       var row = [];
-      for (var x = 0; x < this.props.puzzle.size.x; x++) {
+      for (var x = 0; x < this.state.puzzle.size.x; x++) {
         row.push(
           <DropZone
             onClickHandler={this.moveEntity}

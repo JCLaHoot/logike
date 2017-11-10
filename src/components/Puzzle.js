@@ -195,7 +195,7 @@ logic:
 ];*/
 
 // MOYEN
-[
+/*[
   [
     {
   selectorImg: Entities.list[0].img,
@@ -279,10 +279,10 @@ logic:
     ]
   }]
 
-]
+]*/
 
 // Difficile
-/*[
+[
   [
     {
   selectorImg: Entities.list[0].img,
@@ -357,7 +357,7 @@ logic:
     ]
   }]
 
-]*/
+]
 
 // Très difficile
 /*const Puzzle = [
