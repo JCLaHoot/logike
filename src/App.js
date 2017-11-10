@@ -7,7 +7,7 @@ import Header from './components/Header.js';
 import QuestionZone from './components/QuestionZone.js';
 import AnswerZone from './components/AnswerZone.js';
 
-import Puzzle, {entities} from './components/Puzzle.js';
+import Puzzle from './components/Puzzle.js';
 
 
 class App extends Component {
@@ -16,7 +16,6 @@ class App extends Component {
   super(props);
   this.state = {
     puzzle: Puzzle,
-    entities: entities
   }
 }
 

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import Grid, {deepMap, deepEvery} from './Grid.js';
+import Grid, {deepMap, deepEvery, deepForEach, deepSome} from './Grid.js';
 import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
 
@@ -23,7 +23,7 @@ createEmptyGrid = (xSize, ySize) => {
   for (var y = 0; y < ySize; y++) {
     var row = [];
     for (var x = 0; x < xSize; x++) {
-      row.push(null);
+      row.push([]); // may need to just be null
     }
     grid.push(row);
   }
@@ -44,7 +44,7 @@ createEmptyGrid = (xSize, ySize) => {
 // 5. set validAns state to true if all puzzle cells are valid
 validate = () => {
 
-  // // checks to make sure that all entities have been placed
+  // checks to make sure that all entities have been placed
   // if(this.state.availableEntities != 0) {
   //   console.log("some blocks haven't been placed!")
   //   return;
@@ -64,10 +64,28 @@ validate = () => {
     return Math.max(...rowLengths);
   }
 
-  var sameSizeAsPuzzle = (puzzle, logicCell) => {
-    if( getGridY(logicCell) == puzzle.size.y
+// generates a list of all possible selectors based on the list of names and properties of entities;
+// TODO: I mean, if the cell contents was just a "property" or "selector" type object then we wouldn't even have to check the list... but I'll need this code later anyway... I KNOW THIS IS AWFUL
+  var fetchAllProperties = (entities) => {
+    var list = [];
+
+    //
+    entities.list.forEach((entity) => {
+      list.push(entity.name);
+    })
+    for (var property in entities.PROPERTIES) {
+      console.log(entities.PROPERTIES[property]);
+      list = list.concat(entities.PROPERTIES[property]);
+    }
+    console.log("property list: ",list);
+    return list;
+    //TODO: list all properties and not just names
+  }
+
+  var sameSizeAsPuzzle = (puzzle, logicCells) => {
+    if( getGridY(logicCells) == puzzle.size.y
         &&
-        getGridX(logicCell) == puzzle.size.x) {
+        getGridX(logicCells) == puzzle.size.x) {
           return true;
         }
         else {
@@ -75,12 +93,28 @@ validate = () => {
         }
   };
 
+  var containsSelector = (logicCells) => {
+    return deepSome(logicCells, (logicCell) => {
+      if( typeof logicCell == "string"
+          &&
+          logicCell ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+    })
+  };
 
-  // TODO: create method to normalize irregular grids.
+
+
+  // TODO: create method to normalize irregular logic grids (make them the same size as the puzzle)
   // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
  var normalizeLogic = (puzzle) => {
    var originalLogic = this.state.puzzleLogic;
    console.log("originalLogic", originalLogic);
+
+   console.log(fetchAllProperties(puzzle.entities));
 
 // TODO: turn into function?
    var newLogic = deepMap(originalLogic, (puzzleCell) => {
@@ -99,13 +133,47 @@ validate = () => {
        var fillingMatrix = this.createEmptyGrid(fillX+1,fillY+1);
 
       //  maps using the fillingMatrix to go through every damn combination and add them to a new grid
-       deepMap(fillingMatrix, (placeholderCell,x,y) => {
-         deepMap(puzzleCell.logicCells, (logicCell, innerX, innerY) => {
-           newGrid[y+innerY][x+innerX] = logicCell;
+       deepForEach(fillingMatrix, (placeholderCell,x,y) => {
+         deepForEach(puzzleCell.logicCells, (logicCell, innerX, innerY) => {
+           newGrid[y+innerY][x+innerX].push(logicCell);
          })
        })
 
-      //  puzzleCell.logicCells = [["different"]];
+       // checks whether the puzzle has a true or not, if it does, logic reducing is changed
+       var containsTrue = false;
+       deepForEach(puzzleCell.logicCells, (logicCell) => {
+         if(logicCell) {
+           containsTrue = true;
+         }
+       });
+
+       // reduces array based logic in logicCells to single value logic
+
+       // if any logicCells are true in an irregular grid, cells that contain a true become cells that MAY accept the selectors
+       // all other cells are impossible, by extension.
+       if(containsTrue) {
+        newGrid = deepMap(newGrid, (logicCell) => {
+           if(logicCell.some((element) => { return element === true})) {
+             return null;
+           }
+           else {
+             return false;
+           }
+         })
+         }
+         else { // no trues or selectors in the logicCells
+           newGrid = deepMap(newGrid, (logicCell) => {
+             // all false, return false
+             if (logicCell.every((element) => { return element === false })) {
+               return false;
+             }
+             else {
+               return null;
+             }
+           });
+         }
+
+
        return newGrid;
      }
    });

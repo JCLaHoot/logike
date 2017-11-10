@@ -10,6 +10,23 @@ export const deepMap = (twoDimensionalArray, transform) => {
   })
 }
 
+// does something using each of the cells in a 2d array
+export const deepForEach = (twoDimensionalArray, action) => {
+   twoDimensionalArray.forEach((row, y) => {
+     row.forEach((cell, x) => {
+       action(cell, x, y);
+    })
+  })
+}
+
+export const deepSome = (twoDimensionalArray, check) => {
+   return twoDimensionalArray.some((row, y) => {
+     return row.some((cell, x) => {
+       return check(cell, x, y);
+    })
+  })
+}
+
 // returns true if every cell in a 2d array is true
 export const deepEvery = (twoDimensionalArray, check) => {
   return twoDimensionalArray.every((row, y) => {

@@ -3,7 +3,7 @@ import Entities from './Entities.js';
 // ❔✅❌
 
  //I know it's not super legit, but I want entities to be tied to the puzzle
-export const entities = Entities;
+const entities = Entities;
 
 // a 2d array of cells. Each cell contains an entity (or entity property)
 // that acts as a selector. Each selector has a name.
@@ -24,8 +24,8 @@ logic:
 /*const Puzzle = [
   [
     {
-  selectorImg: Entities[0].img,
-  selectorName: Entities[0].name,
+  selectorImg: Entities.list[0].img,
+  selectorName: Entities.list[0].name,
   logicCells: [
     [true,false,false],
     [false,null,false],
@@ -33,8 +33,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[1].img,
-  selectorName: Entities[1].name,
+  selectorImg: Entities.list[1].img,
+  selectorName: Entities.list[1].name,
   logicCells: [
     [false,true,false],
     [false,false,false],
@@ -42,8 +42,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[2].img,
-  selectorName: Entities[2].name,
+  selectorImg: Entities.list[2].img,
+  selectorName: Entities.list[2].name,
   logicCells: [
     [false,false,false],
     [false,true,false],
@@ -51,8 +51,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[3].img,
-  selectorName: Entities[3].name,
+  selectorImg: Entities.list[3].img,
+  selectorName: Entities.list[3].name,
   logicCells: [
     [false,false,false],
     [false,false,false],
@@ -60,8 +60,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[4].img,
-  selectorName: Entities[4].name,
+  selectorImg: Entities.list[4].img,
+  selectorName: Entities.list[4].name,
   logicCells: [
     [false,false,true],
     [false,false,false],
@@ -69,8 +69,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[5].img,
-  selectorName: Entities[5].name,
+  selectorImg: Entities.list[5].img,
+  selectorName: Entities.list[5].name,
   logicCells: [
     [false,false,false],
     [true,false,false],
@@ -78,8 +78,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[6].img,
-  selectorName: Entities[6].name,
+  selectorImg: Entities.list[6].img,
+  selectorName: Entities.list[6].name,
   logicCells: [
     [false,false,false],
     [false,false,true],
@@ -87,8 +87,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[7].img,
-  selectorName: Entities[7].name,
+  selectorImg: Entities.list[7].img,
+  selectorName: Entities.list[7].name,
   logicCells: [
     [false,false,false],
     [false,false,false],
@@ -96,8 +96,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[8].img,
-  selectorName: Entities[8].name,
+  selectorImg: Entities.list[8].img,
+  selectorName: Entities.list[8].name,
   logicCells: [
     [false,false,false],
     [false,false,false],
@@ -111,8 +111,8 @@ logic:
 /*const Puzzle = [
   [
     {
-  selectorImg: Entities[0].img,
-  selectorName: Entities[0].name,
+  selectorImg: Entities.list[0].img,
+  selectorName: Entities.list[0].name,
   logicCells: [
     [null,null,true],
     [null,null,null],
@@ -120,8 +120,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[1].img,
-  selectorName: Entities[1].name,
+  selectorImg: Entities.list[1].img,
+  selectorName: Entities.list[1].name,
   logicCells: [
     [null,null,null],
     [null,null,null],
@@ -129,8 +129,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[2].img,
-  selectorName: Entities[2].name,
+  selectorImg: Entities.list[2].img,
+  selectorName: Entities.list[2].name,
   logicCells: [
     [null,null,null],
     [true,null,null],
@@ -138,8 +138,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[3].img,
-  selectorName: Entities[3].name,
+  selectorImg: Entities.list[3].img,
+  selectorName: Entities.list[3].name,
   logicCells: [
     [null,true,null],
     [null,null,null],
@@ -147,8 +147,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[4].img,
-  selectorName: Entities[4].name,
+  selectorImg: Entities.list[4].img,
+  selectorName: Entities.list[4].name,
   logicCells: [
     [null,null,null],
     [null,true,null],
@@ -156,8 +156,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[5].img,
-  selectorName: Entities[5].name,
+  selectorImg: Entities.list[5].img,
+  selectorName: Entities.list[5].name,
   logicCells: [
     [null,null,null],
     [null,null,null],
@@ -165,8 +165,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[6].img,
-  selectorName: Entities[6].name,
+  selectorImg: Entities.list[6].img,
+  selectorName: Entities.list[6].name,
   logicCells: [
     [null,null,null],
     [null,null,true],
@@ -174,8 +174,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[7].img,
-  selectorName: Entities[7].name,
+  selectorImg: Entities.list[7].img,
+  selectorName: Entities.list[7].name,
   logicCells: [
     [null,null,null],
     [null,null,null],
@@ -183,8 +183,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[8].img,
-  selectorName: Entities[8].name,
+  selectorImg: Entities.list[8].img,
+  selectorName: Entities.list[8].name,
   logicCells: [
     [true,null,null],
     [null,null,null],
@@ -195,11 +195,11 @@ logic:
 ];*/
 
 // MOYEN
-/*[
+[
   [
     {
-  selectorImg: Entities[0].img,
-  selectorName: Entities[0].name,
+  selectorImg: Entities.list[0].img,
+  selectorName: Entities.list[0].name,
   logicCells: [
     [false,false,null],
     [false,false,null],
@@ -207,8 +207,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[1].img,
-  selectorName: Entities[1].name,
+  selectorImg: Entities.list[1].img,
+  selectorName: Entities.list[1].name,
   logicCells: [
     [false,false,false],
     [false,null,false],
@@ -216,8 +216,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[2].img,
-  selectorName: Entities[2].name,
+  selectorImg: Entities.list[2].img,
+  selectorName: Entities.list[2].name,
   logicCells: [
     [false,false,false],
     [false,null,null],
@@ -225,8 +225,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[3].img,
-  selectorName: Entities[3].name,
+  selectorImg: Entities.list[3].img,
+  selectorName: Entities.list[3].name,
   logicCells: [
     [null,null,null],
     [null,null,null],
@@ -234,8 +234,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[4].img,
-  selectorName: Entities[4].name,
+  selectorImg: Entities.list[4].img,
+  selectorName: Entities.list[4].name,
   logicCells: [
     [false,false,false],
     [false,null,false],
@@ -243,8 +243,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[5].img,
-  selectorName: Entities[5].name,
+  selectorImg: Entities.list[5].img,
+  selectorName: Entities.list[5].name,
   logicCells: [
     [null,null,null],
     [null,null,null],
@@ -252,8 +252,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[6].img,
-  selectorName: Entities[6].name,
+  selectorImg: Entities.list[6].img,
+  selectorName: Entities.list[6].name,
   logicCells: [
     [null,null,null],
     [null,null,null],
@@ -261,8 +261,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[7].img,
-  selectorName: Entities[7].name,
+  selectorImg: Entities.list[7].img,
+  selectorName: Entities.list[7].name,
   logicCells: [
     [null,null,null],
     [false,false,false],
@@ -270,8 +270,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[8].img,
-  selectorName: Entities[8].name,
+  selectorImg: Entities.list[8].img,
+  selectorName: Entities.list[8].name,
   logicCells: [
     [false,null,null],
     [false,null,null],
@@ -279,44 +279,44 @@ logic:
     ]
   }]
 
-]*/
+]
 
 // Difficile
-[
+/*[
   [
     {
-  selectorImg: Entities[0].img,
-  selectorName: Entities[0].name,
+  selectorImg: Entities.list[0].img,
+  selectorName: Entities.list[0].name,
   logicCells: [
     [false,null,null]
     ]
   },
   {
-  selectorImg: Entities[1].img,
-  selectorName: Entities[1].name,
+  selectorImg: Entities.list[1].img,
+  selectorName: Entities.list[1].name,
   logicCells: [
     [false,null,false]
     ]
   },
   {
-  selectorImg: Entities[2].img,
-  selectorName: Entities[2].name,
+  selectorImg: Entities.list[2].img,
+  selectorName: Entities.list[2].name,
   logicCells: [
     ["red-circle"],
     [true]
     ]
   }],
   [{
-  selectorImg: Entities[3].img,
-  selectorName: Entities[3].name,
+  selectorImg: Entities.list[3].img,
+  selectorName: Entities.list[3].name,
   logicCells: [
     ["empty",true],
     ["yellow-triangle","empty"]
     ]
   },
   {
-  selectorImg: Entities[4].img,
-  selectorName: Entities[4].name,
+  selectorImg: Entities.list[4].img,
+  selectorName: Entities.list[4].name,
   logicCells: [
     [false,"empty","empty"],
     ["empty",false,"empty"],
@@ -324,23 +324,23 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[5].img,
-  selectorName: Entities[5].name,
+  selectorImg: Entities.list[5].img,
+  selectorName: Entities.list[5].name,
   logicCells: [
     ["empty","empty",null],
     [true,null,"empty"]
     ]
   }],
   [{
-  selectorImg: Entities[6].img,
-  selectorName: Entities[6].name,
+  selectorImg: Entities.list[6].img,
+  selectorName: Entities.list[6].name,
   logicCells: [
     ["yellow-circle",null,true]
     ]
   },
   {
-  selectorImg: Entities[7].img,
-  selectorName: Entities[7].name,
+  selectorImg: Entities.list[7].img,
+  selectorName: Entities.list[7].name,
   logicCells: [
     [null],
     [false],
@@ -348,8 +348,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[8].img,
-  selectorName: Entities[8].name,
+  selectorImg: Entities.list[8].img,
+  selectorName: Entities.list[8].name,
   logicCells: [
     [false,false,false],
     [false,false,false],
@@ -357,22 +357,22 @@ logic:
     ]
   }]
 
-]
+]*/
 
 // Très difficile
 /*const Puzzle = [
   [
     {
-  selectorImg: Entities[0].img,
-  selectorName: Entities[0].name,
+  selectorImg: Entities.list[0].img,
+  selectorName: Entities.list[0].name,
   logicCells: [
     [true,true,true],
     ["empty","triangle","empty"]
     ]
   },
   {
-  selectorImg: Entities[1].img,
-  selectorName: Entities[1].name,
+  selectorImg: Entities.list[1].img,
+  selectorName: Entities.list[1].name,
   logicCells: [
     ["empty",true],
     ["yellow",true],
@@ -380,8 +380,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[2].img,
-  selectorName: Entities[2].name,
+  selectorImg: Entities.list[2].img,
+  selectorName: Entities.list[2].name,
   logicCells: [
     [false,false,false],
     [null,null,null],
@@ -389,8 +389,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities[3].img,
-  selectorName: Entities[3].name,
+  selectorImg: Entities.list[3].img,
+  selectorName: Entities.list[3].name,
   logicCells: [
     [false,false,false],
     [false,null,false],
@@ -398,8 +398,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities[4].img,
-  selectorName: Entities[4].name,
+  selectorImg: Entities.list[4].img,
+  selectorName: Entities.list[4].name,
   logicCells: [
     [null,false,null],
     [false,null,null],

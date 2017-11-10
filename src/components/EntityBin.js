@@ -18,7 +18,7 @@ const EntityBin = ({entities, entityOnClick}) => {
 
   return (
     <div className="entity-bin">
-      {imageFactory(entities)}
+      {imageFactory(entities.list)}
     </div>
   );
 };

@@ -30,36 +30,45 @@ class Entity {
    }
  }
 
+ const PROPERTIES = {
+   COLORS: ["red", "blue", "yellow"],
+   SHAPES: ["square", "circle", "triangle"]
+ }
 
-const Entities = [
-  new Entity("red Square",
-              new Properties("red", "square"),
-              redSquare),
-  new Entity("blue Square",
-              new Properties("blue", "square"),
-              blueSquare),
-  new Entity("yellow Square",
-              new Properties("yellow", "square"),
-              yellowSquare),
-  new Entity("red-circle",
-              new Properties("red", "circle"),
-              redCircle),
-  new Entity("blue-circle",
-              new Properties("blue", "circle"),
-              blueCircle),
-  new Entity("yellow-circle",
-              new Properties("yellow", "circle"),
-              yellowCircle),
-  new Entity("red-triangle",
-              new Properties("red", "triangle"),
-              redTriangle),
-  new Entity("blue-triangle",
-              new Properties("blue", "triangle"),
-              blueTriangle),
-  new Entity("yellow-triangle",
-              new Properties("yellow", "triangle"),
-              yellowTriangle)
-]
+
+const Entities = {
+  PROPERTIES: PROPERTIES,
+  list: [
+    new Entity("red Square",
+                new Properties(PROPERTIES.COLORS[0], PROPERTIES.SHAPES[0]),
+                redSquare),
+    new Entity("blue Square",
+                new Properties(PROPERTIES.COLORS[1], PROPERTIES.SHAPES[0]),
+                blueSquare),
+    new Entity("yellow Square",
+                new Properties(PROPERTIES.COLORS[2], PROPERTIES.SHAPES[0]),
+                yellowSquare),
+    new Entity("red-circle",
+                new Properties(PROPERTIES.COLORS[0], PROPERTIES.SHAPES[1]),
+                redCircle),
+    new Entity("blue-circle",
+                new Properties(PROPERTIES.COLORS[1], PROPERTIES.SHAPES[1]),
+                blueCircle),
+    new Entity("yellow-circle",
+                new Properties(PROPERTIES.COLORS[2], PROPERTIES.SHAPES[1]),
+                yellowCircle),
+    new Entity("red-triangle",
+                new Properties(PROPERTIES.COLORS[0], PROPERTIES.SHAPES[2]),
+                redTriangle),
+    new Entity("blue-triangle",
+                new Properties(PROPERTIES.COLORS[1], PROPERTIES.SHAPES[2]),
+                blueTriangle),
+    new Entity("yellow-triangle",
+                new Properties(PROPERTIES.COLORS[2], PROPERTIES.SHAPES[2]),
+                yellowTriangle)
+  ]
+
+}
 
 
 export default Entities;
