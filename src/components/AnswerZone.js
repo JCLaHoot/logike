@@ -271,7 +271,15 @@ validate = () => {
       var relativeCheck = (logicCell, x, y) => {
         var xOffset = x - puzzInnerSelectorX;
         var yOffset = y - puzzInnerSelectorY;
-        var ansCell = this.state.userAns[ansInnerSelectorY + yOffset][ansInnerSelectorX + xOffset];
+        var ansCell;
+        // makes sure that the ansCell's offset index is actually something that you can get a handle on
+        if (this.state.userAns[ansInnerSelectorY + yOffset]) {
+          if(this.state.userAns[ansInnerSelectorY + yOffset][ansInnerSelectorX + xOffset]) {
+            ansCell = this.state.userAns[ansInnerSelectorY + yOffset][ansInnerSelectorX + xOffset];
+          } else {
+            return false;
+          }
+        }
 
 
         var matchesSelector = selector === ansCell;
@@ -295,12 +303,9 @@ validate = () => {
             (!selectorIsHere || typeof logicCell === "string")))
             // doesn't match selector, therefore the cell must contain false or another selector
              {
-               console.log("relative placement is valid")
           return true;
         }
         else {
-          console.log("relative placement is invalid")
-
           return false;
         }
 
