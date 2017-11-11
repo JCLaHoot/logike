@@ -44,6 +44,7 @@ createEmptyGrid = (xSize, ySize) => {
 // 4. return true for the cell if checks are passed
 // 5. set validAns state to true if all puzzle cells are valid
 validate = () => {
+  var start = Date.now();
 
   // checks to make sure that all entities have been placed
   // if(this.state.availableEntities != 0) {
@@ -196,14 +197,16 @@ validate = () => {
   validationArray = deepMap(normalizeLogic(this.state.puzzle), (puzzleCell, xAns, yAns) => {
     var selector = puzzleCell.selectorName;
 
+    // TODO: improve check for matchesSelector to include partial selectors
+
 
 // This is the check that's performed on every single logic cell in a puzzle cell
     var check = (logicCell, x, y) => {
-      // TODO: improve check for matchesSelector to include partial selectors
+
       var matchesSelector = selector === this.state.userAns[y][x];
 
       var selectorCanBeHere = false;
-        if(logicCell == null) {
+        if(logicCell == null) { //TODO: add case for empty cell;
           selectorCanBeHere = true;
         }
       var selectorIsHere = false
@@ -227,8 +230,90 @@ validate = () => {
         return false;
       }
     }
-//  only returns true if all of the conditions in the check are passed
-    return deepEvery(puzzleCell.logicCells, check);
+
+// different check depending on whether or not there's a selector.
+    if(containsSelector(puzzleCell.logicCells)) {
+      // finds the inner selector
+      var entityProperties = fetchAllProperties(this.state.entities);
+      var innerSelector;
+      deepForEach(puzzleCell.logicCells, (logicCell) => {
+        if( typeof logicCell == "string"
+            &&
+            entityProperties.includes(logicCell)) {
+              innerSelector = logicCell;
+            }
+      });
+
+      // find inner selector in puzzle
+      var puzzInnerSelectorX;
+      var puzzInnerSelectorY;
+      deepForEach(puzzleCell.logicCells, (logicCell, x, y) => {
+        if(logicCell == innerSelector) {
+          puzzInnerSelectorX = x;
+          puzzInnerSelectorY = y;
+          console.log("puzz inner selector pos: ", x, y);
+        }
+      });
+
+      // find inner selector in answer
+      var ansInnerSelectorX;
+      var ansInnerSelectorY;
+      deepForEach(this.state.userAns, (ansCell, x, y) => {
+        if(ansCell == innerSelector) {
+          ansInnerSelectorX = x;
+          ansInnerSelectorY = y;
+          console.log("ans inner selector pos: ", x, y);
+        }
+      });
+
+
+      // selector check
+      var relativeCheck = (logicCell, x, y) => {
+        var xOffset = x - puzzInnerSelectorX;
+        var yOffset = y - puzzInnerSelectorY;
+        var ansCell = this.state.userAns[ansInnerSelectorY + yOffset][ansInnerSelectorX + xOffset];
+
+
+        var matchesSelector = selector === ansCell;
+
+        var selectorCanBeHere = false;
+          if(logicCell == null) {
+            selectorCanBeHere = true;
+          }
+        var selectorIsHere = false
+          if(logicCell) {
+            selectorIsHere = true;
+          }
+
+        if ((matchesSelector
+            &&
+            (selectorCanBeHere || selectorIsHere))
+            // matches selector in specific cell, therefore the cell needs to contain true or null
+            ||
+            (!matchesSelector
+            &&
+            (!selectorIsHere || typeof logicCell === "string")))
+            // doesn't match selector, therefore the cell must contain false or another selector
+             {
+               console.log("relative placement is valid")
+          return true;
+        }
+        else {
+          console.log("relative placement is invalid")
+
+          return false;
+        }
+
+      };
+
+      return deepEvery(puzzleCell.logicCells, relativeCheck);
+
+    }
+    else {
+  //  only returns true if all of the conditions in the check are passed
+      return deepEvery(puzzleCell.logicCells, check);
+    }
+
   })
 
 
@@ -241,6 +326,9 @@ validate = () => {
     validString = "valid-false";
   }
   this.setState({validAns: validString});
+
+
+  console.log("millis to validate: ",Date.now() - start);
 
   }
 
