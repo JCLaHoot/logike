@@ -35,8 +35,22 @@ class Entity {
    SHAPES: ["square", "circle", "triangle"]
  }
 
+ // generates a list of all possible selectors based on the list of names and properties of entities;
+const fetchAllProperties = (entities) => {
+    var list = [];
+    // lists all the names of entities used (since they are sometimes selectors)
+    entities.list.forEach((entity) => {
+      list.push(entity.name);
+    })
+    // lists all selectors, regardless of type
+    for (var property in entities.PROPERTIES) {
+      list = list.concat(entities.PROPERTIES[property]);
+    }
+    return list;
+  }
 
 const Entities = {
+  fetchAllProperties: fetchAllProperties,
   PROPERTIES: PROPERTIES,
   list: [
     new Entity("red Square",

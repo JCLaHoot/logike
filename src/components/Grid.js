@@ -36,6 +36,16 @@ export const deepEvery = (twoDimensionalArray, check) => {
   })
 }
 
+export const getGridY = (grid) => {
+  return grid.length;
+}
+export const getGridX = (grid) => {
+  var rowLengths = grid.map((row) => {
+    return row.length;
+  })
+  return Math.max(...rowLengths);
+}
+
 
 const Grid = ({cells}) => {
 // prevents crashes in the event that an empty grid is used.
