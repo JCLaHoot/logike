@@ -7,11 +7,15 @@ import yellowCircle from '../assets/yellow_circle.png';
 import redTriangle from '../assets/red_triangle.png';
 import blueTriangle from '../assets/blue_triangle.png';
 import yellowTriangle from '../assets/yellow_triangle.png';
+import square from '../assets/square.svg';
+import circle from '../assets/circle.svg';
+import triangle from '../assets/triangle.svg';
 
 // an entity the main element that is manipulated in the puzzle.
 // it has properties, a name based on the properties,
 // a common name which may differ from the name, and an image
 // TODO: allow for custom adding of images without hardcoding it here.
+// TODO: create property list programatically with categories as keys
 class Entity {
   constructor(commonName, properties, img) {
     this.properties = properties; // an array;
@@ -30,10 +34,28 @@ class Entity {
    }
  }
 
+ class Property {
+   constructor(category, name, img) {
+     this.category = category;
+     this.name = name;
+     this.img = img; //can be a HEX for colours
+   }
+ }
+
  const PROPERTIES = {
    COLORS: ["red", "blue", "yellow"],
    SHAPES: ["square", "circle", "triangle"]
  }
+
+const testtt = [
+  new Property("color", "red", "#d7433a"),
+  new Property("color", "blue", "#3a7ed7"),
+  new Property("color", "yellow", "#fff469"),
+  new Property("shape", "square", square),
+  new Property("shape", "circle", circle),
+  new Property("shape", "triangle", triangle)
+];
+
 
  // generates a list of all possible selectors based on the list of names and properties of entities;
 const fetchAllProperties = (entities) => {
@@ -48,6 +70,7 @@ const fetchAllProperties = (entities) => {
     }
     return list;
   }
+
 
 const Entities = {
   fetchAllProperties: fetchAllProperties,
