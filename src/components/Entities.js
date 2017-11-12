@@ -47,15 +47,32 @@ class Entity {
    SHAPES: ["square", "circle", "triangle"]
  }
 
-const testtt = [
-  new Property("color", "red", "#d7433a"),
-  new Property("color", "blue", "#3a7ed7"),
-  new Property("color", "yellow", "#fff469"),
-  new Property("shape", "square", square),
-  new Property("shape", "circle", circle),
-  new Property("shape", "triangle", triangle)
+
+const ENTITY_PROPERTIES = [
+  new Property("colors", "red", "#d7433a"),
+  new Property("colors", "blue", "#3a7ed7"),
+  new Property("colors", "yellow", "#fff469"),
+  new Property("shapes", "square", square),
+  new Property("shapes", "circle", circle),
+  new Property("shapes", "triangle", triangle)
 ];
 
+// takes an array of objects and outputs an object whose keys correspond to the grouping values
+// and that contain arrays of the objects that match the grouping values
+const groupArrayBy = (arrayOfObjects, keytoGroupBy) => {
+  var obj = {};
+  arrayOfObjects.forEach((object) => {
+    if(!obj[object[keytoGroupBy]]) {
+      obj[object[keytoGroupBy]] = [];
+      obj[object[keytoGroupBy]].push(object);
+    }
+    else {
+      obj[object[keytoGroupBy]].push(object)
+    }
+  })
+  return obj;
+}
+groupArrayBy(ENTITY_PROPERTIES, "category");
 
  // generates a list of all possible selectors based on the list of names and properties of entities;
 const fetchAllProperties = (entities) => {
