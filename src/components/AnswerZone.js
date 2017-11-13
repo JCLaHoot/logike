@@ -38,6 +38,7 @@ class AnswerZone extends Component {
   }
 
 
+  // TODO: improve to work with partial selectors
   // checks whether the logicCells contains a selector
   containsSelector = (logicCells) => {
       var entityProperties = this.state.entities.fetchAllProperties(this.state.entities);
@@ -332,10 +333,8 @@ class AnswerZone extends Component {
     switch (bool) {
       case true:
         return "valid-true";
-        break;
       case false:
         return "valid-false";
-        break;
       default:
         return null;
     }

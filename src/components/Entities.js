@@ -19,20 +19,13 @@ import triangle from '../assets/triangle.svg';
 class Entity {
   constructor(commonName, properties, img) {
     this.properties = properties; // an array;
-    this.name = Object.values(properties).join("-");
+    this.name = Object.values(properties.map((property) => {
+      return property.name}
+      )).join("-");
     this.commonName = commonName; // for display purposes ONLY
     this.img = img;
   }
 }
-
-// TODO: allow for custom adding of key-value pairs
-// TODO: add images for key-value pairs
- class Properties {
-   constructor(color, shape) {
-     this.color = color;
-     this.shape = shape;
-   }
- }
 
  class Property {
    constructor(category, name, img) {
@@ -42,13 +35,8 @@ class Entity {
    }
  }
 
- const PROPERTIES = {
-   COLORS: ["red", "blue", "yellow"],
-   SHAPES: ["square", "circle", "triangle"]
- }
 
-
-const ENTITY_PROPERTIES = [
+const PROPERTIES = [
   new Property("colors", "red", "#d7433a"),
   new Property("colors", "blue", "#3a7ed7"),
   new Property("colors", "yellow", "#fff469"),
@@ -72,7 +60,8 @@ const groupArrayBy = (arrayOfObjects, keytoGroupBy) => {
   })
   return obj;
 }
-groupArrayBy(ENTITY_PROPERTIES, "category");
+
+const groupedProperties = groupArrayBy(PROPERTIES, "category");
 
  // generates a list of all possible selectors based on the list of names and properties of entities;
 const fetchAllProperties = (entities) => {
@@ -83,42 +72,50 @@ const fetchAllProperties = (entities) => {
     })
     // lists all selectors, regardless of type
     for (var property in entities.PROPERTIES) {
-      list = list.concat(entities.PROPERTIES[property]);
+      list = list.concat(entities.PROPERTIES[property.name]);
     }
     return list;
   }
 
+const fetchAllPossibleSelectors = (entities) => {
+  var list = [];
+  list = list.concat(entities.list);
+  list = list.concat(entities.PROPERTIES);
+  return list;
+}
+
 
 const Entities = {
   fetchAllProperties: fetchAllProperties,
+  fetchAllPossibleSelectors: fetchAllPossibleSelectors,
   PROPERTIES: PROPERTIES,
   list: [
     new Entity("red Square",
-                new Properties(PROPERTIES.COLORS[0], PROPERTIES.SHAPES[0]),
+                [groupedProperties.colors[0], groupedProperties.shapes[0]],
                 redSquare),
     new Entity("blue Square",
-                new Properties(PROPERTIES.COLORS[1], PROPERTIES.SHAPES[0]),
+                [groupedProperties.colors[1], groupedProperties.shapes[0]],
                 blueSquare),
     new Entity("yellow Square",
-                new Properties(PROPERTIES.COLORS[2], PROPERTIES.SHAPES[0]),
+                [groupedProperties.colors[2], groupedProperties.shapes[0]],
                 yellowSquare),
     new Entity("red-circle",
-                new Properties(PROPERTIES.COLORS[0], PROPERTIES.SHAPES[1]),
+                [groupedProperties.colors[0], groupedProperties.shapes[1]],
                 redCircle),
     new Entity("blue-circle",
-                new Properties(PROPERTIES.COLORS[1], PROPERTIES.SHAPES[1]),
+                [groupedProperties.colors[1], groupedProperties.shapes[1]],
                 blueCircle),
     new Entity("yellow-circle",
-                new Properties(PROPERTIES.COLORS[2], PROPERTIES.SHAPES[1]),
+                [groupedProperties.colors[2], groupedProperties.shapes[1]],
                 yellowCircle),
     new Entity("red-triangle",
-                new Properties(PROPERTIES.COLORS[0], PROPERTIES.SHAPES[2]),
+                [groupedProperties.colors[0], groupedProperties.shapes[2]],
                 redTriangle),
     new Entity("blue-triangle",
-                new Properties(PROPERTIES.COLORS[1], PROPERTIES.SHAPES[2]),
+                [groupedProperties.colors[1], groupedProperties.shapes[2]],
                 blueTriangle),
     new Entity("yellow-triangle",
-                new Properties(PROPERTIES.COLORS[2], PROPERTIES.SHAPES[2]),
+                [groupedProperties.colors[2], groupedProperties.shapes[2]],
                 yellowTriangle)
   ]
 

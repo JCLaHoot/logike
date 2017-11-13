@@ -15,7 +15,7 @@ RESPONSIVE TEXT & LAYOUT
 body {
   font-size: 80%; }
 
-.grid {
+.question-zone > .grid, .answer-zone .grid {
   width: 95%;
 }
 
@@ -24,7 +24,7 @@ body {
 @media (min-width: 601px) {
   body {
     font-size: 100%; }
-  .grid {
+  .question-zone > .grid, .answer-zone .grid  {
     width: 85%;
   }
 
@@ -33,7 +33,7 @@ body {
 @media (min-width: 993px) {
   body {
     font-size: 120%; }
-  .grid {
+  .question-zone > .grid, .answer-zone .grid  {
     width: 80%;
   }
   .question-zone {
@@ -51,7 +51,7 @@ body {
 @media (min-width: 1200px) {
   body {
     font-size: 140%; }
-  .grid {
+  .question-zone > .grid, .answer-zone .grid  {
     width: 70%;
   }
   }
@@ -108,12 +108,6 @@ p {
     margin: 0 auto;
   }
 
-  .grid td {
-    width: 33%;
-    height: 2em;
-  }
-
-
   .grid img {
     width: 33%;
   }
@@ -122,12 +116,31 @@ p {
     width: 20%;
   }
 
-  .logical-condition .grid td {
-    width: 2em;
-    height: 2em;
-    min-width: 2em;
-
+  .question-zone .grid {
+    background: #ececec;
   }
+
+  .question-zone .grid td {
+    vertical-align: top;
+  }
+
+  .logic-cell-display {
+    backgroundSize:cover;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 0.5em;
+    border: 0.15em solid rgb(167, 167, 167);
+  }
+  .logical-condition .grid td {
+    border: none;
+    vertical-align: top;
+  }
+
+  .logical-condition img {
+    margin-bottom: 0.5em;
+  }
+
+
 
 
   .entity-bin {
@@ -155,26 +168,4 @@ p {
 
   .valid-true .drop-zone  {
     background: #8DFF8C;
-  }
-
-  /*
-  inputs
-  */
-
-  .drop-zone input {
-    /*background-color: #E3E3E3;*/
-    height: 1.5em;
-    width: 7em;
-    border-radius: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
-    border: none;
-    margin-top: 3em;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
-
-    /*height: 6em;*/
-  }
-
-  .drop-zone input:focus {
-    outline: none;
   }

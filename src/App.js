@@ -25,7 +25,7 @@ class App extends Component {
       <div className="App">
         <Header/>
         <div className="group">
-          <QuestionZone puzzleLogic={this.state.puzzle.logic}/>
+          <QuestionZone puzzle={this.state.puzzle}/>
           <AnswerZone puzzle={this.state.puzzle}/>
         </div>
 

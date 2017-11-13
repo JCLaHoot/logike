@@ -360,19 +360,19 @@ logic:
 ]
 
 // Très difficile
-/*const Puzzle = [
+/*[
   [
     {
-  selectorImg: Entities.list[0].img,
-  selectorName: Entities.list[0].name,
+  selectorImg: Entities.PROPERTIES[3].img,
+  selectorName:  Entities.PROPERTIES[3].name,
   logicCells: [
     [true,true,true],
     ["empty","triangle","empty"]
     ]
   },
   {
-  selectorImg: Entities.list[1].img,
-  selectorName: Entities.list[1].name,
+  selectorImg:  Entities.PROPERTIES[1].img,
+  selectorName: Entities.PROPERTIES[1].name,
   logicCells: [
     ["empty",true],
     ["yellow",true],
@@ -380,8 +380,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities.list[2].img,
-  selectorName: Entities.list[2].name,
+  selectorImg: Entities.PROPERTIES[4].img,
+  selectorName: Entities.PROPERTIES[4].name,
   logicCells: [
     [false,false,false],
     [null,null,null],
@@ -389,8 +389,8 @@ logic:
     ]
   }],
   [{
-  selectorImg: Entities.list[3].img,
-  selectorName: Entities.list[3].name,
+  selectorImg: Entities.PROPERTIES[5].img,
+  selectorName: Entities.PROPERTIES[5].name,
   logicCells: [
     [false,false,false],
     [false,null,false],
@@ -398,8 +398,8 @@ logic:
     ]
   },
   {
-  selectorImg: Entities.list[4].img,
-  selectorName: Entities.list[4].name,
+  selectorImg: Entities.PROPERTIES[2].img,
+  selectorName: Entities.PROPERTIES[2].name,
   logicCells: [
     [null,false,null],
     [false,null,null],
@@ -407,7 +407,7 @@ logic:
     ]
   }]
 
-];*/
+]*/
 
 ,
 size: {

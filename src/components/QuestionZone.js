@@ -1,36 +1,56 @@
 import React, {Component} from "react";
 import LogicalCondition from './LogicalCondition.js';
 import Grid, {deepMap}  from './Grid.js';
+import LogicCellDisplay from './LogicCellDisplay';
+import trueIcon from '../assets/true.png';
+import falseIcon from '../assets/false.png';
+
+
+
+
 
 
 
 class QuestionZone extends Component {
 
-  constructor({props, puzzleLogic}) {
+  constructor({props, puzzle}) {
     super(props);
     this.state = {
-      puzzleLogic
+      puzzle
     };
   }
 
 // ❔✅❌
 
   // builds a 2d array of LogicalConditions
-  buildLogicalConditions = (puzzleLogic) => {
-    return deepMap(puzzleLogic, (puzzleCell, x, y) => {
+  buildLogicalConditions = (puzzle) => {
+    return deepMap(puzzle.logic, (puzzleCell, x, y) => {
 
 // converts logicCell values to symbols for the UI
     var visualizeLogicCells = (logicCell, x, y) => {
           switch (logicCell) {
             case null:
-              return null;
+              return <LogicCellDisplay img={"#fff"}/>;
             case true:
-              return "✅";
+              return <LogicCellDisplay img={trueIcon}/>;
             case false:
-              return "❌";
+              return <LogicCellDisplay img={falseIcon}/>;
             default:
-              return logicCell;
+              if(logicCell === "empty") {
+                return null;
+              }
+              else { //go through all the selectors until you find the one that matches, and get its image
+                var selectors = puzzle.entities.fetchAllPossibleSelectors(puzzle.entities);
+                var img;
+                selectors.forEach((selector) => {
+                  if(selector.name === logicCell) {
+                    img = selector.img;
+                  }
+                })
+                return <LogicCellDisplay img={img}/>;
+              }
           }
+
         }
 // returns the UI contents of each puzzleCell (which contails logicCells)
     return (<LogicalCondition
@@ -46,7 +66,7 @@ class QuestionZone extends Component {
     return (
         <div className="question-zone">
           This is a question zone ⬇️
-          <Grid cells={this.buildLogicalConditions(this.state.puzzleLogic)}/>
+          <Grid cells={this.buildLogicalConditions(this.state.puzzle)}/>
           This is a question zone ⬆️
         </div>
     )
