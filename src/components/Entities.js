@@ -37,9 +37,9 @@ class Entity {
 
 
 const PROPERTIES = [
-  new Property("colors", "red", "#d7433a"),
-  new Property("colors", "blue", "#3a7ed7"),
-  new Property("colors", "yellow", "#fff469"),
+  new Property("colors", "red", "#FF5554"),
+  new Property("colors", "blue", "#0E90FF"),
+  new Property("colors", "yellow", "#FFDA30"),
   new Property("shapes", "square", square),
   new Property("shapes", "circle", circle),
   new Property("shapes", "triangle", triangle)

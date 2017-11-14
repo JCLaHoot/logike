@@ -2,13 +2,13 @@ import React from "react";
 
 const LogicCellDisplay = ({img}) => {
 
-  // can also accept colours instead of images
+  // makes the component also accept colours instead of just images
   var isHex  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(img)
   var imgString;
   if(isHex) {
-    imgString = img;
+    imgString = `url('https://dummyimage.com/10/${img.slice(1)}/&text=+')`;
   } else {
-    imgString = 'url(' + img + ')';
+    imgString = `url('${img}')`;
   }
 
   const divStyle = {
