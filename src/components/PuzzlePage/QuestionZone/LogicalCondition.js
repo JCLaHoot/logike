@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Grid from './Grid.js';
+import Grid from '../../Shared/Grid.js';
 
 const LogicalCondition = ({cells, selectorImg, selectorName}) => {
 

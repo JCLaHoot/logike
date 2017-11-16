@@ -1,14 +1,9 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import LogicalCondition from './LogicalCondition.js';
-import Grid, {deepMap}  from './Grid.js';
+import Grid, {deepMap}  from '../../Shared/Grid.js';
 import LogicCellDisplay from './LogicCellDisplay';
-import trueIcon from '../assets/true.png';
-import falseIcon from '../assets/false.png';
-
-
-
-
-
+import trueIcon from '../../../assets/true.png';
+import falseIcon from '../../../assets/false.png';
 
 
 class QuestionZone extends Component {
@@ -65,9 +60,7 @@ class QuestionZone extends Component {
   render() {
     return (
         <div className="question-zone">
-          This is a question zone ⬇️
           <Grid cells={this.buildLogicalConditions(this.state.puzzle)}/>
-          This is a question zone ⬆️
         </div>
     )
   }

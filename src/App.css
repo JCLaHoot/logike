@@ -114,6 +114,10 @@ p {
 
   img {
     width: 20%;
+    /*box-shadow: -0.36em 0 red, 0.36em 0 cyan;*/
+    /*filter: drop-shadow( 0.16em 0 cyan) drop-shadow(-0.16em 0 red);*/
+
+
   }
 
   .question-zone .grid {

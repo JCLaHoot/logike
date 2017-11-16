@@ -1,15 +1,15 @@
-import redSquare from '../assets/red_square.png';
-import blueSquare from '../assets/blue_square.png';
-import yellowSquare from '../assets/yellow_square.png';
-import redCircle from '../assets/red_circle.png';
-import blueCircle from '../assets/blue_circle.png';
-import yellowCircle from '../assets/yellow_circle.png';
-import redTriangle from '../assets/red_triangle.png';
-import blueTriangle from '../assets/blue_triangle.png';
-import yellowTriangle from '../assets/yellow_triangle.png';
-import square from '../assets/square.svg';
-import circle from '../assets/circle.svg';
-import triangle from '../assets/triangle.svg';
+import redSquare from '../../assets/red_square.png';
+import blueSquare from '../../assets/blue_square.png';
+import yellowSquare from '../../assets/yellow_square.png';
+import redCircle from '../../assets/red_circle.png';
+import blueCircle from '../../assets/blue_circle.png';
+import yellowCircle from '../../assets/yellow_circle.png';
+import redTriangle from '../../assets/red_triangle.png';
+import blueTriangle from '../../assets/blue_triangle.png';
+import yellowTriangle from '../../assets/yellow_triangle.png';
+import square from '../../assets/square.svg';
+import circle from '../../assets/circle.svg';
+import triangle from '../../assets/triangle.svg';
 
 // an entity the main element that is manipulated in the puzzle.
 // it has properties, a name based on the properties,

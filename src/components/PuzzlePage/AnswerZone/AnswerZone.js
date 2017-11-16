@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import Grid, {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from './Grid.js';
+import Grid, {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
 import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
 
@@ -344,7 +344,6 @@ class AnswerZone extends Component {
   render() {
     return (
         <div className="answer-zone">
-          This is an answer zone ⬇️
           <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
           <br/>
           <div className={this.getValidationClassName(this.state.validAns)}>
@@ -353,7 +352,6 @@ class AnswerZone extends Component {
           <br/>
           <button onClick={this.validateAns}>Validate</button>
           <br/>
-          This is an answer zone ⬆️
         </div>
 
     );
