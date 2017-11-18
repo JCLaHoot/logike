@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PuzzleList = ({puzzle}) => {
+const PuzzleListItem = ({puzzle}) => {
 
   return (
     <div>
@@ -10,4 +10,4 @@ const PuzzleList = ({puzzle}) => {
 
 }
 
-export default PuzzleList;
+export default PuzzleListItem;

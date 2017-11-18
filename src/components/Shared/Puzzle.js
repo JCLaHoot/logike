@@ -2,7 +2,6 @@
 import Entities from './Entities.js';
 // ❔✅❌
 
- //I know it's not super legit, but I want entities to be tied to the puzzle
 const entities = Entities;
 
 // a 2d array of cells. Each cell contains an entity (or entity property)

@@ -7,8 +7,9 @@ import Header from './components/Header.js';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage/LandingPage.jsx';
 import PuzzlePage from './components/PuzzlePage/PuzzlePage';
-import QuestionZone from './components/PuzzlePage/QuestionZone/QuestionZone.js';
-import AnswerZone from './components/PuzzlePage/AnswerZone/AnswerZone.js';
+
+
+import PuzzleList from './components/Shared/PuzzleList.js';
 
 import Puzzle from './components/Shared/Puzzle.js';
 
