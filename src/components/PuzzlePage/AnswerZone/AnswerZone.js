@@ -346,8 +346,10 @@ class AnswerZone extends Component {
         <div className="answer-zone">
           <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
           <br/>
-          <div className={this.getValidationClassName(this.state.validAns)}>
-            <Grid cells={this.dropZoneFactory()}/>
+          <div className="drop-zone-container">
+            <div className={this.getValidationClassName(this.state.validAns)}>
+              <Grid cells={this.dropZoneFactory()}/>
+            </div>
           </div>
           <br/>
           <button onClick={this.validateAns}>Validate</button>

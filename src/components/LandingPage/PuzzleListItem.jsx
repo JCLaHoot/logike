@@ -1,10 +1,12 @@
 import React from 'react';
 
-const PuzzleListItem = ({puzzle}) => {
+const PuzzleListItem = ({puzzle, onSelectHandler}) => {
 
   return (
-    <div>
-      List of puzzles here
+    <div onClick={()=>{
+        onSelectHandler(puzzle);
+      }}>
+      <h5 className="puzzle-name">{puzzle.name}</h5>
     </div>
   )
 

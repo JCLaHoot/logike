@@ -7,19 +7,36 @@ import Header from './components/Header.js';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage/LandingPage.jsx';
 import PuzzlePage from './components/PuzzlePage/PuzzlePage';
-
-
-import PuzzleList from './components/Shared/PuzzleList.js';
-
-import Puzzle from './components/Shared/Puzzle.js';
-
+// import Puzzle from './components/Shared/Puzzle';
 
 class App extends Component {
 
   constructor(props) {
   super(props);
   this.state = {
-    puzzle: Puzzle,
+    // puzzle: Puzzle
+    puzzle: null
+  }
+}
+
+// runs when a puzzle is selected and changes the state
+onSelectHandler = (puzzle) => {
+this.setState(
+  {puzzle: puzzle}
+);
+}
+
+// specifies which views will be displayed depending on which data is available
+displayCorrectViews = () => {
+  if(this.state.puzzle) {
+    return (
+      <PuzzlePage puzzle={this.state.puzzle}/>
+    )
+  }
+  else {
+    return (
+      <LandingPage onSelectHandler={this.onSelectHandler} />
+    )
   }
 }
 
@@ -29,8 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <LandingPage/>
-        <PuzzlePage puzzle={this.state.puzzle}/>
+        {this.displayCorrectViews()}
         <Footer/>
       </div>
     );

@@ -1,66 +1,100 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+  ========================================
+  Clearfix
+  ========================================
+*/
+
+.float-wrapper:before,
+.float-wrapper:after {
+  content: "";
+  display: table;
+}
+.float-wrapper:after {
+  clear: both;
+}
+.float-wrapper {
+  clear: both;
+  *zoom: 1;
+}
+
+/*
+  ========================================
+  Custom styles
+  ========================================
+*/
+
+/*
+  ========================================
+  Imports
+  ========================================
+*/
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-.App {
+
+/*
+  ========================================
+  Text & Fonts
+  ========================================
+*/
+
+html {
   text-align: center;
   font-family: "Roboto",sans-serif;
   color: #424242;
 }
 
-/*
-RESPONSIVE TEXT & LAYOUT
-*/
-
 body {
-  font-size: 80%; }
-
-.question-zone > .grid, .answer-zone .grid {
-  width: 95%;
-}
-
-
-
-@media (min-width: 601px) {
-  body {
-    font-size: 100%; }
-  .question-zone > .grid, .answer-zone .grid  {
-    width: 85%;
-  }
-
-  }
-
-@media (min-width: 993px) {
-  body {
-    font-size: 120%; }
-  .question-zone > .grid, .answer-zone .grid  {
-    width: 80%;
-  }
-  .question-zone {
-    width: 50%;
-    float: left;
-
-  }
-
-  .answer-zone {
-    width: 50%;
-    float: left;
-  }
-  }
-
-@media (min-width: 1200px) {
-  body {
-    font-size: 140%; }
-  .question-zone > .grid, .answer-zone .grid  {
-    width: 70%;
-  }
-  }
-
-
-
-  /*
-  TEXT STYLES
-  */
+  font-size: 100%; }
 
 h1 {
   font-size: 4em; }
@@ -79,31 +113,247 @@ p {
   color: #616161;
  }
 
- /*
+
+
+/*
   ========================================
-  Clearfix
+  Responsiveness
   ========================================
 */
 
-.group:before,
-.group:after {
-  content: "";
-  display: table;
+  @media (max-width: 601px) {
+    body {
+      font-size: 80%; }
+    /*.question-zone > .grid, .answer-zone .grid  {
+      width: 85%;
+    }*/
+
+    }
+
+  @media (min-width: 993px) {
+    body {
+      font-size: 120%; }
+    /*.question-zone > .grid, .answer-zone .grid  {
+      width: 80%;
+    }
+    .question-zone {
+      width: 50%;
+      float: left;
+    }
+    .answer-zone {
+      width: 50%;
+      float: left;
+    }*/
+    }
+
+  @media (min-width: 1200px) {
+    body {
+      font-size: 140%; }
+    /*.question-zone > .grid, .answer-zone .grid  {
+      width: 70%;
+    }*/
+    }
+
+
+/*
+  ========================================
+  Header
+  ========================================
+*/
+
+#nav-burger, nav li {
+  float: right;
+  color: #fff;
 }
-.group:after {
-  clear: both;
+
+#nav-logo img {
+  float: left;
+  height: 3.5rem;
+  padding: 0.25rem 1rem;
 }
-.group {
-  clear: both;
-  *zoom: 1;
+
+#nav-burger {
+  line-height: 4rem;
+  padding: 0 1rem;
+  display: none; /* Hiding when normal size.  */
 }
+
+nav li {
+  line-height: 4rem;
+  padding: 0 1rem;
+  font-size: 2rem;
+}
+
+nav {
+  height: 4rem;
+  background: #455A64;
+}
+
+/*
+  ========================================
+  Footer
+  ========================================
+*/
+
+
+footer {
+  padding:  1rem 0;
+  font-size: 0.7rem;
+  color: #fff;
+  background: #455A64;
+}
+
+
+/*
+  ========================================
+  LandingPage
+  ========================================
+*/
+
+.puzzle-list h2 {
+  margin: 0.5em 0 ;
+}
+
+.puzzle-name {
+  padding: 0.5em 0 ;
+}
+
+
+.puzzle-builder-button {
+  padding: 1em 1em ;
+  font-size: 1em;
+  margin: 1em 1em ;
+  border-radius: 2em;
+}
+
+.puzzle-page  {
+  width: 90%;
+  margin: 1em auto;
+}
+
+/*
+  ========================================
+  QuestionZone
+  ========================================
+*/
+
+
+
+.question-zone .grid {
+  width: 100%;
+}
+
+.logical-condition {
+  background-color: #78909C;
+  padding-bottom: 0.5em;
+
+}
+
+.logical-condition img {
+  width: 3em;
+  margin: 0.5em;
+}
+
+.logical-condition .grid {
+  width: 0; /* Makes the grid resize based on the contents */
+  margin: 0 auto;
+  border: none;
+}
+
+.logic-cell img {
+  border-radius: 0.5em;
+  margin: 0.15em 0 ;
+}
+
+.logic-cell .content{
+  width: 3em;
+  height: 3em;
+  border-radius: 0.5em;
+  margin: 0.15em;
+}
+
+.logical-condition .grid td {
+  border: none;
+}
+
+
+/*
+  ========================================
+  AnswerZone
+  ========================================
+*/
+
+.answer-zone{
+  width: 100%;
+}
+
+.entity-bin {
+  width: 80%;
+  margin: 1em auto;
+}
+.entity-bin img {
+  padding: 0.25em;
+}
+
+.entity-bin img, .drop-zone img {
+  width: 6em;
+  vertical-align: top;
+  margin: 0 auto;
+}
+
+
+.drop-zone-container .grid {
+  margin: 0 auto;
+  width: 0; /* Makes the grid resize based on the contents */
+}
+
+.drop-zone-container .grid td {
+  border: none;
+}
+
+.drop-zone {
+  width: 6em;
+  height: 6em;
+  background-color: #78909C;
+  border-radius: 0.5em;
+  margin: 0.15em;
+}
+
+/*
+  ========================================
+  Validation
+  ========================================
+*/
+
+.valid-false .drop-zone  {
+  background: #FF1744;
+}
+
+.valid-true .drop-zone  {
+  background: #02E676;
+}
+
+
+/*
+RESPONSIVE TEXT & LAYOUT
+*/
+/*
+
+
+.question-zone > .grid, .answer-zone .grid {
+  width: 95%;
+}
+
+
+
+*/
 
 
 
   /*
   Layout
   */
-
+/*
   .grid {
     margin: 0 auto;
   }
@@ -114,10 +364,6 @@ p {
 
   img {
     width: 20%;
-    /*box-shadow: -0.36em 0 red, 0.36em 0 cyan;*/
-    /*filter: drop-shadow( 0.16em 0 cyan) drop-shadow(-0.16em 0 red);*/
-
-
   }
 
   .question-zone .grid {
@@ -154,12 +400,12 @@ p {
 
   .entity-bin img {
     max-width: 5em;
-  }
+  }*/
 
   /*
   Validation feedback
   */
-
+/*
   .drop-zone {
     background-color: #E3E3E3;
     height: 6em;
@@ -172,4 +418,4 @@ p {
 
   .valid-true .drop-zone  {
     background: #8DFF8C;
-  }
+  }*/

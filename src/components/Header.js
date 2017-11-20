@@ -1,4 +1,6 @@
-import React from "react";
+import React from 'react';
+
+import logo from '../assets/logike_white_trimmed.png';
 
 const Header = () => {
 
@@ -7,15 +9,22 @@ const Header = () => {
   return (
     <div>
       <header>
-        <div id="logo">
-          <a rel="home" href="/" title="Home">...site title or logo...</a>
-        </div>
         <nav>
-          <ul>
-            <li><a>Blog</a></li>
-            <li><a>Twitter</a></li>
-            <li><a>Scolab</a></li>
-          </ul>
+          <div className="float-wrapper">
+            <div id="nav-logo">
+
+              <a rel="home" href="/" title="Home">
+                <img src={logo}/>
+              </a>
+            </div>
+            <a id="nav-burger" href="#"><i className="fa fa-navicon fa-2x" ></i></a>
+
+            <ul>
+              <li><a>Blog</a></li>
+              <li><a><i className="fa fa-twitter" ></i></a></li>
+              <li><a>Scolab</a></li>
+            </ul>
+          </div>
         </nav>
       </header>
     </div>

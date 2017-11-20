@@ -1,14 +1,15 @@
 import React from 'react';
 
+import PuzzleList from '../Shared/PuzzleList.js';
 import PuzzleListView from './PuzzleListView'
 
-const LandingPage = ({puzzle}) => {
+const LandingPage = ({onSelectHandler}) => {
 
   return (
-    <div>
-      <PuzzleListView/>
+    <div className="landing">
+      <PuzzleListView puzzleList={PuzzleList} onSelectHandler={onSelectHandler}/>
 
-      <button>
+      <button className="puzzle-builder-button">
         Puzzle Builder
       </button>
     </div>
