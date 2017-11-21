@@ -1,0 +1,12 @@
+{
+  "entries": [
+      "CustomTest",
+      "EasyTest",
+      "MediumTest",
+      "DifficultTest",
+      {
+        "title": "ExtremeTest",
+        "config": "extreme.json"
+      }
+  ]
+}

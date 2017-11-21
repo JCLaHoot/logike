@@ -1,6 +1,7 @@
 const puzzle = (entities) => {
   return ({
     name: "Difficult Test Puzzle",
+    id: 'difficult-test',    
   logic:
     [
       [

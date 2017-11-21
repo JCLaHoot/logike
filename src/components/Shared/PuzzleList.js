@@ -8,11 +8,27 @@ import ExtremeTest from '../../puzzles/Extreme-Test.js';
 
 // TODO: save puzzles as JSON instead...
 
-const PuzzleFiles = [CustomTest, EasyTest, MediumTest, DifficultTest, ExtremeTest];
+const puzzleFiles = [CustomTest, EasyTest, MediumTest, DifficultTest, ExtremeTest];
 
 // injects entities into puzzles
-const PuzzleList = PuzzleFiles.map((puzzle) => {
-  return (puzzle(Entities));
+const puzzleList = puzzleFiles.map((puzzle) => {
+  const puzzleWithEntities = (puzzle(Entities));
+  console.log(JSON.stringify(puzzleWithEntities,undefined, 2));
+
+  return puzzleWithEntities;
 })
 
-export default PuzzleList;
+
+var index = [];
+for (let i=0; i<puzzleList.length; i++) {
+  index.push({
+    name: puzzleList[i].name,
+    file: puzzleList[i].id + '.json'
+  });
+}
+
+console.log(JSON.stringify(index, undefined, 2));
+
+
+
+export default puzzleList;
