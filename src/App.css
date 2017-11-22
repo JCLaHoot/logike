@@ -237,28 +237,48 @@ footer {
   ========================================
 */
 
-
+.question-zone {
+  display: flex;
+  justify-content: space-around;
+}
 
 .question-zone .grid {
-  width: 100%;
+  /*background-color: blue;*/
+
 }
+
+.question-zone .grid td {
+  /*background-color: yellow;*/
+
+}
+
 
 .logical-condition {
   background-color: #78909C;
   padding-bottom: 0.5em;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .logical-condition img {
   width: 3em;
-  margin: 0.5em;
+  margin: 0.5em auto ;
+  /*align-self: flex-start;*/
+
 }
 
 .logical-condition .grid {
-  width: 0; /* Makes the grid resize based on the contents */
   margin: 0 auto;
   border: none;
+  /*background-color: red;*/
 }
+
+.logical-condition .grid td {
+  border: none;
+  /*background-color: red;*/
+  display:table-cell;
+}
+
 
 .logic-cell img {
   border-radius: 0.5em;
@@ -270,10 +290,6 @@ footer {
   height: 3em;
   border-radius: 0.5em;
   margin: 0.15em;
-}
-
-.logical-condition .grid td {
-  border: none;
 }
 
 
