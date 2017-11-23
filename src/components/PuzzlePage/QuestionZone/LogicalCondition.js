@@ -15,7 +15,9 @@ const LogicalCondition = ({cells, selectorImg, selectorName}) => {
 
   return (
     <div className="logical-condition">
-      <img src={imgString} alt={selectorName}/>
+      <div className="selector-banner">
+        <img src={imgString} alt={selectorName}/>
+      </div>
       <FlexGrid cells={cells}/>
     </div>
   )

@@ -11,7 +11,7 @@ const LogicCellDisplay = ({content}) => {
     };
     cellContent = (<div className="logic-cell" style={divStyle}></div>);
   } else if (content) {
-    cellContent = (<div className="logic-cell"><img src={content}/></div>);
+    cellContent = (<div className="logic-cell white-bg"><img src={content}/></div>);
   }
   else { // empty cell
     cellContent = (<div className="logic-cell"></div>);

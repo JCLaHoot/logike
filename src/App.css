@@ -241,7 +241,7 @@ footer {
 }
 
 .flex-cell {
-    margin: 5px;
+    /*margin: 5px;*/
     display: flex;
     /*flex-direction: column;*/
     /*align-items: center;*/
@@ -270,22 +270,29 @@ footer {
   flex-direction: column;
   justify-content: center;
   background-color: #78909C;
-  margin: 0.5em;
+  margin: 0.75em;
+  /*padding: 0.5em;*/
+  border-radius: 1em;
 
 }
 
-.logical-condition img {
+.selector-banner {
+  background-color: #546E7A;
+  border-radius: 1em 1em 0 0;
+}
+
+.selector-banner img {
   width: 3em;
   margin: 0.5em auto;
-
 }
+
 
 .logical-condition .flex-grid {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0.5em auto;
 }
 
 
@@ -293,6 +300,7 @@ footer {
   display: flex;
   width: 3em;
   height: 3em;
+  margin: 0.2em;
   border-radius: 0.5em;
 
 }
@@ -302,14 +310,16 @@ footer {
   border-radius: 0.5em;
   align-self: center;
   vertical-align: middle;
+}
 
+.white-bg {
+  background-color: #fff;
 }
 
 .logic-cell div {
   width: 3em;
   height: 3em;
   border-radius: 0.5em;
-
 }
 
 
