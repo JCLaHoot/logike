@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Grid from '../../Shared/Grid.js';
+import FlexGrid from '../../Shared/FlexGrid.js';
 
 const LogicalCondition = ({cells, selectorImg, selectorName}) => {
 
@@ -16,7 +16,7 @@ const LogicalCondition = ({cells, selectorImg, selectorName}) => {
   return (
     <div className="logical-condition">
       <img src={imgString} alt={selectorName}/>
-      <Grid cells={cells}/>
+      <FlexGrid cells={cells}/>
     </div>
   )
 }

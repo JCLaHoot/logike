@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import LogicalCondition from './LogicalCondition.js';
-import Grid, {deepMap}  from '../../Shared/Grid.js';
+import FlexGrid from '../../Shared/FlexGrid.js';
+import {deepMap}  from '../../Shared/Grid.js';
 import LogicCellDisplay from './LogicCellDisplay';
 import trueIcon from '../../../assets/true.png';
 import falseIcon from '../../../assets/false.png';
@@ -25,14 +26,14 @@ class QuestionZone extends Component {
     var visualizeLogicCells = (logicCell, x, y) => {
           switch (logicCell) {
             case null:
-              return <LogicCellDisplay img={"#fff"}/>;
+              return <LogicCellDisplay content={"#fff"}/>;
             case true:
-              return <LogicCellDisplay img={trueIcon}/>;
+              return <LogicCellDisplay content={trueIcon}/>;
             case false:
-              return <LogicCellDisplay img={falseIcon}/>;
+              return <LogicCellDisplay content={falseIcon}/>;
             default:
               if(logicCell === "empty") {
-                return null;
+                return <LogicCellDisplay content={null}/>;
               }
               else { //go through all the selectors until you find the one that matches, and get its image
                 var selectors = puzzle.entities.fetchAllPossibleSelectors(puzzle.entities);
@@ -42,7 +43,7 @@ class QuestionZone extends Component {
                     img = selector.img;
                   }
                 })
-                return <LogicCellDisplay img={img}/>;
+                return <LogicCellDisplay content={img}/>;
               }
           }
 
@@ -60,7 +61,9 @@ class QuestionZone extends Component {
   render() {
     return (
         <div className="question-zone">
-          <Grid cells={this.buildLogicalConditions(this.state.puzzle)}/>
+          <div className="wrap-row">
+            {this.buildLogicalConditions(this.state.puzzle)}
+          </div>
         </div>
     )
   }

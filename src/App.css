@@ -233,63 +233,83 @@ footer {
 
 /*
   ========================================
+  FlexGrid
+  ========================================
+*/
+.flex-row {
+    display: flex;
+}
+
+.flex-cell {
+    margin: 5px;
+    display: flex;
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*flex-grow: 1;*/
+}
+
+/*
+  ========================================
   QuestionZone
   ========================================
 */
 
 .question-zone {
-  display: flex;
-  justify-content: space-around;
+  margin: 0 auto;
 }
 
-.question-zone .grid {
-  /*background-color: blue;*/
-
-}
-
-.question-zone .grid td {
-  /*background-color: yellow;*/
-
+.wrap-row {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
 .logical-condition {
-  background-color: #78909C;
-  padding-bottom: 0.5em;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  background-color: #78909C;
+  margin: 0.5em;
+
 }
 
 .logical-condition img {
   width: 3em;
-  margin: 0.5em auto ;
-  /*align-self: flex-start;*/
+  margin: 0.5em auto;
 
 }
 
-.logical-condition .grid {
+.logical-condition .flex-grid {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
-  border: none;
-  /*background-color: red;*/
-}
-
-.logical-condition .grid td {
-  border: none;
-  /*background-color: red;*/
-  display:table-cell;
 }
 
 
-.logic-cell img {
-  border-radius: 0.5em;
-  margin: 0.15em 0 ;
-}
-
-.logic-cell .content{
+.logic-cell {
+  display: flex;
   width: 3em;
   height: 3em;
   border-radius: 0.5em;
-  margin: 0.15em;
+
+}
+
+.logic-cell img {
+  width: 3em;
+  border-radius: 0.5em;
+  align-self: center;
+  vertical-align: middle;
+
+}
+
+.logic-cell div {
+  width: 3em;
+  height: 3em;
+  border-radius: 0.5em;
+
 }
 
 
