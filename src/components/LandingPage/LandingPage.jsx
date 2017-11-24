@@ -9,7 +9,7 @@ const LandingPage = ({onSelectHandler}) => {
     <div className="landing">
       <PuzzleListView puzzleList={PuzzleList} onSelectHandler={onSelectHandler}/>
 
-      <button className="puzzle-builder-button">
+      <button >
         Puzzle Builder
       </button>
     </div>

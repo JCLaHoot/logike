@@ -20,9 +20,9 @@ const Header = () => {
             <a id="nav-burger" href="#"><i className="fa fa-navicon fa-2x" ></i></a>
 
             <ul>
-              <li><a>Blog</a></li>
-              <li><a><i className="fa fa-twitter" ></i></a></li>
-              <li><a>Scolab</a></li>
+              <li><a href="http://www.confusedretriever.com/">Blog</a></li>
+              <li><a href="https://twitter.com/jclahoot"><i className="fa fa-twitter" ></i></a></li>
+              <li><a href="https://www.scolab.com/">Scolab</a></li>
             </ul>
           </div>
         </nav>

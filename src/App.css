@@ -113,6 +113,18 @@ p {
   color: #616161;
  }
 
+a {
+ text-decoration: none;
+}
+
+a:visited {
+  color: #fff;
+}
+a:hover {
+  color:#CFD8DC;
+}
+
+
 
 
 /*
@@ -121,37 +133,24 @@ p {
   ========================================
 */
 
-  @media (max-width: 601px) {
+  @media (max-width: 600px) {
     body {
-      font-size: 80%; }
-    /*.question-zone > .grid, .answer-zone .grid  {
-      width: 85%;
-    }*/
+      font-size: 75%; }
+    }
 
+  @media (min-width: 601px) {
+    body {
+      font-size: 90%; }
     }
 
   @media (min-width: 993px) {
     body {
-      font-size: 120%; }
-    /*.question-zone > .grid, .answer-zone .grid  {
-      width: 80%;
-    }
-    .question-zone {
-      width: 50%;
-      float: left;
-    }
-    .answer-zone {
-      width: 50%;
-      float: left;
-    }*/
+      font-size: 100%; }
     }
 
   @media (min-width: 1200px) {
     body {
-      font-size: 140%; }
-    /*.question-zone > .grid, .answer-zone .grid  {
-      width: 70%;
-    }*/
+      font-size: 105%; }
     }
 
 
@@ -216,6 +215,18 @@ footer {
 
 .puzzle-name {
   padding: 0.5em 0 ;
+  cursor: pointer;
+
+}
+
+.landing button {
+  background-color: #546E7A;
+  color: #fff;
+}
+
+.landing button:hover {
+  background-color: #78909C;
+  /*color: #fff;*/
 }
 
 
@@ -226,9 +237,8 @@ footer {
   border-radius: 2em;
 }
 
-.puzzle-page  {
-  width: 90%;
-  margin: 1em auto;
+.puzzle-builder-button:focus  {
+    outline: none;
 }
 
 /*
@@ -248,6 +258,69 @@ footer {
     /*flex-grow: 1;*/
 }
 
+
+/*
+  ========================================
+  PuzzlePage
+  ========================================
+*/
+
+.puzzle-page  {
+  width: 90%;
+  margin: 1em auto;
+
+}
+
+
+@media (max-width: 600px) {
+  .puzzle-page  {
+    width: 90%;
+  }
+  .question-zone, .answer-zone {
+    width: 100%;
+  }
+  .answer-zone  {
+    margin-top: 2em;
+  }
+  }
+
+@media (min-width: 601px) {
+  .puzzle-page  {
+    width: 90%;
+  }
+  .question-zone, .answer-zone {
+    width: 100%;
+  }
+  .answer-zone  {
+    margin-top: 2em;
+  }
+  }
+
+@media (min-width: 993px) {
+  .puzzle-page  {
+    width: 90%;
+  }
+  .question-zone, .answer-zone {
+    width: 50%;
+  }
+  .answer-zone  {
+    /*margin-left: 1em;*/
+  }
+  }
+
+@media (min-width: 1200px) {
+  .puzzle-page  {
+    width: 90%;
+  }
+  .question-zone, .answer-zone {
+    width: 50%;
+  }
+  .answer-zone  {
+    /*margin-left: 1em;*/
+  }
+  }
+
+
 /*
   ========================================
   QuestionZone
@@ -255,7 +328,9 @@ footer {
 */
 
 .question-zone {
+  /*width: 100%;*/
   margin: 0 auto;
+  float: left;
 }
 
 .wrap-row {
@@ -270,8 +345,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   background-color: #78909C;
-  margin: 0.75em;
-  /*padding: 0.5em;*/
+  margin: 0.5em;
   border-radius: 1em;
 
 }
@@ -293,6 +367,8 @@ footer {
   flex-direction: column;
   justify-content: center;
   margin: 0.5em auto;
+  padding: 0.5em;
+
 }
 
 
@@ -330,12 +406,20 @@ footer {
 */
 
 .answer-zone{
-  width: 100%;
+  /*width: 100%;*/
+  background-color: #78909C;
+  border-radius: 1.5em;
+  float: left;
 }
 
 .entity-bin {
-  width: 80%;
-  margin: 1em auto;
+  /*width: 90%;*/
+  border-radius: 1.5em 1.5em 0 0;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #546E7A;
 }
 .entity-bin img {
   padding: 0.25em;
@@ -348,21 +432,43 @@ footer {
 }
 
 
-.drop-zone-container .grid {
-  margin: 0 auto;
-  width: 0; /* Makes the grid resize based on the contents */
+.drop-zone-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.drop-zone-container .grid td {
-  border: none;
-}
 
 .drop-zone {
   width: 6em;
   height: 6em;
-  background-color: #78909C;
-  border-radius: 0.5em;
-  margin: 0.15em;
+  background-color: #fff;
+  border-radius: 0.75em;
+  padding: 0.5em;
+  margin: 0.3em;
+  display: flex;
+  align-items: center;
+}
+
+
+.answer-zone button:focus  {
+    outline: none;
+}
+
+button {
+  min-width: 10em;
+  padding: 1em 1em ;
+  font-size: 1em;
+  margin: 1em 1em ;
+  border-radius: 2em;
+  border: none;
+  box-shadow: 0.15em 0.15em 0.25em rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+  background-color: #ECEFF1;
+  /*color: #fff;*/
+  cursor: pointer;
 }
 
 /*
@@ -372,96 +478,15 @@ footer {
 */
 
 .valid-false .drop-zone  {
-  background: #FF1744;
+  background-color: #FF1744;
 }
 
 .valid-true .drop-zone  {
-  background: #02E676;
+  background-color: #02E676;
 }
 
-
 /*
-RESPONSIVE TEXT & LAYOUT
+  ========================================
+  Puzzle Page Responsiveness
+  ========================================
 */
-/*
-
-
-.question-zone > .grid, .answer-zone .grid {
-  width: 95%;
-}
-
-
-
-*/
-
-
-
-  /*
-  Layout
-  */
-/*
-  .grid {
-    margin: 0 auto;
-  }
-
-  .grid img {
-    width: 33%;
-  }
-
-  img {
-    width: 20%;
-  }
-
-  .question-zone .grid {
-    background: #ececec;
-  }
-
-  .question-zone .grid td {
-    vertical-align: top;
-  }
-
-  .logic-cell-display {
-    backgroundSize:cover;
-    width: 2.5em;
-    height: 2.5em;
-    border-radius: 0.5em;
-    border: 0.15em solid rgb(167, 167, 167);
-  }
-  .logical-condition .grid td {
-    border: none;
-    vertical-align: top;
-  }
-
-  .logical-condition img {
-    margin-bottom: 0.5em;
-  }
-
-
-
-
-  .entity-bin {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  .entity-bin img {
-    max-width: 5em;
-  }*/
-
-  /*
-  Validation feedback
-  */
-/*
-  .drop-zone {
-    background-color: #E3E3E3;
-    height: 6em;
-  }
-
-
-  .valid-false .drop-zone  {
-    background: #FF9385;
-  }
-
-  .valid-true .drop-zone  {
-    background: #8DFF8C;
-  }*/

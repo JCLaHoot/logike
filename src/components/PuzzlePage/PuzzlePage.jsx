@@ -8,7 +8,7 @@ const PuzzlePage = ({puzzle}) => {
 
     return (
         <div className="puzzle-page">
-          <div className="group">
+          <div className="float-wrapper">
             <QuestionZone puzzle={puzzle}/>
             <AnswerZone puzzle={puzzle}/>
           </div>

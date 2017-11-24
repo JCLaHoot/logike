@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import Grid, {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
+import FlexGrid from '../../Shared/FlexGrid.js';
 import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
 
@@ -348,7 +349,7 @@ class AnswerZone extends Component {
           <br/>
           <div className="drop-zone-container">
             <div className={this.getValidationClassName(this.state.validAns)}>
-              <Grid cells={this.dropZoneFactory()}/>
+              <FlexGrid cells={this.dropZoneFactory()}/>
             </div>
           </div>
           <br/>
