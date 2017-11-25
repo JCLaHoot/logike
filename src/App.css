@@ -220,25 +220,21 @@ footer {
 }
 
 .landing button {
-  background-color: #546E7A;
+  background-color: #DFDFDF;
   font-size: 1.5em;
-  color: #fff;
+  color: #A5A5A5;
+  box-shadow: none;
+
 }
 
 .landing button:hover {
-  background-color: #78909C;
+  background-color: #DFDFDF;
   /*color: #fff;*/
+  cursor: default;
+
 }
 
-
-.puzzle-builder-button {
-  padding: 1em 1em ;
-  font-size: 1em;
-  margin: 1em 1em ;
-  border-radius: 2em;
-}
-
-.puzzle-builder-button:focus  {
+.landing button:focus  {
     outline: none;
 }
 
