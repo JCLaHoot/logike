@@ -160,9 +160,12 @@ a:hover {
   ========================================
 */
 
-#nav-burger, nav li {
+#nav-burger, nav ul {
   float: right;
   color: #fff;
+}
+nav li {
+  float: left;
 }
 
 #nav-logo img {
@@ -184,9 +187,57 @@ nav li {
 }
 
 nav {
-  height: 4rem;
   background: #455A64;
 }
+
+@media (max-width: 600px) {
+  #nav-burger {
+    /*float: none;*/
+    display: inline;
+    height: 4rem;
+    }
+  nav ul {
+    height: auto;
+    display: none;
+    float: none;
+    margin-top: 4rem;
+    background-color: #78909C;
+    color: #fff;
+  }
+  nav li {
+    float: none;
+    color: #fff;
+  }
+  .open-nav ul {
+    display: block;
+  }
+  .open-nav li {
+    animation-name: open;
+    animation-duration: 1s;
+  }
+  /*.closed-nav li {
+    height: 0;
+
+    animation-name: close;
+    animation-duration: 1s;
+  }
+  .closed-nav ul {
+    display: block;
+  }*/
+}
+
+
+@keyframes open {
+from {height: 0;}
+to {height: 4rem;}
+}
+
+/*@keyframes close {
+from {height: 4rem;}
+to {height: 0rem;
+  }
+}*/
+
 
 /*
   ========================================
@@ -198,7 +249,7 @@ nav {
 footer {
   padding:  1rem 0;
   font-size: 0.7rem;
-  color: #fff;
+  /*color: #fff;*/
   background: #455A64;
 }
 
