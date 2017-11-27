@@ -213,17 +213,18 @@ nav {
   }
   .open-nav li {
     animation-name: open;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
+
   }
-  /*.closed-nav li {
+  .closed-nav li {
     height: 0;
 
     animation-name: close;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
   }
   .closed-nav ul {
     display: block;
-  }*/
+  }
 }
 
 
@@ -232,11 +233,11 @@ from {height: 0;}
 to {height: 4rem;}
 }
 
-/*@keyframes close {
+@keyframes close {
 from {height: 4rem;}
 to {height: 0rem;
   }
-}*/
+}
 
 
 /*
