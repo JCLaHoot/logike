@@ -117,12 +117,6 @@ a {
  text-decoration: none;
 }
 
-a:visited {
-  color: #fff;
-}
-a:hover {
-  color:#CFD8DC;
-}
 
 
 
@@ -160,12 +154,47 @@ a:hover {
   ========================================
 */
 
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+/*.content-wrapper {
+  margin-top: 4rem;
+}*/
+
+nav {
+  background: #455A64;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+nav li {
+  line-height: 4rem;
+  font-size: 2rem;
+  float: left;
+}
+
+nav li a {
+  display: block;
+  padding: 0 1rem;
+}
+
+nav a:visited {
+  color: #fff;
+}
+nav a:link {
+  color: #fff;
+}
+
+nav a:hover, #nav-burger:hover {
+  background-color: #fff;
+  color: #455A64;
+}
+
 #nav-burger, nav ul {
   float: right;
   color: #fff;
-}
-nav li {
-  float: left;
 }
 
 #nav-logo img {
@@ -175,19 +204,9 @@ nav li {
 }
 
 #nav-burger {
-  line-height: 4rem;
+  line-height: 4.5rem; /* larger than normal in order to centre it */
   padding: 0 1rem;
   display: none; /* Hiding when normal size.  */
-}
-
-nav li {
-  line-height: 4rem;
-  padding: 0 1rem;
-  font-size: 2rem;
-}
-
-nav {
-  background: #455A64;
 }
 
 @media (max-width: 600px) {
@@ -208,18 +227,28 @@ nav {
     float: none;
     color: #fff;
   }
+
   .open-nav ul {
     display: block;
+
   }
   .open-nav li {
     animation-name: open;
     animation-duration: 0.5s;
-
+  }
+  .open-nav li a {
+    transform: scaleY(1);
+    animation-name: open-text;
+    animation-duration: 0.5s;
   }
   .closed-nav li {
     height: 0;
-
     animation-name: close;
+    animation-duration: 0.5s;
+  }
+  .closed-nav li a {
+    transform: scaleY(0);
+    animation-name: close-text;
     animation-duration: 0.5s;
   }
   .closed-nav ul {
@@ -229,14 +258,23 @@ nav {
 
 
 @keyframes open {
-from {height: 0;}
-to {height: 4rem;}
+  from {height: 0;}
+  to {height: 4rem;}
+}
+
+@keyframes open-text {
+  from {transform: scaleY(0);}
+  to {transform: scaleY(1);}
 }
 
 @keyframes close {
-from {height: 4rem;}
-to {height: 0rem;
-  }
+  from {height: 4rem;}
+  to {height: 0rem;}
+}
+
+@keyframes close-text {
+  from {transform: scaleY(1);}
+  to {transform: scaleY(0);}
 }
 
 
@@ -260,6 +298,7 @@ footer {
   LandingPage
   ========================================
 */
+
 
 .puzzle-list h2 {
   margin: 0.5em 0 ;

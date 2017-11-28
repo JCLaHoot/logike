@@ -20,7 +20,6 @@ const toggleNav = (event) => {
 }
 
   return (
-    <div>
       <header>
         <nav>
           <div className="float-wrapper">
@@ -39,7 +38,6 @@ const toggleNav = (event) => {
           </div>
         </nav>
       </header>
-    </div>
   )
 
 
