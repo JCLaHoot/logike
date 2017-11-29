@@ -46,7 +46,9 @@ displayCorrectViews = () => {
     return (
       <div className="App">
         <Header/>
-        {this.displayCorrectViews()}
+        <div className="content-wrapper" >
+          {this.displayCorrectViews()}
+        </div>
         <Footer/>
       </div>
     );

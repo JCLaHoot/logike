@@ -288,8 +288,20 @@ nav a:hover, #nav-burger:hover {
 footer {
   padding:  1rem 0;
   font-size: 0.7rem;
-  /*color: #fff;*/
+  color: rgba(255, 255, 255, 0.4);
   background: #455A64;
+}
+
+/* Sticky footer */
+
+.App {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  flex: 1;
 }
 
 
