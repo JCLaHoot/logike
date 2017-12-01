@@ -14,7 +14,7 @@ const LogicalCondition = ({cells, selectorImg, selectorName}) => {
   }
 
   return (
-    <div className="logical-condition">
+    <div key={selectorName} className="logical-condition">
       <div className="selector-banner">
         <img src={imgString} alt={selectorName}/>
       </div>

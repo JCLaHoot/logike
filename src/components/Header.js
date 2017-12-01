@@ -25,7 +25,7 @@ const toggleNav = (event) => {
           <div className="float-wrapper">
             <div id="nav-logo">
               <a rel="home" href="/" title="Home">
-                <img src={logo}/>
+                <img src={logo} alt="logike logo"/>
               </a>
             </div>
             <a id="nav-burger" onClick={toggleNav}><i className="fa fa-navicon fa-2x" ></i></a>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import LogicalCondition from './LogicalCondition.js';
-import FlexGrid from '../../Shared/FlexGrid.js';
 import {deepMap}  from '../../Shared/Grid.js';
 import LogicCellDisplay from './LogicCellDisplay';
 import trueIcon from '../../../assets/true.png';

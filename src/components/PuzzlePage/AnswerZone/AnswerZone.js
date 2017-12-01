@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import Grid, {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
+import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
 import FlexGrid from '../../Shared/FlexGrid.js';
 import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
@@ -15,7 +15,7 @@ class AnswerZone extends Component {
       availableEntities: puzzle.entityCount,
       selectedEntity: null,
       userAns: this.createEmptyGrid(puzzle.size.x,puzzle.size.y),
-      validAns: null //TODO use a bool here... 😡 this is DEFINITELY not legit
+      validAns: null
     }
     console.log("puzzle: ", this.state.puzzle);
   }
@@ -282,7 +282,9 @@ class AnswerZone extends Component {
     this.setState({selectedEntity: event.target});
   }
 
-
+  // TODO: implement swap when an element is dragged into a populated square
+  // TODO: clear array when item is removed
+  // TODO: allow blocks to be placed back in the entity bin
   // moves the selected entity into the dropZone onClick, and log userAns
   // This implementation will precede react-dnd.
   moveEntity = (event) => {
@@ -294,6 +296,10 @@ class AnswerZone extends Component {
       var availableEntities = this.state.availableEntities - 1;
       this.setState({availableEntities: availableEntities});
     }
+    // Checks whethere the target dropZone has anything in it
+    if(event.target.children.length) { // if there's any children
+    }
+
     // places the entity in the selected dropZone
     event.target.append(this.state.selectedEntity);
     // stores the x,y vals of the dropZone
@@ -308,6 +314,7 @@ class AnswerZone extends Component {
       userAns: ans,
       selectedEntity: null
     });
+    // console.log(ans);
   }
 
 

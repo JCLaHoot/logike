@@ -4,10 +4,9 @@ const EntityBin = ({entities, entityOnClick}) => {
 
   const imageFactory = (entities) => {
     return (
-      entities.map(function(entity) {
-        return (<div>
+      entities.map((entity, i) => {
+        return (<div key={entity.name}>
                   <img
-                  key={entity.name}
                   src={entity.img}
                   alt={entity.name}
                   name={entity.name}
