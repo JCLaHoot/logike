@@ -5,6 +5,11 @@ import FlexGrid from '../../Shared/FlexGrid.js';
 import EntityBin from './EntityBin.js';
 import DropZone from './DropZone.js';
 
+import DropContainer from './DropContainer';
+import DraggableEntityPreview from './DraggableEntityPreview';
+import { DragDropContext } from 'react-dnd';
+import TouchBackend from 'react-dnd-touch-backend';
+
 class AnswerZone extends Component {
 
   constructor({props, puzzle}) {
@@ -15,9 +20,39 @@ class AnswerZone extends Component {
       availableEntities: puzzle.entityCount,
       selectedEntity: null,
       userAns: this.createEmptyGrid(puzzle.size.x,puzzle.size.y),
-      validAns: null
+      validAns: null,
+      entityBin: {
+        id: "entity-bin",
+        contents: puzzle.entities.list.map((entity) => {
+          return {
+            name: entity.name,
+            img: entity.img
+          }
+        })
+      },
+      containers: this.dropContainerFactory(puzzle)
+
     }
     console.log("puzzle: ", this.state.puzzle);
+  }
+
+// creates a 2d array that contains all of the puzzle cells.
+  dropContainerFactory = (puzzle) => {
+    var cells = [];
+    for (var y = 0; y < puzzle.size.y; y++) {
+        var row = [];
+        for (var x = 0; x < puzzle.size.x; x++) {
+          row.push(
+            {
+              id: `drop-container-${x}-${y}`,
+              location: {x, y},
+              contents: []
+            }
+          );
+        };
+        cells.push(row);
+    };
+    return cells;
   }
 
   componentDidMount() {
@@ -38,6 +73,40 @@ class AnswerZone extends Component {
     return grid;
   }
 
+  // Runs when an item is dropped into the drop zone.
+    onDrop = (container, entity) => {
+    var droppedItemName = entity.name;
+    var dropZoneLocation = container.location; //Where the item is being dragged TO
+    var oldLocation = entity.location; //Where the item was dragged FROM
+
+    // if item isn't going anywhere, there's nothing to do in most cases.
+    if(dropZoneLocation === oldLocation) {
+      return;
+    }
+
+    // We want to re-create the data structure for the containers
+    var newContainers = deepMap(this.state.containers, (container) => {
+      if(container.location === oldLocation) { // removes droped item from container it was dragged FROM
+        var newContents = container.contents.filter((entity) => {
+          return entity.name !== droppedItemName; //filters out the dragged item
+        })
+        container.contents = newContents;
+        return container;
+      }
+      else if (container.location === dropZoneLocation) { // adds dropped item to container it's being dragged TO
+        container.contents.push(entity);
+        return container;
+      }
+      else { // cases where container is unchanged
+        return container;
+      }
+    })
+
+// updates the state to then update the DOM
+    this.setState({
+      containers: newContainers
+    })
+  }
 
   // TODO: improve to work with partial selectors
   // checks whether the logicCells contains a selector
@@ -318,6 +387,7 @@ class AnswerZone extends Component {
   }
 
 
+// TODO: delete after drag and drop is implemented
   // creates the dropzones and gives them onChangeHandlers. They absolutely need x and y params
   dropZoneFactory = () => {
     var cells = [];
@@ -348,26 +418,52 @@ class AnswerZone extends Component {
     }
   }
 
+// TODO: remove line breaks and restyle
   // TODO: EntityBin needs to be populated using the puzzle, to get the right # of entities.
   render() {
-    return (
-        <div className="answer-zone">
-          <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
-          <br/>
-          <div className="drop-zone-container">
-            <div className={this.getValidationClassName(this.state.validAns)}>
-              <FlexGrid cells={this.dropZoneFactory()}/>
-            </div>
-          </div>
-          <br/>
-          <button onClick={this.validateAns}>Validate</button>
-          <br/>
-        </div>
+    // return (
+    //     <div className="answer-zone">
+    //       <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
+    //       <br/>
+    //       <div className="drop-zone-container">
+    //         <div className={this.getValidationClassName(this.state.validAns)}>
+    //           <FlexGrid cells={this.dropZoneFactory()}/>
+    //         </div>
+    //       </div>
+    //       <br/>
+    //       <button onClick={this.validateAns}>Validate</button>
+    //       <br/>
+    //     </div>
+    //
+    // );
 
-    );
+
+    return (
+      <div className="answer-zone">
+        <DropContainer containerType="entity-bin"
+          contents={this.state.entityBin.contents}
+          location="entity-bin"
+          onDrop={this.onDrop}
+        />
+        <div className="drop-zone-container">
+          <FlexGrid cells={
+            deepMap(this.state.containers, (container) => {
+              return <DropContainer
+                      id={container.id}
+                      location={container.location}
+                      contents={container.contents}
+                      onDrop={this.onDrop}
+                      />
+              })
+          }/>
+        </div>
+        <button onClick={this.validateAns}>Validate</button>
+        <DraggableEntityPreview/>
+      </div>
+    )
   }
 
 
 };
 
-export default AnswerZone;
+export default DragDropContext(TouchBackend({enableMouseEvents:true}))(AnswerZone);

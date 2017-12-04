@@ -3,6 +3,7 @@ import React from 'react';
 const EntityBin = ({entities, entityOnClick}) => {
 
   const imageFactory = (entities) => {
+
     return (
       entities.map((entity, i) => {
         return (<div key={entity.name}>
