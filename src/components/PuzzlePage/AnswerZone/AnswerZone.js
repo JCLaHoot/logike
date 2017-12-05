@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
 import FlexGrid from '../../Shared/FlexGrid.js';
-import EntityBin from './EntityBin.js';
-import DropZone from './DropZone.js';
 
 import DropContainer from './DropContainer';
 import DraggableEntityPreview from './DraggableEntityPreview';
@@ -17,9 +15,6 @@ class AnswerZone extends Component {
     this.state = {
       puzzle: puzzle,
       entities: puzzle.entities,
-      availableEntities: puzzle.entityCount,
-      selectedEntity: null,
-      userAns: this.createEmptyGrid(puzzle.size.x,puzzle.size.y),
       validAns: null,
       entityBin: {
         id: "entity-bin",
@@ -72,6 +67,7 @@ class AnswerZone extends Component {
     }
     return grid;
   }
+
 
   // Runs when an item is dropped into the drop zone.
   onDrop = (container, entity) => {
@@ -386,69 +382,7 @@ class AnswerZone extends Component {
     this.setState({validAns: valid});
 
     console.log("millis to validate: ", Date.now() - start);
-
     }
-
-
-  // takes the entity from the EntityBin and saves it in the AnswerZone state
-  entityOnClick = (event) => {
-    this.setState({selectedEntity: event.target});
-  }
-
-  // TODO: implement swap when an element is dragged into a populated square
-  // TODO: clear array when item is removed
-  // TODO: allow blocks to be placed back in the entity bin
-  // moves the selected entity into the dropZone onClick, and log userAns
-  // This implementation will precede react-dnd.
-  moveEntity = (event) => {
-    if(this.state.selectedEntity == null) {
-      return;
-    }
-    // checks if the item was taken from the entity bin, and decrements the availableEntities count if it was
-    if(this.state.selectedEntity.parentElement.className === "entity-bin") {
-      var availableEntities = this.state.availableEntities - 1;
-      this.setState({availableEntities: availableEntities});
-    }
-    // Checks whethere the target dropZone has anything in it
-    if(event.target.children.length) { // if there's any children
-    }
-
-    // places the entity in the selected dropZone
-    event.target.append(this.state.selectedEntity);
-    // stores the x,y vals of the dropZone
-    var x = event.target.attributes["x"].value;
-    var y = event.target.attributes["y"].value;
-    // gets the current userAns in order to add new vals
-    var ans = this.state.userAns;
-    ans[y][x] = this.state.selectedEntity.attributes["name"].value;
-
-    //deselects entity and adds new ans
-    this.setState({
-      userAns: ans,
-      selectedEntity: null
-    });
-    // console.log(ans);
-  }
-
-
-// TODO: delete after drag and drop is implemented
-  // creates the dropzones and gives them onChangeHandlers. They absolutely need x and y params
-  dropZoneFactory = () => {
-    var cells = [];
-    for (var y = 0; y < this.state.puzzle.size.y; y++) {
-        var row = [];
-        for (var x = 0; x < this.state.puzzle.size.x; x++) {
-          row.push(
-            <DropZone
-              onClickHandler={this.moveEntity}
-              x={x}
-              y={y}/>
-          );
-        };
-        cells.push(row);
-    };
-    return cells;
-  }
 
   // converts the validation bool to a string based className
   getValidationClassName = (bool) => {
@@ -463,25 +397,7 @@ class AnswerZone extends Component {
   }
 
 // TODO: remove line breaks and restyle
-  // TODO: EntityBin needs to be populated using the puzzle, to get the right # of entities.
   render() {
-    // return (
-    //     <div className="answer-zone">
-    //       <EntityBin entities={this.state.entities} entityOnClick={this.entityOnClick}/>
-    //       <br/>
-    //       <div className="drop-zone-container">
-    //         <div className={this.getValidationClassName(this.state.validAns)}>
-    //           <FlexGrid cells={this.dropZoneFactory()}/>
-    //         </div>
-    //       </div>
-    //       <br/>
-    //       <button onClick={this.validateAns}>Validate</button>
-    //       <br/>
-    //     </div>
-    //
-    // );
-
-
     return (
       <div className="answer-zone">
         <DropContainer containerType="entity-bin"

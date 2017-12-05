@@ -30,7 +30,7 @@ const collect = (connect, monitor) => {
 
 class DraggableEntity extends Component {
   render() {
-    const { connectDragSource, connectDragPreview, isDragging, name, img, location} = this.props;
+    const { connectDragSource, connectDragPreview, isDragging, name, img} = this.props;
     // wrapping the component with connectDragSource is required
     // wrapping in connectDragPreview required if using the touch backend
     // here I also change the class name depending on whether the component is being dragged or not.

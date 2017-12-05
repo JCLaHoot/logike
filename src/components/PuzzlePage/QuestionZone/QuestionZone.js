@@ -49,6 +49,7 @@ class QuestionZone extends Component {
         }
 // returns the UI contents of each puzzleCell (which contails logicCells)
     return (<LogicalCondition
+              key={`${x}${y}`}
               selectorImg={puzzleCell.selectorImg}
               selectorName={puzzleCell.selectorName}
               cells={deepMap(puzzleCell.logicCells, visualizeLogicCells)}
