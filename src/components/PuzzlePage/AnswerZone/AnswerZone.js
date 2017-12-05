@@ -45,7 +45,7 @@ class AnswerZone extends Component {
           row.push(
             {
               id: `drop-container-${x}-${y}`,
-              location: {x, y},
+              location: {x: x, y: y},
               contents: []
             }
           );
@@ -74,7 +74,7 @@ class AnswerZone extends Component {
   }
 
   // Runs when an item is dropped into the drop zone.
-    onDrop = (container, entity) => {
+  onDrop = (container, entity) => {
     var droppedItemName = entity.name;
     var dropZoneLocation = container.location; //Where the item is being dragged TO
     var oldLocation = entity.location; //Where the item was dragged FROM
@@ -84,17 +84,51 @@ class AnswerZone extends Component {
       return;
     }
 
-    // We want to re-create the data structure for the containers
+    // allows dragged items to be swapped
+    var dropZoneOccupied = false;
+    var EntityToSwap;
+    if(container.contents.length > 0 && dropZoneLocation !== "entity-bin") {
+      dropZoneOccupied = true;
+      EntityToSwap = container.contents[0];
+    }
+
+    // Recreates the data structure of the entity-bin
+    var newEntityBin = this.state.entityBin;
+    if(dropZoneLocation === "entity-bin") {
+      newEntityBin.contents.push(entity);
+    } else {
+      var newContents = newEntityBin.contents.filter((entity) => {
+        return entity.name !== droppedItemName; //filters out the dragged item
+      })
+      if(dropZoneOccupied && oldLocation === "entity-bin") {     // allows dragged items to be swapped
+        newContents.push(EntityToSwap);
+      }
+      newEntityBin.contents = newContents;
+    }
+
+
+
+    // Recreates the data structure of the containers, depending on where you move them.
     var newContainers = deepMap(this.state.containers, (container) => {
       if(container.location === oldLocation) { // removes droped item from container it was dragged FROM
         var newContents = container.contents.filter((entity) => {
           return entity.name !== droppedItemName; //filters out the dragged item
         })
+        if(dropZoneOccupied) { // allows dragged items to be swapped
+          newContents.push(EntityToSwap);
+        }
         container.contents = newContents;
         return container;
       }
       else if (container.location === dropZoneLocation) { // adds dropped item to container it's being dragged TO
-        container.contents.push(entity);
+        var newContents = container.contents;
+        newContents.push(entity);
+        if(dropZoneOccupied) {  // allows dragged items to be swapped
+          newContents = newContents.filter((entity) => {
+            return entity.name !== EntityToSwap.name;
+          })
+        }
+        container.contents = newContents;
         return container;
       }
       else { // cases where container is unchanged
@@ -102,11 +136,13 @@ class AnswerZone extends Component {
       }
     })
 
-// updates the state to then update the DOM
+    // updates the state to then update the DOM
     this.setState({
+      entityBin: newEntityBin,
       containers: newContainers
     })
   }
+
 
   // TODO: improve to work with partial selectors
   // checks whether the logicCells contains a selector
@@ -228,10 +264,18 @@ class AnswerZone extends Component {
     var start = Date.now();
 
     // checks to make sure that all entities have been placed
-    // if(this.state.availableEntities != 0) {
-    //   console.log("some blocks haven't been placed!")
-    //   return;
-    // }
+    var allFilled = deepEvery(this.state.containers, (container) => {
+      return container.contents.length > 0;
+    });
+    if(!allFilled) {
+      console.log("some blocks haven't been placed!")
+      return;
+    }
+
+    var userAns = deepMap(this.state.containers, (container) => {
+      return container.contents[0].name;
+    })
+
 
     console.log("validating...");
 
@@ -275,7 +319,7 @@ class AnswerZone extends Component {
 
     // This is the check that's performed on every single logic cell in a puzzle cell
       const check = (logicCell, x, y) => {
-        var ansCell = this.state.userAns[y][x];
+        var ansCell = userAns[y][x];
         return validateLogicCell(selector, ansCell, logicCell);
       }
 
@@ -306,7 +350,7 @@ class AnswerZone extends Component {
         // find inner selector location in puzzle
         var puzzInnerSelector = locateInnerSelectorIn(puzzleCell.logicCells);
         // find inner selector location in answer
-        var ansInnerSelector = locateInnerSelectorIn(this.state.userAns);
+        var ansInnerSelector = locateInnerSelectorIn(userAns);
 
         // selector check
         const relativeCheck = (logicCell, x, y) => {
@@ -314,9 +358,9 @@ class AnswerZone extends Component {
           var yOffset = y - puzzInnerSelector.y;
           var ansCell;
           // makes sure that the ansCell's offset index is actually something that you can get a handle on
-          if (this.state.userAns[ansInnerSelector.y + yOffset]) {
-            if(this.state.userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset]) {
-              ansCell = this.state.userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset];
+          if (userAns[ansInnerSelector.y + yOffset]) {
+            if(userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset]) {
+              ansCell = userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset];
             } else {
               return false;
             }
@@ -445,7 +489,7 @@ class AnswerZone extends Component {
           location="entity-bin"
           onDrop={this.onDrop}
         />
-        <div className="drop-zone-container">
+      <div className={`drop-zone-container ${this.getValidationClassName(this.state.validAns)}`}>
           <FlexGrid cells={
             deepMap(this.state.containers, (container) => {
               return <DropContainer

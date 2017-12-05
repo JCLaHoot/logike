@@ -607,11 +607,11 @@ button:hover {
   ========================================
 */
 
-.valid-false .drop-zone  {
+.valid-false .drop-container  {
   background-color: #FF1744;
 }
 
-.valid-true .drop-zone  {
+.valid-true .drop-container  {
   background-color: #02E676;
 }
 
