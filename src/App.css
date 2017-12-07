@@ -152,6 +152,7 @@ a {
 header {
   position: -webkit-sticky;
   position: sticky;
+  z-index: 1;
   top: 0;
 }
 
@@ -435,7 +436,7 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    display: none; 
+    display: none;
 }
 
 .modal-content {
@@ -555,6 +556,7 @@ footer {
 
 .entity-bin {
   border-radius: 1.5em 1.5em 0 0;
+  min-height: 6em;
   padding: 1em;
   display: flex;
   flex-wrap: wrap;
@@ -563,15 +565,16 @@ footer {
 }
 .entity-bin img {
   padding: 0.25em;
-
+  height: 5.5em;
+  object-fit: contain;
 }
 
 .entity-bin img, .drop-zone img, .drop-container img {
   width: 6em;
   vertical-align: top;
   margin: 0 auto;
-  /*-webkit-filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
-  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));*/
+  -webkit-filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
+  filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
 
 
 }
@@ -581,6 +584,7 @@ footer {
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 1em;
 }
 
 
@@ -637,15 +641,17 @@ button:hover {
   position: absolute;
   top: 0;
   left: 0;
+
 }
 
 .item-preview img {
   width: 6em;
-  filter: drop-shadow(16px 16px 8px rgba(0, 0, 0, 0.16))
+  filter: drop-shadow(16px 16px 8px rgba(0, 0, 0, 0.24))
 }
 
-.is-dragging {
+.is-dragging img {
   opacity: 0.6;
+  filter: none;
 }
 /*
   ========================================
