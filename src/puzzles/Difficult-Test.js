@@ -1,6 +1,6 @@
 const puzzle = (entities) => {
   return ({
-    name: "Difficult Test Puzzle",
+    name: "Difficult Puzzle",
   logic:
     [
       [

@@ -156,6 +156,10 @@ header {
   top: 0;
 }
 
+#nav-logo a {
+   cursor:pointer;
+}
+
 /*.content-wrapper {
   margin-top: 4rem;
 }*/
@@ -210,6 +214,7 @@ nav a:hover, #nav-burger:hover {
     /*float: none;*/
     display: inline;
     height: 4rem;
+    cursor:pointer;
     }
   nav ul {
     height: auto;
@@ -282,6 +287,7 @@ nav a:hover, #nav-burger:hover {
 
 
 footer {
+  z-index: 1;
   padding:  1rem 0;
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.4);
@@ -307,6 +313,56 @@ footer {
   ========================================
 */
 
+.landing-modal {
+    position: fixed; /* Stay in place
+    /*z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    border: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.landing-modal .modal-content {
+    background-color: #fefefe;
+    border: none;
+    border-radius: 1em;
+    box-shadow: 24px 24px 24px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    width: 60%;
+}
+
+@media (max-width: 600px) {
+  .landing-modal .modal-content {
+      width: 70%; }
+  }
+@media (min-width: 601px) {
+  .landing-modal .modal-content {
+      width: 60%; }
+  }
+@media (min-width: 993px) {
+  .landing-modal .modal-content {
+      width: 45%; }
+  }
+@media (min-width: 1200px) {
+  .landing-modal .modal-content {
+      width: 40%; }
+  }
+
+
+.landing-modal img {
+  z-index: -1;
+  position: absolute;
+  height: 90%;
+  filter: blur(7px);
+
+
+}
+
 
 .puzzle-list h2 {
   margin: 0.5em 0 ;
@@ -315,7 +371,18 @@ footer {
 .puzzle-name {
   padding: 0.5em 0 ;
   cursor: pointer;
+}
 
+.puzzle-name .fa {
+  display: none;
+}
+
+.puzzle-name.validated {
+  color: #4caf50;
+}
+
+.puzzle-name.validated .fa {
+  display: inline;
 }
 
 .landing button {
@@ -436,14 +503,15 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    display: none;
+    /*display: none;*/
 }
 
 .modal-content {
     background-color: #fefefe;
     box-shadow: 24px 24px 24px rgba(0, 0, 0, 0.15);
     padding: 24px;
-    border: 1px solid #888;
+    border-radius: 1em;
+
     width: 70%;
 }
 
@@ -460,6 +528,16 @@ footer {
 
 .modal-button-container {
   text-align: right;
+}
+
+.modal-button-container button {
+  background-color: #78909C;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal-button-container button:hover {
+  background-color: #455A64;
 }
 
 
@@ -659,13 +737,13 @@ button:hover {
   ========================================
 */
 
-.valid-false .drop-container  {
+/*.valid-false .drop-container  {
   background-color: #FF1744;
 }
 
 .valid-true .drop-container  {
   background-color: #02E676;
-}
+}*/
 
 /*
   ========================================

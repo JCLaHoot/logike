@@ -6,6 +6,7 @@ import trueIcon from '../../../assets/true.png';
 import falseIcon from '../../../assets/false.png';
 
 
+// TODO: make component functional instead of class based
 class QuestionZone extends Component {
 
   constructor({props, puzzle}) {
@@ -14,8 +15,6 @@ class QuestionZone extends Component {
       puzzle
     };
   }
-
-// ❔✅❌
 
   // builds a 2d array of LogicalConditions
   buildLogicalConditions = (puzzle) => {

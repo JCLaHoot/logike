@@ -1,6 +1,6 @@
 const puzzle = (entities) => {
   return ({
-    name: "Custom Test Puzzle",
+    name: "Baby Puzzle",
   logic:
     [
       [

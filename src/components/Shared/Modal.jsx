@@ -7,11 +7,21 @@ const Modal = ({
     affirmativeText,
     dismissiveText,
     affirmativeAction,
-    dismissiveAction
-  }) => {
+    dismissiveAction,
+    show
+  }, closeModal) => {
+
+const displayMode = () => {
+  if(show) {
+    return {display: 'flex'}
+  }
+  else {
+    return {display: 'none'}
+  }
+}
 
     return (
-          <div className="modal">
+          <div className="modal" style={displayMode()} onClick={closeModal}>
             <div className="modal-content">
                 <h5 className="title">{title}</h5>
                 <p className="content">{content}</p>

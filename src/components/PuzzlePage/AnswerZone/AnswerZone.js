@@ -10,7 +10,7 @@ import TouchBackend from 'react-dnd-touch-backend';
 
 class AnswerZone extends Component {
 
-  constructor({props, puzzle}) {
+  constructor({props, puzzle, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
     super(props);
     this.state = {
       puzzle: puzzle,
@@ -25,7 +25,12 @@ class AnswerZone extends Component {
           }
         })
       },
-      containers: this.dropContainerFactory(puzzle)
+      containers: this.dropContainerFactory(puzzle),
+      updateModal: updateModal,
+      closeModal: closeModal,
+      returnToMainMenu: returnToMainMenu,
+      nextPuzzle: nextPuzzle,
+      logPuzzleCompletion: logPuzzleCompletion
 
     }
     console.log("puzzle: ", this.state.puzzle);
@@ -66,6 +71,22 @@ class AnswerZone extends Component {
       grid.push(row);
     }
     return grid;
+  }
+
+  resetPuzzle = () => {
+    this.setState({
+      validAns: null,
+      entityBin: {
+        id: "entity-bin",
+        contents: this.state.puzzle.entities.list.map((entity) => {
+          return {
+            name: entity.name,
+            img: entity.img
+          }
+        })
+      },
+      containers: this.dropContainerFactory(this.state.puzzle)
+    });
   }
 
 
@@ -257,6 +278,9 @@ class AnswerZone extends Component {
   // 4. return true for the cell if checks are passed
   // 5. set validAns state to true if all puzzle cells are valid
   validateAns = () => {
+
+    // TODO add alert to fill in aditional spaces
+
     var start = Date.now();
 
     // checks to make sure that all entities have been placed
@@ -380,6 +404,47 @@ class AnswerZone extends Component {
     var valid = deepEvery(validationArray, (i) => {return i});
 
     this.setState({validAns: valid});
+
+    if(valid) {
+      this.state.logPuzzleCompletion(this.state.puzzle);
+    }
+
+// resets the puzzle then closes the modal
+    var resetAndClose = () => {
+      this.resetPuzzle();
+      this.state.closeModal();
+    }
+
+    var closeAndNext = () => {
+      this.state.closeModal();
+      this.state.nextPuzzle(this.state.puzzle)
+    }
+
+    var modalContent;
+    if (valid) {
+      modalContent = {
+         title: "Congratulations!",
+         content: "You did it! Keep up the good work!",
+         affirmativeText: "Next Puzzle",
+         dismissiveText: "Retry Puzzle",
+         affirmativeAction: this.state.returnToMainMenu, //TODO: fix to go directly to next
+         dismissiveAction: resetAndClose,
+         show: true
+       }
+    }
+    else {
+      modalContent = {
+         title: "Oups!",
+         content: "Keep trying! With a little patience I'm sure you'll figure it out.",
+         affirmativeText: "Try Again",
+         dismissiveText: "Main Menu",
+         affirmativeAction: this.state.closeModal,
+         dismissiveAction: this.state.returnToMainMenu,
+         show: true
+       }
+    }
+
+    this.state.updateModal(modalContent);
 
     console.log("millis to validate: ", Date.now() - start);
     }

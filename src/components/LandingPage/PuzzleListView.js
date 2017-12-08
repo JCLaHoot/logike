@@ -2,10 +2,20 @@ import React from 'react';
 
 import PuzzleListItem from './PuzzleListItem';
 
-const PuzzleListView = ({puzzleList, onSelectHandler}) => {
+const PuzzleListView = ({puzzleList, onSelectHandler, validPuzzleNames}) => {
 
+console.log("validPuzzleNames: ", validPuzzleNames)
   const PuzzleListItems = puzzleList.map((puzzle) => {
-    return (<PuzzleListItem key={puzzle.name} puzzle={puzzle} onSelectHandler={onSelectHandler}/>);
+    var isValidated = false;
+    if(validPuzzleNames.includes(puzzle.name)){
+      isValidated = true;
+    }
+    return (<PuzzleListItem
+              key={puzzle.name}
+              puzzle={puzzle}
+              onSelectHandler={onSelectHandler}
+              isValidated={isValidated}
+            />);
   })
 
   return (

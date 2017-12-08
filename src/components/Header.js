@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../assets/logike_white_trimmed.png';
 
-const Header = () => {
+const Header = ({returnToMainMenu}) => {
 
 // changes the class name to trigger CSS to open the nav bar
 const toggleNav = (event) => {
@@ -23,8 +23,8 @@ const toggleNav = (event) => {
       <header>
         <nav>
           <div className="float-wrapper">
-            <div id="nav-logo">
-              <a rel="home" href="/" title="Home">
+            <div id="nav-logo" onClick={returnToMainMenu}>
+              <a title="Home">
                 <img src={logo} alt="logike logo"/>
               </a>
             </div>
