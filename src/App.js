@@ -10,7 +10,8 @@ import PuzzlePage from './components/PuzzlePage/PuzzlePage';
 import PuzzleList from './components/Shared/PuzzleList';
 
 // provides dialog on reload... TODO: save data instead
-window.onbeforeunload = () => {
+window.onbeforeunload = (event) => {
+  return "Warning: refreshing the page will delete your progress.";
 };
 
 class App extends Component {
