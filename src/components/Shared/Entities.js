@@ -71,11 +71,12 @@ const fetchAllProperties = (entities) => {
       list.push(entity.name);
     })
     // lists all selectors, regardless of type
-    for (var property in entities.PROPERTIES) {
-      list = list.concat(entities.PROPERTIES[property.name]);
-    }
+    entities.PROPERTIES.forEach((property) => {
+      list = list.concat(property.name);
+    })
     return list;
   }
+
 
 const fetchAllPossibleSelectors = (entities) => {
   var list = [];

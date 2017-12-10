@@ -178,6 +178,19 @@ class AnswerZone extends Component {
       })
     };
 
+// checks whether the provided selector is partial or not
+    selectorIsPartial = (selector) => {
+      var partialSelectorList = this.state.entities.PROPERTIES.map((property) => {
+        return property.name;
+      });
+      // lists all selectors, regardless of type
+      if (partialSelectorList.includes(selector)) {
+        return true;
+      }
+      return false;
+    }
+
+
 
   // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
   normalizeLogic = (puzzle) => {
@@ -292,6 +305,7 @@ class AnswerZone extends Component {
       return;
     }
 
+
     var userAns = deepMap(this.state.containers, (container) => {
       return container.contents[0].name;
     })
@@ -333,6 +347,9 @@ class AnswerZone extends Component {
     var validationArray;
     validationArray = deepMap(this.state.puzzle.logic, (puzzleCell, xAns, yAns) => {
       var selector = puzzleCell.selectorName;
+      console.log("selector: ", selector);
+      console.log("partial?  ", this.selectorIsPartial(selector));
+
 
       // TODO: improve check for matchesSelector to include partial selectors
 
@@ -415,10 +432,11 @@ class AnswerZone extends Component {
       this.state.closeModal();
     }
 
-    var closeAndNext = () => {
-      this.state.closeModal();
-      this.state.nextPuzzle(this.state.puzzle)
-    }
+// TODO: use this instead of going back to menu after valid
+    // var closeAndNext = () => {
+    //   this.state.closeModal();
+    //   this.state.nextPuzzle(this.state.puzzle)
+    // }
 
     var modalContent;
     if (valid) {

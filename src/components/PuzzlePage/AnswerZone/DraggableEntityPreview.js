@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { DragLayer } from 'react-dnd';
 
 import DraggableEntity from './DraggableEntity';
@@ -42,25 +42,33 @@ const getItemStyles = (currentOffset) => {
 }
 
 
-const ItemPreview = ({
-    name,
-    img,
-    location,
-    isDragging,
-    currentOffset
-}) => {
-    if (!isDragging) {
-        return null;
+class ItemPreview extends Component {
+
+  render() {
+    const PreviewContents = ({
+        name,
+        img,
+        location,
+        isDragging,
+        currentOffset
+    }) => {
+        if (!isDragging) {
+            return null;
+        }
+
+        // the div makes the magic happen for the preview. The contents should match the item being dragged
+        return (
+          <div className="item-preview" style={getItemStyles(currentOffset)} >
+              <DraggableEntity name={name} img={img} location={location}/>
+          </div>
+        );
     }
 
-    // the div makes the magic happen for the preview. The contents should match the item being dragged
-    return (
-      <div className="item-preview" style={getItemStyles(currentOffset)} >
-          <DraggableEntity name={name} img={img} location={location}/>
-      </div>
-    );
-}
+    return PreviewContents(this.props);
 
+  }
+
+}
 
 //The preview is wrapped in DragLayer. There is no item type.
 export default DragLayer(collect)(ItemPreview);

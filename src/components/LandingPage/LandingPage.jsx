@@ -22,7 +22,7 @@ const LandingPage = ({onSelectHandler, validPuzzleNames}) => {
           </button>
 
         </div>
-        <img src={background}/>
+        <img src={background} alt=""/>
 
       </div>
     </div>

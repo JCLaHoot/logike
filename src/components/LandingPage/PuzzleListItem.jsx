@@ -7,7 +7,7 @@ const PuzzleListItem = ({puzzle, onSelectHandler, isValidated}) => {
         onSelectHandler(puzzle);
       }}>
       <h5 className={`puzzle-name ${isValidated ? 'validated' : ''}`}>
-        <i class="fa fa-check-square" aria-hidden="true"></i>
+        <i className="fa fa-check-square" aria-hidden="true"></i>
         &nbsp;
         {puzzle.name}
       </h5>
