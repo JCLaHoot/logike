@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LogicalCondition from './LogicalCondition.js';
-import {deepMap}  from '../../Shared/Grid.js';
+import {deepMap}  from '../../Shared/TwoDimensionalMethods.js';
 import LogicCellDisplay from './LogicCellDisplay';
 import trueIcon from '../../../assets/true.png';
 import falseIcon from '../../../assets/false.png';

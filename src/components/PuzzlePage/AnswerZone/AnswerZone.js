@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 
-import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
+// import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
+import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/TwoDimensionalMethods.js';
+
 import FlexGrid from '../../Shared/FlexGrid.js';
 
 import DropContainer from './DropContainer';
