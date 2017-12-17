@@ -47,3 +47,16 @@ export const getGridX = (grid) => {
   })
   return Math.max(...rowLengths);
 }
+
+// creates an empty 2d array
+export const createTwoDimensionalArray = (xSize, ySize) => {
+  var grid = [];
+  for (var y = 0; y < ySize; y++) {
+    var row = [];
+    for (var x = 0; x < xSize; x++) {
+      row.push([]); // may need to just be null
+    }
+    grid.push(row);
+  }
+  return grid;
+}
