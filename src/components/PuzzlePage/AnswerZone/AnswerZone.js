@@ -153,27 +153,18 @@ class AnswerZone extends Component {
   }
 
 
-  // validates the answer that the user has entered using the following steps:
-  // 1. check each logicCell in puzzle
-  // 2. if selector is a property of entity
-  //    check whether the location of the entity is "true" or null
-  //    in the logicCell
-  // 3. if selector isn't a property of entity
-  //    check whethere the location of the entity is "false" or an entity property
-  //    that matches the entity.
-  // 4. return true for the cell if checks are passed
-  // 5. set validAns state to true if all puzzle cells are valid
+  // validates the answer that the user has entered and makes the appropriate UI changes
   runValidation = () => {
 
     // TODO add alert to fill in aditional spaces
     // checks to make sure that all entities have been placed
-    var allFilled = deepEvery(this.state.containers, (container) => {
-      return container.contents.length > 0;
-    });
-    if(!allFilled) {
-      console.log("some blocks haven't been placed!")
-      return;
-    }
+    // var allFilled = deepEvery(this.state.containers, (container) => {
+    //   return container.contents.length > 0;
+    // });
+    // if(!allFilled) {
+    //   console.log("some blocks haven't been placed!")
+    //   return;
+    // }
 
     // does all of the heavy lifting for the validation.
     var valid = validateAnswer(this.state.puzzle, this.state.entities, this.state.containers);

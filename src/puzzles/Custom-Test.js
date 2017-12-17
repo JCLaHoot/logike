@@ -5,10 +5,10 @@ const puzzle = (entities) => {
     [
       [
         {
-      selectorImg: entities.list[0].img,
-      selectorName: entities.list[0].name,
+      selectorImg: entities.PROPERTIES[0].img,
+      selectorName: entities.PROPERTIES[0].name,
       logicCells: [
-        [true,false],
+        [true ,false],
         [false,null]
         ]
       },

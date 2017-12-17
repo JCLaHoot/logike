@@ -138,27 +138,46 @@ export const normalizeLogic = (puzzle, entities) => {
  //    check whethere the location of the entity is "false" or an entity property
  //    that matches the entity.
  // 4. return true for the cell if checks are passed
- // 5. returns true or false depending on whether or not the ans is valid
+ // 5. returns true or false depending on whether or not the ans is valid.
  export const validateAnswer = (puzzle, entities, containers ) => {
 
-   var start = Date.now();
+   var start = Date.now(); //used to calculate validation time
+   console.log("validating...");
+
+   // var userAns = deepMap(containers, (container) => {
+   //     return container.contents[0].name;
+   // }); TODO: restore this and delete code right below after testing validation
 
    var userAns = deepMap(containers, (container) => {
-     return container.contents[0].name;
+     if(container.contents[0]) {
+       return container.contents[0].name;
+     }
+     else {
+       console.log("some drop containers aren't filled!");
+     }
    })
 
-   console.log("validating...");
 
    // returns false if the selector is found in a place it's not supposed to be. Otherwise returns true
    const validateLogicCell = (selector, ansCell, logicCell) => {
-     var matchesSelector = selector === ansCell;
+
+     var matchesSelector = false;
+     // checks to see if the answer matches the selector
+     if(selector === ansCell) {
+       matchesSelector = true;
+     } else if (selectorIsPartial(selector, entities)
+                &&
+                ansCell.includes(selector)
+              ) {
+       matchesSelector = true;
+     }
 
      var selectorCanBeHere = false;
-       if(logicCell == null) {  //TODO: add case for empty cell;
+       if(logicCell == null || logicCell === "empty") {
          selectorCanBeHere = true;
        }
      var selectorIsHere = false
-       if(logicCell) {
+       if(logicCell === true) {
          selectorIsHere = true;
        }
 
@@ -183,11 +202,6 @@ export const normalizeLogic = (puzzle, entities) => {
    var validationArray;
    validationArray = deepMap(puzzle.logic, (puzzleCell, xAns, yAns) => {
      var selector = puzzleCell.selectorName;
-     console.log("selector: ", selector);
-     console.log("partial?  ", selectorIsPartial(selector, entities));
-
-
-     // TODO: improve check for matchesSelector to include partial selectors
 
 
    // This is the check that's performed on every single logic cell in a puzzle cell
@@ -238,16 +252,13 @@ export const normalizeLogic = (puzzle, entities) => {
              return false;
            }
          }
-
          return validateLogicCell(selector, ansCell, logicCell);
-
        };
-
        return deepEvery(puzzleCell.logicCells, relativeCheck);
-
      }
      else {
    //  only returns true if all of the conditions in the check are passed
+   console.log("puzzleCell.logicCells: ",puzzleCell.logicCells);
        return deepEvery(puzzleCell.logicCells, check);
      }
 
