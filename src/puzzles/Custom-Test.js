@@ -4,14 +4,6 @@ const puzzle = (entities) => {
   logic:
     [
       [
-        {
-      selectorImg: entities.PROPERTIES[0].img,
-      selectorName: entities.PROPERTIES[0].name,
-      logicCells: [
-        [true ,false],
-        [false,null]
-        ]
-      },
       {
       selectorImg: entities.list[1].img,
       selectorName: entities.list[1].name,
@@ -19,7 +11,15 @@ const puzzle = (entities) => {
         [false,true],
         [false,false]
         ]
-      }],
+      },
+      {
+    selectorImg: entities.PROPERTIES[2].img,
+    selectorName: entities.PROPERTIES[2].name,
+    logicCells: [
+      [true ,false],
+      [true,"red"]
+      ]
+    }],
       [{
       selectorImg: entities.list[3].img,
       selectorName: entities.list[3].name,
@@ -27,15 +27,16 @@ const puzzle = (entities) => {
         [false,false],
         [false,true]
         ]
-      },
-      {
-      selectorImg: entities.list[4].img,
-      selectorName: entities.list[4].name,
-      logicCells: [
-        [false,false],
-        [true,false]
-        ]
-      }]
+      }
+      // ,{
+      // selectorImg: entities.list[4].img,
+      // selectorName: entities.list[4].name,
+      // logicCells: [
+      //   [false,false],
+      //   [true,false]
+      //   ]
+      // }
+    ]
 
     ],
     size: {

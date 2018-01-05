@@ -20,6 +20,7 @@ export const containsSelector = (logicCells, entities) => {
           &&
           entityProperties.includes(logicCell)) {
             return true;
+            console.log("containsSelector");
           }
           else {
             return false;
@@ -40,11 +41,11 @@ const selectorIsPartial = (selector, entities) => {
     return false;
   }
 
-// if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
-// returns normalized logic, which must then be saved to the puzzle state
-export const normalizeLogic = (puzzle, entities) => {
+  // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
+  // returns normalized logic, which must then be saved to the puzzle state
+  export const normalizeLogic = (puzzle, entities) => {
 
- // checks whether the logicCells is the same size as the puzzle
+   // checks whether the logicCells is the same size as the puzzle
    var sameSizeAsPuzzle = (puzzle, logicCells) => {
      if( getGridY(logicCells) === puzzle.size.y
          &&
@@ -123,9 +124,9 @@ export const normalizeLogic = (puzzle, entities) => {
      }
    });
 
-  // returns the normalized logic, so that it can be injected in props
-  console.log("new logic: ", newLogic);
-  return newLogic;
+    // returns the normalized logic, so that it can be injected in props
+    console.log("new logic: ", newLogic);
+    return newLogic;
  }
 
 
@@ -146,8 +147,8 @@ export const normalizeLogic = (puzzle, entities) => {
 
    // var userAns = deepMap(containers, (container) => {
    //     return container.contents[0].name;
-   // }); TODO: restore this and delete code right below after testing validation
-
+   // });
+   // TODO: restore this and delete code right below after testing validation
    var userAns = deepMap(containers, (container) => {
      if(container.contents[0]) {
        return container.contents[0].name;
@@ -160,6 +161,7 @@ export const normalizeLogic = (puzzle, entities) => {
 
    // returns false if the selector is found in a place it's not supposed to be. Otherwise returns true
    const validateLogicCell = (selector, ansCell, logicCell) => {
+     console.log("validating logic cell");
 
      var matchesSelector = false;
      // checks to see if the answer matches the selector
@@ -203,7 +205,6 @@ export const normalizeLogic = (puzzle, entities) => {
    validationArray = deepMap(puzzle.logic, (puzzleCell, xAns, yAns) => {
      var selector = puzzleCell.selectorName;
 
-
    // This is the check that's performed on every single logic cell in a puzzle cell
      const check = (logicCell, x, y) => {
        var ansCell = userAns[y][x];
@@ -227,7 +228,9 @@ export const normalizeLogic = (puzzle, entities) => {
        const locateInnerSelectorIn = (grid) => {
          var location = {x: null, y: null};
          deepForEach(grid, (cell, x, y) => {
-           if(cell === innerSelector) {
+           console.log("innerSelector: ",innerSelector);
+           console.log("cell: ",cell);
+           if( typeof cell === "string" && cell.includes(innerSelector)) {
              location.x = x;
              location.y = y;
            }
@@ -244,6 +247,11 @@ export const normalizeLogic = (puzzle, entities) => {
          var xOffset = x - puzzInnerSelector.x;
          var yOffset = y - puzzInnerSelector.y;
          var ansCell;
+         console.log("userAns: ",userAns);
+         console.log("logicCell: ",logicCell);
+         console.log("offset: ",xOffset, " " ,yOffset);
+         console.log("ansInnerSelector: ", ansInnerSelector);
+
          // makes sure that the ansCell's offset index is actually something that you can get a handle on
          if (userAns[ansInnerSelector.y + yOffset]) {
            if(userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset]) {
@@ -252,8 +260,10 @@ export const normalizeLogic = (puzzle, entities) => {
              return false;
            }
          }
+
          return validateLogicCell(selector, ansCell, logicCell);
        };
+
        return deepEvery(puzzleCell.logicCells, relativeCheck);
      }
      else {

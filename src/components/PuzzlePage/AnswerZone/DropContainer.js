@@ -10,8 +10,8 @@ import DraggableEntity from './DraggableEntity';
 // will react when items are dragged into it.
 const containerTarget = {
   drop(props, monitor) {
-    console.log("item dragged: ", monitor.getItem());
-    console.log("container: ", props)
+    // console.log("item dragged: ", monitor.getItem());
+    // console.log("container: ", props)
     props.onDrop(props, monitor.getItem()); //onDrop is defined in the top-level component
   }
 };
