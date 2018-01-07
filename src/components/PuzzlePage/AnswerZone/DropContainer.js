@@ -32,7 +32,7 @@ class DropContainer extends Component {
     return connectDropTarget(
       <div className={`drop-container ${containerType}`}>
         {contents.map(({name, img}) => {
-          return <DraggableEntity key={name} name={name} img={img} location={this.props.location}/>
+          return <DraggableEntity key={name} name={name} img={img} oldLocation={this.props.location}/>
         })}
       </div>
     );

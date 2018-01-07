@@ -16,7 +16,7 @@ const collect = (monitor) => {
   return {
     name: item && item.name,
     img: item && item.img,
-    location: item && item.location,
+    oldLocation: item && item.oldLocation,
     currentOffset: offset, //required
     isDragging: monitor.isDragging()
   }
@@ -48,7 +48,7 @@ class ItemPreview extends Component {
     const PreviewContents = ({
         name,
         img,
-        location,
+        oldLocation,
         isDragging,
         currentOffset
     }) => {
@@ -59,7 +59,7 @@ class ItemPreview extends Component {
         // the div makes the magic happen for the preview. The contents should match the item being dragged
         return (
           <div className="item-preview" style={getItemStyles(currentOffset)} >
-              <DraggableEntity name={name} img={img} location={location}/>
+              <DraggableEntity name={name} img={img} oldLocation={oldLocation}/>
           </div>
         );
     }

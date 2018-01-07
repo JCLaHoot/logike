@@ -12,7 +12,7 @@ const entitySource = {
     const item = {
       name: props.name,
       img: props.img,
-      location: props.location
+      oldLocation: props.oldLocation
     };
     return item;
   }

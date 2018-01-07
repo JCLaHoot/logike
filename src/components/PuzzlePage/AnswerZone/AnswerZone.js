@@ -88,7 +88,7 @@ class AnswerZone extends Component {
   onDrop = (container, entity) => {
     var droppedItemName = entity.name;
     var dropZoneLocation = container.location; //Where the item is being dragged TO
-    var oldLocation = entity.location; //Where the item was dragged FROM
+    var oldLocation = entity.oldLocation; //Where the item was dragged FROM
 
     // if item isn't going anywhere, there's nothing to do in most cases.
     if(dropZoneLocation === oldLocation) {

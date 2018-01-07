@@ -142,6 +142,7 @@ const selectorIsPartial = (selector, entities) => {
  // 4. return true for the cell if checks are passed
  // 5. returns true or false depending on whether or not the ans is valid.
  export const validateAnswer = (puzzle, entities, containers ) => {
+   console.log("containers: ", containers);
 
    var start = Date.now(); //used to calculate validation time
    console.log("validating...");
@@ -158,6 +159,7 @@ const selectorIsPartial = (selector, entities) => {
        console.log("some drop containers aren't filled!");
      }
    })
+
 
 
    // returns false if the selector is found in a place it's not supposed to be. Otherwise returns true
@@ -229,8 +231,8 @@ const selectorIsPartial = (selector, entities) => {
        const locateInnerSelectorIn = (grid) => {
          var location = {x: null, y: null};
          deepForEach(grid, (cell, x, y) => {
-           console.log("innerSelector: ",innerSelector);
-           console.log("cell: ",cell);
+           // console.log("innerSelector: ",innerSelector);
+           // console.log("cell: ",cell);
            if( typeof cell === "string" && cell.includes(innerSelector)) {
              location.x = x;
              location.y = y;
@@ -248,10 +250,10 @@ const selectorIsPartial = (selector, entities) => {
          var xOffset = x - puzzInnerSelector.x;
          var yOffset = y - puzzInnerSelector.y;
          var ansCell;
-         console.log("userAns: ",userAns);
-         console.log("logicCell: ",logicCell);
-         console.log("offset: ",xOffset, " " ,yOffset);
-         console.log("ansInnerSelector: ", ansInnerSelector);
+         // console.log("userAns: ",userAns);
+         // console.log("logicCell: ",logicCell);
+         // console.log("offset: ",xOffset, " " ,yOffset);
+         // console.log("ansInnerSelector: ", ansInnerSelector);
 
          // makes sure that the ansCell's offset index is actually something that you can get a handle on
          if (userAns[ansInnerSelector.y + yOffset]) {
