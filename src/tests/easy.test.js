@@ -16,7 +16,6 @@ const ansArray = [["yellow-triangle", "red-circle", "red-square"],
                   ["blue-triangle", "blue-square", "yellow-circle"]];
 
 const containers = generateAnsContainer(ansArray);
-console.log(containers);
 
 test("testing The Easy puzzle", () => {
   expect(validateAnswer(puzzle, entities, containers)).toEqual(true);

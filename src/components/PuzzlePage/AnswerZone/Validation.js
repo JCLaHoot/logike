@@ -45,6 +45,7 @@ const selectorIsPartial = (selector, entities) => {
   // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
   // returns normalized logic, which must then be saved to the puzzle state
   export const normalizeLogic = (puzzle, entities) => {
+    var start = Date.now(); //used to calculate validation time
 
    // checks whether the logicCells is the same size as the puzzle
    var sameSizeAsPuzzle = (puzzle, logicCells) => {
@@ -126,7 +127,7 @@ const selectorIsPartial = (selector, entities) => {
    });
 
     // returns the normalized logic, so that it can be injected in props
-    console.log("new logic: ", newLogic);
+    console.log("millis to normalize logic: ", Date.now() - start);
     return newLogic;
  }
 
@@ -142,7 +143,6 @@ const selectorIsPartial = (selector, entities) => {
  // 4. return true for the cell if checks are passed
  // 5. returns true or false depending on whether or not the ans is valid.
  export const validateAnswer = (puzzle, entities, containers ) => {
-   console.log("containers: ", containers);
 
    var start = Date.now(); //used to calculate validation time
    console.log("validating...");
@@ -164,7 +164,6 @@ const selectorIsPartial = (selector, entities) => {
 
    // returns false if the selector is found in a place it's not supposed to be. Otherwise returns true
    const validateLogicCell = (selector, ansCell, logicCell) => {
-     console.log("validating logic cell");
 
      var matchesSelector = false;
      // checks to see if the answer matches the selector
@@ -271,7 +270,6 @@ const selectorIsPartial = (selector, entities) => {
      }
      else {
    //  only returns true if all of the conditions in the check are passed
-   console.log("puzzleCell.logicCells: ",puzzleCell.logicCells);
        return deepEvery(puzzleCell.logicCells, check);
      }
 

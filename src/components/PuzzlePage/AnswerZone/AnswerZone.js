@@ -38,7 +38,7 @@ class AnswerZone extends Component {
       logPuzzleCompletion: logPuzzleCompletion
 
     }
-    console.log("puzzle: ", this.state.puzzle);
+    // console.log("puzzle: ", this.state.puzzle);
   }
 
 // creates a 2d array that contains all of the puzzle cells.
