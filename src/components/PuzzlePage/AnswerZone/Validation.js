@@ -12,6 +12,8 @@ import {deepMap,
 
 // TODO: improve to work with partial selectors
 // checks whether the logicCells contains a selector
+// takes a x by y grid of logic cells, and checks whether any of the cells contain
+// a selector, as defined in the Entities file
 export const containsSelector = (logicCells, entities) => {
     var entityProperties = entities.fetchAllProperties(entities);
 
@@ -20,7 +22,6 @@ export const containsSelector = (logicCells, entities) => {
           &&
           entityProperties.includes(logicCell)) {
             return true;
-            console.log("containsSelector");
           }
           else {
             return false;
