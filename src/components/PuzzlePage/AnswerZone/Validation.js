@@ -10,7 +10,7 @@ import {deepMap,
         from '../../Shared/TwoDimensionalMethods.js';
 
 
-// TODO: improve to work with partial selectors
+// NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
 // checks whether the logicCells contains a selector
 // takes a x by y grid of logic cells, and checks whether any of the cells contain
 // a selector, as defined in the Entities file
@@ -29,7 +29,9 @@ export const containsSelector = (logicCells, entities) => {
     })
   };
 
-
+// Literally just a note for myself!
+// FIXME BUG TODO NOTE OPTIMIZE HACK REVIEW XXX IDEA QUESTION TEMP DEBUG CHANGED
+  // NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
 // checks whether the provided selector is partial or not
 const selectorIsPartial = (selector, entities) => {
     var partialSelectorList = entities.PROPERTIES.map((property) => {
@@ -44,10 +46,13 @@ const selectorIsPartial = (selector, entities) => {
 
   // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
   // returns normalized logic, which must then be saved to the puzzle state
+  // TODO rename to getNormalizedLogic
+  // NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
   export const normalizeLogic = (puzzle, entities) => {
     var start = Date.now(); //used to calculate validation time
 
    // checks whether the logicCells is the same size as the puzzle
+   // NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
    var sameSizeAsPuzzle = (puzzle, logicCells) => {
      if( getGridY(logicCells) === puzzle.size.y
          &&
@@ -59,7 +64,7 @@ const selectorIsPartial = (selector, entities) => {
          }
    };
 
-     // TODO: turn into function?
+     // TODO: Code review of this map
    var newLogic = deepMap(puzzle.logic, (puzzleCell) => {
      if(sameSizeAsPuzzle(puzzle, puzzleCell.logicCells)
         ||
@@ -142,6 +147,10 @@ const selectorIsPartial = (selector, entities) => {
  //    that matches the entity.
  // 4. return true for the cell if checks are passed
  // 5. returns true or false depending on whether or not the ans is valid.
+ // BUG Jeffbug is PROBABLY due to the relative check for the selector. There are
+ // MANY partial selectors in the ans, so it needs to check all of the possibilities
+ // and return true if any of them evaluates properly.
+ // I think... I'll have to test but with a specific selector.
  export const validateAnswer = (puzzle, entities, containers ) => {
 
    var start = Date.now(); //used to calculate validation time
@@ -163,6 +172,7 @@ const selectorIsPartial = (selector, entities) => {
 
 
    // returns false if the selector is found in a place it's not supposed to be. Otherwise returns true
+   // REVIEW: confirm function is working properly
    const validateLogicCell = (selector, ansCell, logicCell) => {
 
      var matchesSelector = false;
@@ -203,6 +213,7 @@ const selectorIsPartial = (selector, entities) => {
    }
 
 
+
    var validationArray;
    validationArray = deepMap(puzzle.logic, (puzzleCell, xAns, yAns) => {
      var selector = puzzleCell.selectorName;
@@ -227,46 +238,52 @@ const selectorIsPartial = (selector, entities) => {
        });
 
        // returns the location of the inner selector in the grid. Must test that the grid has an inner selector first
-       const locateInnerSelectorIn = (grid) => {
-         var location = {x: null, y: null};
+       const locateInnerSelectorsIn = (grid) => {
+         var locations = [];
          deepForEach(grid, (cell, x, y) => {
-           // console.log("innerSelector: ",innerSelector);
-           // console.log("cell: ",cell);
+           var location = {x: null, y: null};
            if( typeof cell === "string" && cell.includes(innerSelector)) {
              location.x = x;
              location.y = y;
+             locations.push(location);
            }
          });
-         return location;
+         return locations;
        };
        // find inner selector location in puzzle
-       var puzzInnerSelector = locateInnerSelectorIn(puzzleCell.logicCells);
-       // find inner selector location in answer
-       var ansInnerSelector = locateInnerSelectorIn(userAns);
 
-       // selector check
-       const relativeCheck = (logicCell, x, y) => {
-         var xOffset = x - puzzInnerSelector.x;
-         var yOffset = y - puzzInnerSelector.y;
-         var ansCell;
-         // console.log("userAns: ",userAns);
-         // console.log("logicCell: ",logicCell);
-         // console.log("offset: ",xOffset, " " ,yOffset);
-         // console.log("ansInnerSelector: ", ansInnerSelector);
+       var puzzInnerSelector = locateInnerSelectorsIn(puzzleCell.logicCells)[0];
+       // find inner selectors location in answer (can be more than one for property selectors)
+       var ansInnerSelectors = locateInnerSelectorsIn(userAns);
 
-         // makes sure that the ansCell's offset index is actually something that you can get a handle on
-         if (userAns[ansInnerSelector.y + yOffset]) {
-           if(userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset]) {
-             ansCell = userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset];
-           } else {
-             return false;
+
+       // checks that the logic found in the logical condition can be true relative to
+       // at least one of the inner selectors.
+       // NOTE: only ONE inner selector is allowed per logical condition right now;
+       // the logic below must test the offset of multiple puzzle selectors for this
+       // to work.
+       return ansInnerSelectors.some((ansInnerSelector) => {
+
+         return deepEvery(puzzleCell.logicCells, (logicCell, x, y) => {
+           var xOffset = x - puzzInnerSelector.x;
+           var yOffset = y - puzzInnerSelector.y;
+           var ansCell;
+
+           // makes sure that the ansCell's offset index is actually something that you can get a handle on
+           if (userAns[ansInnerSelector.y + yOffset]) {
+             if(userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset]) {
+               // validates the logicCell using the standard validation method
+               ansCell = userAns[ansInnerSelector.y + yOffset][ansInnerSelector.x + xOffset];
+               return validateLogicCell(selector, ansCell, logicCell);
+             }
            }
-         }
 
-         return validateLogicCell(selector, ansCell, logicCell);
-       };
+        // returns false if the offset moves the logical condition outside of the puzzle area
+          return false;
+         });
+       });
 
-       return deepEvery(puzzleCell.logicCells, relativeCheck);
+
      }
      else {
    //  only returns true if all of the conditions in the check are passed

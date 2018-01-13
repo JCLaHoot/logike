@@ -1,6 +1,6 @@
 const puzzle = (entities) => {
   return ({
-    name: "Extreme Puzzle (coming soon)",
+    name: "Extreme Puzzle",
   logic:
     [
       [

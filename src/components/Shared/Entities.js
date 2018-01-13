@@ -78,12 +78,15 @@ const fetchAllProperties = (entities) => {
   }
 
 
+// generates a list of all selectors. This list mixes Properties AND Entities,
+// and should only be used to access name or img of the selecor.
 const fetchAllPossibleSelectors = (entities) => {
   var list = [];
   list = list.concat(entities.list);
   list = list.concat(entities.PROPERTIES);
   return list;
 }
+
 
 
 const Entities = {
