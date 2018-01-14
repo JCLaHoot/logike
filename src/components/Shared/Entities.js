@@ -7,9 +7,12 @@ import yellowCircle from '../../assets/yellow_circle.png';
 import redTriangle from '../../assets/red_triangle.png';
 import blueTriangle from '../../assets/blue_triangle.png';
 import yellowTriangle from '../../assets/yellow_triangle.png';
-import square from '../../assets/square.svg';
-import circle from '../../assets/circle.svg';
-import triangle from '../../assets/triangle.svg';
+import square from '../../assets/square.png';
+import circle from '../../assets/circle.png';
+import triangle from '../../assets/triangle.png';
+import red from '../../assets/paint_red.png'
+import blue from '../../assets/paint_blue.png'
+import yellow from '../../assets/paint_yellow.png'
 
 // an entity the main element that is manipulated in the puzzle.
 // it has properties, a name based on the properties,
@@ -37,9 +40,9 @@ class Entity {
 
 
 const PROPERTIES = [
-  new Property("colors", "red", "#FF5554"),
-  new Property("colors", "blue", "#0E90FF"),
-  new Property("colors", "yellow", "#FFDA30"),
+  new Property("colors", "red", red),
+  new Property("colors", "blue", blue),
+  new Property("colors", "yellow", yellow),
   new Property("shapes", "square", square),
   new Property("shapes", "circle", circle),
   new Property("shapes", "triangle", triangle)
