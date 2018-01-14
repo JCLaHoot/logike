@@ -93,7 +93,7 @@ displayCorrectViews = (puzzle) => {
     return (
       <div className="App">
         <Header returnToMainMenu={this.returnToMainMenu}/>
-        <div className="content-wrapper" >
+        <div className="content-wrapper">
           {this.displayCorrectViews(this.state.puzzle)}
         </div>
         <Footer/>

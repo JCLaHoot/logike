@@ -156,19 +156,9 @@ const selectorIsPartial = (selector, entities) => {
    var start = Date.now(); //used to calculate validation time
    console.log("validating...");
 
-   // var userAns = deepMap(containers, (container) => {
-   //     return container.contents[0].name;
-   // });
-   // TODO: restore this and delete code right below after testing validation
    var userAns = deepMap(containers, (container) => {
-     if(container.contents[0]) {
        return container.contents[0].name;
-     }
-     else {
-       console.log("some drop containers aren't filled!");
-     }
-   })
-
+   });
 
 
    // returns false if the selector is found in a place it's not supposed to be. Otherwise returns true

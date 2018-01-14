@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-
 // import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
 import {deepMap,
         deepEvery}
@@ -15,7 +14,7 @@ import TouchBackend from 'react-dnd-touch-backend';
 
 class AnswerZone extends Component {
 
-  constructor({props, puzzle, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
+  constructor({props, puzzle, showToast, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
     super(props);
     this.state = {
       puzzle: puzzle,
@@ -31,6 +30,7 @@ class AnswerZone extends Component {
         })
       },
       containers: this.dropContainerFactory(puzzle),
+      showToast: showToast,
       updateModal: updateModal,
       closeModal: closeModal,
       returnToMainMenu: returnToMainMenu,
@@ -152,19 +152,47 @@ class AnswerZone extends Component {
     })
   }
 
+  // var used as an easter egg if validate is spammed
+  emptyCount = 0;
+
+  // helper used to randomize strings
+  // TODO: move to helper js file once if used again outside of ansZone
+  drawFrom= (textArray) => {
+    var randomNumber = Math.floor(Math.random()*textArray.length);
+    return textArray[randomNumber];
+  }
+
 
   // validates the answer that the user has entered and makes the appropriate UI changes
   runValidation = () => {
 
     // TODO add alert to fill in aditional spaces
     // checks to make sure that all entities have been placed
-    // var allFilled = deepEvery(this.state.containers, (container) => {
-    //   return container.contents.length > 0;
-    // });
-    // if(!allFilled) {
-    //   console.log("some blocks haven't been placed!")
-    //   return;
-    // }
+    // also shows a different message if user keeps spamming the button.
+    var allFilled = deepEvery(this.state.containers, (container) => {
+      this.emptyCount = 0;
+      return container.contents.length > 0;
+    });
+    if(!allFilled) {
+      this.emptyCount++;
+      if(this.emptyCount > 50) {
+        this.state.showToast("Are you trying to break my app? 🤔");
+        return;
+      }
+      if(this.emptyCount > 30) {
+        this.state.showToast("Why are you doing this?");
+        return;
+      }
+      if(this.emptyCount > 15) {
+        this.state.showToast("Stop Spamming this button!");
+        return;
+      }
+      this.state.showToast(this.drawFrom(["Some blocks haven't been placed!",
+                                    "Are you forgetting something?",
+                                    "Some spaces are still empty!"]
+      ));
+      return;
+    }
 
     // does all of the heavy lifting for the validation.
     var valid = validateAnswer(this.state.puzzle, this.state.entities, this.state.containers);
@@ -187,10 +215,11 @@ class AnswerZone extends Component {
       //   this.state.nextPuzzle(this.state.puzzle)
       // }
 
+
     var modalContent;
     if (valid) {
       modalContent = {
-         title: "Congratulations!",
+         title: "Congratulations! 🎉",
          content: "You did it! Keep up the good work!",
          affirmativeText: "Next Puzzle",
          dismissiveText: "Retry Puzzle",
@@ -201,7 +230,7 @@ class AnswerZone extends Component {
     }
     else {
       modalContent = {
-         title: "Oups!",
+         title: `Oups! ${this.drawFrom(["🤷‍♂️","🤷‍♀️"])}`,
          content: "Keep trying! With a little patience I'm sure you'll figure it out.",
          affirmativeText: "Try Again",
          dismissiveText: "Main Menu",
