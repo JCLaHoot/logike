@@ -6,8 +6,11 @@ import './App.css';
 import Header from './components/Header.js';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage/LandingPage.jsx';
+import PuzzleBuilder from './components/PuzzleBuilder/PuzzleBuilder';
 import PuzzlePage from './components/PuzzlePage/PuzzlePage';
 import PuzzleList from './components/Shared/PuzzleList';
+
+import {UINames} from './components/Shared/Constants';
 
 // provides dialog on reload... TODO: save data instead
 window.onbeforeunload = (event) => {
@@ -20,6 +23,7 @@ class App extends Component {
   super(props);
   this.state = {
     puzzle: null,
+    activeInteface: UINames.LANDING_PAGE,
     validPuzzleNames: []
   }
 }
@@ -27,7 +31,9 @@ class App extends Component {
 // brings you back to the main menu by clearing the loaded puzzle
 returnToMainMenu = () => {
   this.setState(
-    {puzzle: null}
+    {puzzle: null,
+     activeInteface: UINames.LANDING_PAGE
+   }
   );
 }
 
@@ -36,6 +42,12 @@ onSelectHandler = (puzzle) => {
 this.setState(
   {puzzle: puzzle}
 );
+}
+
+goToBuilder = () => {
+  this.setState(
+    {activeInteface:  UINames.PUZZLE_BUILDER}
+  );
 }
 
 // takes the provided puzzle and then begins the next one in the list.
@@ -78,12 +90,23 @@ displayCorrectViews = (puzzle) => {
     )
   }
   else {
-    return (
-      <LandingPage
-        onSelectHandler={this.onSelectHandler}
-        validPuzzleNames={this.state.validPuzzleNames}
-      />
-    )
+    if (this.state.activeInteface === UINames.LANDING_PAGE) {
+      return (
+        <LandingPage
+          onSelectHandler={this.onSelectHandler}
+          validPuzzleNames={this.state.validPuzzleNames}
+          goToBuilder={this.goToBuilder}
+        />
+      )
+    }
+    if (this.state.activeInteface === UINames.PUZZLE_BUILDER) {
+      return (
+        <PuzzleBuilder
+
+        />
+      )
+    }
+
   }
 }
 
