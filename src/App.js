@@ -17,6 +17,10 @@ window.onbeforeunload = (event) => {
   return "Warning: refreshing the page will delete your progress.";
 };
 
+// fixes iOS bug
+document.addEventListener("touchstart", function(){}, true);
+
+
 class App extends Component {
 
   constructor(props) {

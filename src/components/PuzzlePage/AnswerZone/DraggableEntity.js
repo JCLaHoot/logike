@@ -34,9 +34,10 @@ class DraggableEntity extends Component {
     // wrapping the component with connectDragSource is required
     // wrapping in connectDragPreview required if using the touch backend
     // here I also change the class name depending on whether the component is being dragged or not.
+    // HACK: draggable="false" is NOT a mistake. it's to disable the default browser drag behaviour (aka fix iOS).
     return connectDragPreview(connectDragSource(
       <div className={`entity ${isDragging ? `is-dragging` : ``}`}>
-        <img src={img} alt={name} name={name} />
+        <img draggable="false" src={img} alt={name} name={name} />
       </div>
     ));
   }

@@ -24,6 +24,12 @@ const ChooseEntityList = ({entityLists, selectEntityList, selectedEntityList}) =
     <div className="choose-entity-list">
       <h4>Select a set of entities</h4>
       {generateEntityPreviews(entityLists)}
+      <p>or, <a>
+              create a new set of entities <i className="fa fa-picture-o" aria-hidden="true">
+            </i> (coming soon)
+            </a>
+      </p>
+
     </div>
   )
 

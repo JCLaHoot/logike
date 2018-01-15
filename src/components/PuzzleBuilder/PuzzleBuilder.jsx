@@ -5,6 +5,7 @@ import Toast from '../PuzzlePage/Toast';
 
 import EntityLists from '../Shared/EntityLists'
 import ChooseEntityList from './ChooseEntityList'
+import ChoosePuzzleSize from './ChoosePuzzleSize'
 
 
 class PuzzleBuilder extends Component {
@@ -34,6 +35,7 @@ class PuzzleBuilder extends Component {
               entityLists={this.state.entityLists}
               selectEntityList={this.selectEntityList}
               selectedEntityList={this.state.selectedEntityList}/>
+            <ChoosePuzzleSize/>
           </div>
         </div>
     )

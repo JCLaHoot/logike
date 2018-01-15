@@ -78,6 +78,35 @@ table {
 
 /*
   ========================================
+  iOS support
+  ========================================
+*/
+
+/* prevents long press popups from ruining everything 😡 */
+img {
+  -webkit-touch-callout: none;
+}
+
+/* prevents annoying selection of images that's common in iOS */
+img {
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* prevents the dumb grey highlight when clicking stuff on iOS */
+.entity {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+img {
+  draggable: false;
+}
+/*
+  ========================================
   Text & Fonts
   ========================================
 */
@@ -430,11 +459,20 @@ footer {
   ========================================
 */
 
+.puzzle-builder
+
+
+
+
 /*
   ========================================
-  EntityListPreview
+  ChooseEntityList
   ========================================
 */
+
+.choose-entity-list a {
+
+}
 
 .entity-list-preview {
   width: 90%;
@@ -765,9 +803,8 @@ However, delay the fade out process for 2.5 seconds */
   margin: 0 auto;
   -webkit-filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
   filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
-
-
 }
+
 
 
 .drop-zone-container {
@@ -801,9 +838,17 @@ However, delay the fade out process for 2.5 seconds */
 }
 
 
+/* For some reason, these 3 are required for Safari and iOS 🤷‍ */
 .answer-zone button:focus  {
     outline: none;
 }
+.answer-zone button {
+  background-color: #FFFFFF;
+}
+.answer-zone button:hover {
+  background-color: #DFDFDF;
+}
+
 
 button {
   min-width: 10em;
