@@ -102,9 +102,6 @@ img {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-img {
-  draggable: false;
-}
 /*
   ========================================
   Text & Fonts
@@ -510,6 +507,90 @@ footer {
 }
 
 
+/*
+  ========================================
+  Choose Puzzle S
+  ========================================
+*/
+
+.choose-puzzle-size {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 12em; /* Full-width */
+    height: 0.5em; /* Specified height */
+    /* margin: 1em; */
+    margin: 1em;
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+
+    width: 1.5em; /* Set a specific slider handle width */
+    height: 1.5em; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 2em;
+}
+
+.slider::-moz-range-thumb {
+    width: 1em; /* Set a specific slider handle width */
+    height: 1em; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 2em;
+
+}
+
+.horizontal-slider {
+display: block;
+margin-left: 2.5em;
+margin-bottom: 1em;
+}
+
+.vertical-slider-wrapper {
+  display: block;
+  width: 2.5em;
+  height: 12em;
+  margin-top: 1em;
+  float: left;
+
+}
+
+.vertical-slider {
+  display: block;
+  transform-origin:5em 5em;
+  transform: rotate(-90deg);
+
+}
+
+
+
+.puzzle-size-preview {
+  width: 12em;
+  height: 12em;
+  display: block;
+  background-color: red;
+  float: left;
+
+}
 /*
   ========================================
   PuzzlePage
