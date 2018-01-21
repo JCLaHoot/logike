@@ -197,6 +197,7 @@ class AnswerZone extends Component {
     // does all of the heavy lifting for the validation.
     var valid = validateAnswer(this.state.puzzle, this.state.entities, this.state.containers);
 
+
     this.setState({validAns: valid});
 
     if(valid) {

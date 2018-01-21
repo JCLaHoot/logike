@@ -6,23 +6,37 @@ import Toast from '../PuzzlePage/Toast';
 import EntityLists from '../Shared/EntityLists'
 import ChooseEntityList from './ChooseEntityList'
 import ChoosePuzzleSize from './ChoosePuzzleSize'
+import LogicalConditionBuilder from './LogicalConditionBuilder';
 
 
 class PuzzleBuilder extends Component {
+
 
   constructor({props}) {
     super(props);
     this.state = {
       entityLists: EntityLists,
-      selectedEntityList: null
+      selectedEntityList: null,
+      puzzleSize: { x: null,
+                    y: null }
     }
   }
+
 
   selectEntityList = (entityList) => {
     console.log(entityList);
     this.setState({
       selectedEntityList: entityList
     });
+  }
+
+  selectPuzzleSize = (x, y) => {
+    this.setState({
+      puzzleSize: { x: x,
+                    y: y }
+    });
+    console.log(x,y);
+
   }
 
 
@@ -35,7 +49,8 @@ class PuzzleBuilder extends Component {
               entityLists={this.state.entityLists}
               selectEntityList={this.selectEntityList}
               selectedEntityList={this.state.selectedEntityList}/>
-            <ChoosePuzzleSize/>
+            <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}/>
+            <LogicalConditionBuilder/>
           </div>
         </div>
     )

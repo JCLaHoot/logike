@@ -39,7 +39,7 @@ returnToMainMenu = () => {
      activeInteface: UINames.LANDING_PAGE
    }
   );
-}
+};
 
 // runs when a puzzle is selected and changes the state
 onSelectHandler = (puzzle) => {
