@@ -522,7 +522,7 @@ footer {
 .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-    width: 11em; /* Full-width */
+    width: 11.25em; /* Full-width */
     height: 0.5em; /* Specified height */
     /* margin: 1em; */
     margin: 1em;
@@ -561,14 +561,14 @@ footer {
 
 .horizontal-slider {
 display: block;
-margin-left: 2.5em;
-margin-bottom: 1em;
+margin-left: 2.25em;
+margin-bottom: 0.75em;
 }
 
 .vertical-slider-wrapper {
   display: block;
   width: 2em;
-  height: 11em;
+  height: 12em;
   /* margin-top: 1em; */
   float: left;
 
@@ -576,7 +576,7 @@ margin-bottom: 1em;
 
 .vertical-slider {
   display: block;
-  transform-origin:0 0;
+  transform-origin:0.5em 0;
   transform: rotate(90deg);
 
 }

@@ -14,8 +14,6 @@ class LogicalConditionBuilder extends Component {
     }
   }
 
-
-
   getGridCells = () => {
     var cells = [];
     for (var y = 0; y < this.state.y; y++) {
