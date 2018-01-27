@@ -4,9 +4,11 @@ import FlexGrid from '../Shared/FlexGrid';
 class LogicalConditionBuilder extends Component {
 
 
-    constructor({props}) {
+    constructor({props, puzzleSize}) {
         super(props);
-        this.state = {}
+        this.state = {
+            puzzleSize: puzzleSize
+        }
     }
 
     getGridCells = () => {

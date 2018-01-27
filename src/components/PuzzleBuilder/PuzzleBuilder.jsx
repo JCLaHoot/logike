@@ -54,7 +54,7 @@ class PuzzleBuilder extends Component {
                         selectEntityList={this.selectEntityList}
                         selectedEntityList={this.state.selectedEntityList}/>
                     <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}/>
-                    <LogicalConditionBuilder/>
+                    <LogicalConditionBuilder puzzleSize={this.state.puzzleSize}/>
                 </div>
             </div>
         )

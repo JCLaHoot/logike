@@ -1,28 +1,21 @@
 import React from 'react';
+import {LogicCellStates} from '../../Shared/Constants'
+
 
 const LogicCellDisplay = ({content}) => {
 
-    // makes the component also accept colours instead of just images
-    var isHex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(content);
-    var cellContent;
-    if (isHex) {
+    if (content === LogicCellStates.WHITE) {
         const divStyle = {
-            background: `${content}`,
+            background: `#FFF`,
         };
-        cellContent = (<div className="logic-cell" style={divStyle}></div>);
+        return (<div className="logic-cell" style={divStyle}></div>);
     } else if (content) {
-        cellContent = (
+        return (
             <div className="logic-cell white-bg"><img draggable="false" src={content} alt="logic cell"/></div>);
     }
     else { // empty cell
-        cellContent = (<div className="logic-cell"></div>);
+        return (<div className="logic-cell"></div>);
     }
-
-
-    return (
-        cellContent
-    );
-
 
 };
 

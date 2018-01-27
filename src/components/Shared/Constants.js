@@ -8,3 +8,9 @@ export const UINames = {
     LANDING_PAGE: 'LandingPage',
     PUZZLE_BUILDER: 'PuzzleBuilder'
 };
+
+//TODO: refactor places where 'empty' is hardcoded and 'white' is expressed as null
+export const LogicCellStates = {
+    EMPTY: 'empty',
+    WHITE: 'white'
+};

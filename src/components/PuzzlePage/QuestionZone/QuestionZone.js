@@ -4,6 +4,7 @@ import {deepMap} from '../../Shared/TwoDimensionalMethods.js';
 import LogicCellDisplay from './LogicCellDisplay';
 import trueIcon from '../../../assets/true.png';
 import falseIcon from '../../../assets/false.png';
+import {LogicCellStates} from '../../Shared/Constants'
 
 
 // TODO: make component functional instead of class based
@@ -24,13 +25,13 @@ class QuestionZone extends Component {
             var visualizeLogicCells = (logicCell, x, y) => {
                 switch (logicCell) {
                     case null:
-                        return <LogicCellDisplay content={"#fff"}/>;
+                        return <LogicCellDisplay content={LogicCellStates.WHITE}/>;
                     case true:
                         return <LogicCellDisplay content={trueIcon}/>;
                     case false:
                         return <LogicCellDisplay content={falseIcon}/>;
                     default:
-                        if (logicCell === "empty") {
+                        if (logicCell === LogicCellStates.EMPTY) {
                             return <LogicCellDisplay content={null}/>;
                         }
                         else { //go through all the selectors until you find the one that matches, and get its image
