@@ -4,11 +4,11 @@ const Footer = () => {
 
 
 // TODO: make the nav responsive
-  return (
-    <footer>
-      © 2018 Jonathan Lahue
-    </footer>
-  )
+    return (
+        <footer>
+            © 2018 Jonathan Lahue
+        </footer>
+    )
 
 
 };

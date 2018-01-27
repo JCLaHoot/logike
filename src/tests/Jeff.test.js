@@ -1,4 +1,4 @@
-import {containsSelector, validateAnswer, normalizeLogic} from '../components/PuzzlePage/AnswerZone/Validation';
+import {validateAnswer, normalizeLogic} from '../components/PuzzlePage/AnswerZone/Validation';
 import entities from '../components/Shared/Entities';
 import extremePuzzle from '../puzzles/Extreme-Test';
 
@@ -10,13 +10,14 @@ var puzzle = extremePuzzle(entities);
 var newLogic = normalizeLogic(puzzle, entities);
 puzzle.logic = newLogic;
 
-const ansArray = [["yellow-square", "red-square", "blue-square"],
-                  ["red-circle", "yellow-triangle", "blue-circle"],
-                  ["yellow-circle", "red-triangle", "blue-triangle"]];
+const ansArray =
+    [["yellow-square", "red-square", "blue-square"],
+    ["red-circle", "yellow-triangle", "blue-circle"],
+    ["yellow-circle", "red-triangle", "blue-triangle"]];
 
 const containers = generateAnsContainer(ansArray);
 
 test("testing Jeff's puzzle example", () => {
-  // expect(validateAnswer(puzzle, entities, ))
-  expect(validateAnswer(puzzle, entities, containers)).toEqual(true);
-})
+    // expect(validateAnswer(puzzle, entities, ))
+    expect(validateAnswer(puzzle, entities, containers)).toEqual(true);
+});

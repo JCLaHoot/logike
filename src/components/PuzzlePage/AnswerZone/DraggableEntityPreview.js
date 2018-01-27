@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
-import { DragLayer } from 'react-dnd';
+import {DragLayer} from 'react-dnd';
 
 import DraggableEntity from './DraggableEntity';
 
 // gets the data about the item being dragged.
 const collect = (monitor) => {
-  var item = monitor.getItem();
-  // compensated for potential scroll;
-  var offset = monitor.getSourceClientOffset();
-  if(offset) {
-    offset.x += window.pageXOffset;
-    offset.y += window.pageYOffset;
-  }
+    var item = monitor.getItem();
+    // compensated for potential scroll;
+    var offset = monitor.getSourceClientOffset();
+    if (offset) {
+        offset.x += window.pageXOffset;
+        offset.y += window.pageYOffset;
+    }
 
-  return {
-    name: item && item.name,
-    img: item && item.img,
-    oldLocation: item && item.oldLocation,
-    currentOffset: offset, //required
-    isDragging: monitor.isDragging()
-  }
-}
+    return {
+        name: item && item.name,
+        img: item && item.img,
+        oldLocation: item && item.oldLocation,
+        currentOffset: offset, //required
+        isDragging: monitor.isDragging()
+    }
+};
 
 const getItemStyles = (currentOffset) => {
     if (!currentOffset) {
@@ -39,34 +39,34 @@ const getItemStyles = (currentOffset) => {
         transform: transform,
         WebkitTransform: transform
     };
-}
+};
 
 
 class ItemPreview extends Component {
 
-  render() {
-    const PreviewContents = ({
-        name,
-        img,
-        oldLocation,
-        isDragging,
-        currentOffset
-    }) => {
-        if (!isDragging) {
-            return null;
-        }
+    render() {
+        const PreviewContents = ({
+                                     name,
+                                     img,
+                                     oldLocation,
+                                     isDragging,
+                                     currentOffset
+                                 }) => {
+            if (!isDragging) {
+                return null;
+            }
 
-        // the div makes the magic happen for the preview. The contents should match the item being dragged
-        return (
-          <div className="item-preview" style={getItemStyles(currentOffset)} >
-              <DraggableEntity name={name} img={img} oldLocation={oldLocation}/>
-          </div>
-        );
+            // the div makes the magic happen for the preview. The contents should match the item being dragged
+            return (
+                <div className="item-preview" style={getItemStyles(currentOffset)}>
+                    <DraggableEntity name={name} img={img} oldLocation={oldLocation}/>
+                </div>
+            );
+        };
+
+        return PreviewContents(this.props);
+
     }
-
-    return PreviewContents(this.props);
-
-  }
 
 }
 

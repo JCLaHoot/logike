@@ -12,7 +12,7 @@ const PuzzleFiles = [CustomTest, EasyTest, MediumTest, DifficultTest, ExtremeTes
 
 // injects entities into puzzles
 const PuzzleList = PuzzleFiles.map((puzzle) => {
-  return (puzzle(Entities));
-})
+    return (puzzle(Entities));
+});
 
 export default PuzzleList;
