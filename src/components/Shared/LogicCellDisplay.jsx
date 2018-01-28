@@ -1,5 +1,5 @@
 import React from 'react';
-import {LogicCellStates} from '../../Shared/Constants'
+import {LogicCellStates} from './Constants'
 
 
 const LogicCellDisplay = ({content}) => {

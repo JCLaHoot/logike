@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FlexGrid from '../../Shared/FlexGrid.js';
+import FlexGrid from './FlexGrid.js';
 
 const LogicalCondition = ({cells, selectorImg, selectorName}) => {
 
