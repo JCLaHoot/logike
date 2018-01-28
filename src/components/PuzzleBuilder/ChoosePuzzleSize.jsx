@@ -7,24 +7,26 @@ const defaultSliderValue = 3;
 class ChoosePuzzleSize extends Component {
 
 
-    constructor({props, selectPuzzleSize}) {
+    constructor({props, selectPuzzleSize, defaultPuzzleSize}) {
         super(props);
         this.state = {
-            x: defaultSliderValue,
-            y: defaultSliderValue,
+            x: defaultPuzzleSize,
+            y: defaultPuzzleSize,
             selectPuzzleSize: selectPuzzleSize
         }
     }
 
 
     updateX = (event) => {
-        this.setState({x: event.target.value});
-        this.state.selectPuzzleSize(this.state.x, this.state.y);
+        let xVal = event.target.value;
+        this.setState({x: xVal});
+        this.state.selectPuzzleSize(xVal, this.state.y);
     };
 
     updateY = (event) => {
-        this.setState({y: event.target.value});
-        this.state.selectPuzzleSize(this.state.x, this.state.y);
+        let yVal = event.target.value;
+        this.setState({y: yVal});
+        this.state.selectPuzzleSize(this.state.x, yVal);
     };
 
     getGridCells = () => {
@@ -44,12 +46,12 @@ class ChoosePuzzleSize extends Component {
         return (
             <div className="choose-puzzle-size">
                 <h4>Choose the puzzle size</h4>
-                <input type="range" min="1" value={this.state.x} max="5" className="slider horizontal-slider"
-                       onChange={this.updateX}/>
+                <input type="range" min="1" defaultValue={this.props.defaultPuzzleSize}  max="5" className="slider horizontal-slider"
+                       onInput={this.updateX}/>
                 <div className="float-wrapper">
                     <div className="vertical-slider-wrapper">
-                        <input type="range" min="1" value={this.state.y} max="5" className="slider vertical-slider"
-                               onChange={this.updateY}/>
+                        <input type="range" min="1" defaultValue={this.props.defaultPuzzleSize}  max="5" className="slider vertical-slider"
+                               onInput={this.updateY}/>
                     </div>
                     <div className="puzzle-size-preview">
                         <FlexGrid cells={this.getGridCells()}/>

@@ -48,15 +48,19 @@ export const getGridX = (grid) => {
     return Math.max(...rowLengths);
 };
 
-// creates an empty 2d array
-export const createTwoDimensionalArray = (xSize, ySize) => {
+// creates an empty 2d array.
+export const createTwoDimensionalArray = (xSize, ySize, content) => {
     var grid = [];
     for (var y = 0; y < ySize; y++) {
         var row = [];
         for (var x = 0; x < xSize; x++) {
-            row.push([]); // may need to just be null
+            row.push(content !== undefined ? content : []); // if no content, passes empty array.
         }
         grid.push(row);
     }
+
     return grid;
 };
+
+
+

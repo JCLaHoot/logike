@@ -14,11 +14,10 @@ class QuestionZone extends Component {
 
 
     render() {
-        console.log(typeof renderLogicalCondition);
         return (
             <div className="question-zone">
                 <div className="wrap-row">
-                    {renderLogicalCondition(this.state.puzzle)}
+                    {renderLogicalCondition(this.state.puzzle.logic, this.state.puzzle.entities)}
                 </div>
             </div>
         )

@@ -11,6 +11,8 @@ import LogicalConditionBuilder from './LogicalConditionBuilder';
 
 class PuzzleBuilder extends Component {
 
+    defaultPuzzleSize = 3;
+
 
     constructor({props}) {
         super(props);
@@ -18,20 +20,20 @@ class PuzzleBuilder extends Component {
             entityLists: EntityLists,
             selectedEntityList: null,
             puzzleSize: {
-                x: null,
-                y: null
+                x: this.defaultPuzzleSize,
+                y: this.defaultPuzzleSize
             }
         }
     }
 
-
+    //sets the selected entity list on click
     selectEntityList = (entityList) => {
-        console.log(entityList);
         this.setState({
             selectedEntityList: entityList
         });
     };
 
+    //sets the size of the puzzle on slider change
     selectPuzzleSize = (x, y) => {
         this.setState({
             puzzleSize: {
@@ -39,8 +41,6 @@ class PuzzleBuilder extends Component {
                 y: y
             }
         });
-        console.log(x, y);
-
     };
 
 
@@ -53,8 +53,11 @@ class PuzzleBuilder extends Component {
                         entityLists={this.state.entityLists}
                         selectEntityList={this.selectEntityList}
                         selectedEntityList={this.state.selectedEntityList}/>
-                    <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}/>
-                    <LogicalConditionBuilder puzzleSize={this.state.puzzleSize}/>
+                    <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}
+                                      defaultPuzzleSize={this.defaultPuzzleSize}/>
+                    <LogicalConditionBuilder
+                        puzzleSize={this.state.puzzleSize}
+                        selectedEntityList={this.state.selectedEntityList}/>
                 </div>
             </div>
         )
