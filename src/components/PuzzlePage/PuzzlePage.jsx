@@ -6,6 +6,22 @@ import Modal from '../Shared/Modal';
 import Toast from './Toast';
 
 
+const questionZoneTutorialText = (
+    <div className={"question-zone-text"}>
+        <h5>Welcome to Logike!</h5>
+        <p>The cards below represent logical conditions.
+            All of them must be "true" in order to solve the puzzle.</p>
+    </div>
+);
+const ansZoneTutorialText = (
+    <div className={"answer-zone-text"}>
+        <p>Drag the shapes onto the board below in order to satisfy the logical conditions.</p>
+        <p>Hint: the red square goes in the top-left corner...</p>
+
+    </div>
+);
+
+
 class PuzzlePage extends Component {
 
     constructor({props, puzzle, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
@@ -62,12 +78,18 @@ class PuzzlePage extends Component {
     };
 
     render() {
+        var isTutorial = false;
+        if(this.state.puzzle.name === "Tutorial 🍼") {
+            isTutorial = true;
+        }
+
         return (
             <div className="puzzle-page">
                 <div className="float-wrapper">
-                    <QuestionZone puzzle={this.state.puzzle}/>
+                    <QuestionZone puzzle={this.state.puzzle} textContent={isTutorial ? questionZoneTutorialText : null}/>
                     <AnswerZone
                         puzzle={this.state.puzzle}
+                        textContent={ isTutorial ? ansZoneTutorialText : null}
                         updateModal={this.updateModal}
                         closeModal={this.closeModal}
                         returnToMainMenu={this.state.returnToMainMenu}

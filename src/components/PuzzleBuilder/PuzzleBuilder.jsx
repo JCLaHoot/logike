@@ -49,10 +49,13 @@ class PuzzleBuilder extends Component {
             <div className="puzzle-builder">
                 <div className="float-wrapper">
                     <h3>Puzzle Builder</h3>
+                    <p>(This is currently under construction 🏗️, but you can check it out anyway)</p>
+                    <br/>
                     <ChooseEntityList
                         entityLists={this.state.entityLists}
                         selectEntityList={this.selectEntityList}
                         selectedEntityList={this.state.selectedEntityList}/>
+                    <br/>
                     <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}
                                       defaultPuzzleSize={this.defaultPuzzleSize}/>
                     <LogicalConditionBuilder

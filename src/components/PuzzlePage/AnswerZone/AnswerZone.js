@@ -18,7 +18,7 @@ import TouchBackend from 'react-dnd-touch-backend';
 
 class AnswerZone extends Component {
 
-    constructor({props, puzzle, showToast, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
+    constructor({props, puzzle, textContent, showToast, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
         super(props);
         this.state = {
             puzzle: puzzle,
@@ -264,27 +264,32 @@ class AnswerZone extends Component {
 // TODO: remove line breaks and restyle
     render() {
         return (
-            <div className="answer-zone">
-                <DropContainer containerType="entity-bin"
-                               contents={this.state.entityBin.contents}
-                               location="entity-bin"
-                               onDrop={this.onDrop}
-                />
-                <div className={`drop-zone-container ${this.getValidationClassName(this.state.validAns)}`}>
-                    <FlexGrid cells={
-                        deepMap(this.state.containers, (container) => {
-                            return <DropContainer
-                                id={container.id}
-                                location={container.location}
-                                contents={container.contents}
-                                onDrop={this.onDrop}
-                            />
-                        })
-                    }/>
+                <div className="answer-zone-wrapper">
+                    {this.props.textContent}
+                    <div className="answer-zone">
+                        <DropContainer containerType="entity-bin"
+                                       contents={this.state.entityBin.contents}
+                                       location="entity-bin"
+                                       onDrop={this.onDrop}
+                        />
+                        <div className={`drop-zone-container ${this.getValidationClassName(this.state.validAns)}`}>
+                            <FlexGrid cells={
+                                deepMap(this.state.containers, (container) => {
+                                    return <DropContainer
+                                        id={container.id}
+                                        location={container.location}
+                                        contents={container.contents}
+                                        onDrop={this.onDrop}
+                                    />
+                                })
+                            }/>
+                        </div>
+                        <button onClick={this.runValidation}>Validate</button>
+                        <DraggableEntityPreview/>
+                    </div>
+
                 </div>
-                <button onClick={this.runValidation}>Validate</button>
-                <DraggableEntityPreview/>
-            </div>
+
         )
     }
 
