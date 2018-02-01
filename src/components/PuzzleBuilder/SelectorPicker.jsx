@@ -17,8 +17,11 @@ const SelectorPicker = ({entities, chooseSelector, chosenSelector}) => {
 
             const isChosen = selector === chosenSelector;
 
+            let img = selector.img;
+            img = '/assets/' + img + '.png';
+
             return (
-                <img src={selector.img}
+                <img src={img}
                      alt={selector.name}
                      onClick={_chooseSelector}
                      className={isChosen ? 'selected' : ""}/>

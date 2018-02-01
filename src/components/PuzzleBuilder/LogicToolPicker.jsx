@@ -7,13 +7,6 @@ import LogicCellDisplay from '../Shared/LogicCellDisplay';
 
 
 
-import trueIcon from '../../assets/true.png';
-import falseIcon from '../../assets/false.png';
-
-
-
-
-
 const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
 
     if(!entities) {
@@ -39,11 +32,11 @@ const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
                                      onClick={_chooseTool}
                                      className={isSelected ? "selected" : ""}/>;
         case true:
-            return <LogicCellDisplay content={trueIcon}
+            return <LogicCellDisplay content={"true"}
                                      onClick={_chooseTool}
                                      className={isSelected ? "selected" : ""}/>;
         case false:
-            return <LogicCellDisplay content={falseIcon}
+            return <LogicCellDisplay content={"false"}
                                      onClick={_chooseTool}
                                      className={isSelected ? "selected" : ""}/>;
         default:
@@ -60,6 +53,8 @@ const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
                         img = selector.img;
                     }
                 });
+
+
                 return <LogicCellDisplay content={img}
                                          onClick={_chooseTool}
                                          className={isSelected ? "selected" : ""}/>;

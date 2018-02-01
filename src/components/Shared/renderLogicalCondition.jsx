@@ -5,9 +5,6 @@ import {LogicCellStates} from "./Constants";
 import LogicCellDisplay from './LogicCellDisplay';
 import LogicalCondition from './LogicalCondition';
 
-import trueIcon from '../../assets/true.png';
-import falseIcon from '../../assets/false.png';
-
 
 //TODO: rename different components to have consistent naming scheme.
 // converts logicCell values to symbols and renders them.
@@ -16,9 +13,9 @@ export const renderLogicCells = (logicCell, entities) => {
         case null:
             return <LogicCellDisplay content={LogicCellStates.WHITE}/>;
         case true:
-            return <LogicCellDisplay content={trueIcon}/>;
+            return <LogicCellDisplay content={"true"}/>;
         case false:
-            return <LogicCellDisplay content={falseIcon}/>;
+            return <LogicCellDisplay content={"false"}/>;
         default:
             if (logicCell === LogicCellStates.EMPTY) {
                 return <LogicCellDisplay content={null}/>;
@@ -48,11 +45,14 @@ export const renderLogicCells = (logicCell, entities) => {
      }
 
     return deepMap(puzzleLogic, (puzzleCell, x, y) => {
+        let img = puzzleCell.selectorImg;
+        img = '/assets/' + img + '.png';
+
 
 // returns the UI contents of each puzzleCell (which contains logicCells)
         return (<LogicalCondition
             key={`${x}${y}`}
-            selectorImg={puzzleCell.selectorImg}
+            selectorImg={img}
             selectorName={puzzleCell.selectorName}
             cells={deepMap(puzzleCell.logicCells, _renderLogicCells)}
         />)

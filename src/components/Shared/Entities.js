@@ -1,19 +1,3 @@
-import redSquare from '../../assets/red_square.png';
-import blueSquare from '../../assets/blue_square.png';
-import yellowSquare from '../../assets/yellow_square.png';
-import redCircle from '../../assets/red_circle.png';
-import blueCircle from '../../assets/blue_circle.png';
-import yellowCircle from '../../assets/yellow_circle.png';
-import redTriangle from '../../assets/red_triangle.png';
-import blueTriangle from '../../assets/blue_triangle.png';
-import yellowTriangle from '../../assets/yellow_triangle.png';
-import square from '../../assets/square.png';
-import circle from '../../assets/circle.png';
-import triangle from '../../assets/triangle.png';
-import red from '../../assets/paint_red.png'
-import blue from '../../assets/paint_blue.png'
-import yellow from '../../assets/paint_yellow.png'
-
 // an entity the main element that is manipulated in the puzzle.
 // it has properties, a name based on the properties,
 // a common name which may differ from the name, and an image
@@ -41,12 +25,12 @@ class Property {
 
 
 const PROPERTIES = [
-    new Property("colors", "red", red),
-    new Property("colors", "blue", blue),
-    new Property("colors", "yellow", yellow),
-    new Property("shapes", "square", square),
-    new Property("shapes", "circle", circle),
-    new Property("shapes", "triangle", triangle)
+    new Property("colors", "red", "paint_red"),
+    new Property("colors", "blue", "paint_blue"),
+    new Property("colors", "yellow", "paint_yellow"),
+    new Property("shapes", "square", "square"),
+    new Property("shapes", "circle", "circle"),
+    new Property("shapes", "triangle", "triangle")
 ];
 
 // takes an array of objects and outputs an object whose keys correspond to the grouping values
@@ -99,31 +83,31 @@ const Entities = {
     list: [
         new Entity("red Square",
             [groupedProperties.colors[0], groupedProperties.shapes[0]],
-            redSquare),
+            "red_square"),
         new Entity("blue Square",
             [groupedProperties.colors[1], groupedProperties.shapes[0]],
-            blueSquare),
+            "blue_square"),
         new Entity("yellow Square",
             [groupedProperties.colors[2], groupedProperties.shapes[0]],
-            yellowSquare),
+            "yellow_square"),
         new Entity("red-circle",
             [groupedProperties.colors[0], groupedProperties.shapes[1]],
-            redCircle),
+            "red_circle"),
         new Entity("blue-circle",
             [groupedProperties.colors[1], groupedProperties.shapes[1]],
-            blueCircle),
+            "blue_circle"),
         new Entity("yellow-circle",
             [groupedProperties.colors[2], groupedProperties.shapes[1]],
-            yellowCircle),
+            "yellow_circle"),
         new Entity("red-triangle",
             [groupedProperties.colors[0], groupedProperties.shapes[2]],
-            redTriangle),
+            "red_triangle"),
         new Entity("blue-triangle",
             [groupedProperties.colors[1], groupedProperties.shapes[2]],
-            blueTriangle),
+            "blue_triangle"),
         new Entity("yellow-triangle",
             [groupedProperties.colors[2], groupedProperties.shapes[2]],
-            yellowTriangle)
+            'yellow_triangle')
     ]
 
 };

@@ -3,10 +3,13 @@ import React from 'react';
 
 const EntityListPreview = ({entities, selectEntityList, selected}) => {
 
+    
     const entityFactory = (entities) => {
         return entities.list.map((entity) => {
+            let img = entity.img;
+                img = '/assets/' + img + '.png';
             return (
-                <img src={entity.img} alt={entity.name}/>
+                <img src={img} alt={entity.name}/>
             )
         })
     };

@@ -10,10 +10,13 @@ const LogicCellDisplay = ({content, onClick, location}) => {
         };
         return (<div className="logic-cell" style={divStyle} onClick={onClick}></div>);
     } else if (content) {
+        let img = content;
+        img = '/assets/' + content + '.png';
+
         return (
             <div className="logic-cell white-bg"><img
                 draggable="false"
-                src={content}
+                src={img}
                 alt="logic cell"
                 onClick={onClick}
                 location={location}/></div>);

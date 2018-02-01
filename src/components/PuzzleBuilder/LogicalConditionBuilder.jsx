@@ -2,18 +2,11 @@ import React, {Component} from 'react';
 import FlexGrid from '../Shared/FlexGrid';
 import {createTwoDimensionalArray, deepMap, getGridX, getGridY} from '../Shared/TwoDimensionalMethods';
 
-import renderLogicalCondition  from '../Shared/renderLogicalCondition';
 import SelectorPicker from './SelectorPicker';
 import LogicToolPicker from './LogicToolPicker';
 import {LogicCellStates} from "../Shared/Constants";
 
 import LogicCellDisplay from '../Shared/LogicCellDisplay';
-
-import trueIcon from '../../assets/true.png';
-import falseIcon from '../../assets/false.png';
-import {normalizeLogic} from "../PuzzlePage/AnswerZone/Validation";
-
-
 
 
 class LogicalConditionBuilder extends Component {
@@ -51,11 +44,11 @@ class LogicalConditionBuilder extends Component {
                                          location={{x: x, y: y}}
                                          onClick={_applyTool}/>;
             case true:
-                return <LogicCellDisplay content={trueIcon}
+                return <LogicCellDisplay content={"true"}
                                          location={{x: x, y: y}}
                                          onClick={_applyTool}/>;
             case false:
-                return <LogicCellDisplay content={falseIcon}
+                return <LogicCellDisplay content={"false"}
                                          location={{x: x, y: y}}
                                          onClick={_applyTool}/>;
             default:
