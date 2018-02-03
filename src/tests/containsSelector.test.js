@@ -1,6 +1,6 @@
 import {containsSelector} from '../components/PuzzlePage/AnswerZone/Validation';
 import entities from '../components/Shared/Entities';
-import extremePuzzle from '../puzzles/Extreme-Test';
+import extremePuzzle from '../puzzles/Difficult';
 
 const puzzle = extremePuzzle(entities);
 

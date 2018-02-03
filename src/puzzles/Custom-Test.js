@@ -1,6 +1,6 @@
 const puzzle = (entities) => {
     return ({
-        name: "Baby Puzzle",
+        name: "Testing Features",
         logic:
             [
                 [
@@ -28,14 +28,6 @@ const puzzle = (entities) => {
                         [false, true]
                     ]
                 }
-                    // ,{
-                    // selectorImg: entities.list[4].img,
-                    // selectorName: entities.list[4].name,
-                    // logicCells: [
-                    //   [false,false],
-                    //   [true,false]
-                    //   ]
-                    // }
                 ]
 
             ],
