@@ -3,7 +3,7 @@ const puzzle = (entities) => {
         name: "Easy 🌱",
         logic:
             [
-                [
+
                     {
                         selectorImg: entities.list[0].img,
                         selectorName: entities.list[0].name,
@@ -30,8 +30,8 @@ const puzzle = (entities) => {
                             [false, null, null],
                             [false, null, null]
                         ]
-                    }],
-                [{
+                    },
+                {
                     selectorImg: entities.list[3].img,
                     selectorName: entities.list[3].name,
                     logicCells: [
@@ -57,8 +57,8 @@ const puzzle = (entities) => {
                             [null, null, null],
                             [null, true, null]
                         ]
-                    }],
-                [{
+                    },
+                {
                     selectorImg: entities.list[6].img,
                     selectorName: entities.list[6].name,
                     logicCells: [
@@ -84,7 +84,7 @@ const puzzle = (entities) => {
                             [false, null, null],
                             [false, null, null]
                         ]
-                    }]
+                    }
 
             ],
         size: {

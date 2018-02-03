@@ -3,7 +3,7 @@ const puzzle = (entities) => {
         name: "Tutorial 🍼",
         logic:
             [
-                [
+
                     {
                         selectorImg: entities.list[0].img,
                         selectorName: entities.list[0].name,
@@ -27,15 +27,15 @@ const puzzle = (entities) => {
                             [null, null],
                             [true, null]
                         ]
-                    }],
-                [{
+                    },
+                {
                     selectorImg: entities.list[3].img,
                     selectorName: entities.list[3].name,
                     logicCells: [
                         [null, true],
                         [null, null ]
                     ]
-                }]
+                }
 
             ],
         size: {

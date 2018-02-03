@@ -3,7 +3,7 @@ const puzzle = (entities) => {
         name: "Medium 🌶️",
         logic:
             [
-                [
+
                     {
                         selectorImg: entities.list[0].img,
                         selectorName: entities.list[0].name,
@@ -25,8 +25,8 @@ const puzzle = (entities) => {
                             ["red-circle"],
                             [true]
                         ]
-                    }],
-                [{
+                    },
+                {
                     selectorImg: entities.list[3].img,
                     selectorName: entities.list[3].name,
                     logicCells: [
@@ -50,8 +50,8 @@ const puzzle = (entities) => {
                             ["empty", "empty", null],
                             [true, null, "empty"]
                         ]
-                    }],
-                [{
+                    },
+                {
                     selectorImg: entities.list[6].img,
                     selectorName: entities.list[6].name,
                     logicCells: [
@@ -75,7 +75,7 @@ const puzzle = (entities) => {
                             [false, false, false],
                             ["empty", false, false]
                         ]
-                    }]
+                    }
 
             ],
         size: {

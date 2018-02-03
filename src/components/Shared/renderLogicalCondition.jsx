@@ -44,7 +44,7 @@ export const renderLogicCells = (logicCell, entities) => {
          return renderLogicCells(logicCell, entities);
      }
 
-    return deepMap(puzzleLogic, (puzzleCell, x, y) => {
+    return puzzleLogic.map( (puzzleCell, x, y) => {
         let img = puzzleCell.selectorImg;
         img = '/assets/' + img + '.png';
 

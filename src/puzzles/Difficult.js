@@ -3,34 +3,34 @@ const puzzle = (entities) => {
         name: "Difficult 💀",
         logic:
             [
-                [
-                    {
-                        selectorImg: entities.PROPERTIES[3].img,
-                        selectorName: entities.PROPERTIES[3].name,
-                        logicCells: [
-                            [true, true, true],
-                            ["empty", "triangle", "empty"]
-                        ]
-                    },
-                    {
-                        selectorImg: entities.PROPERTIES[1].img,
-                        selectorName: entities.PROPERTIES[1].name,
-                        logicCells: [
-                            ["empty", true],
-                            ["yellow", true],
-                            ["empty", true]
-                        ]
-                    },
-                    {
-                        selectorImg: entities.PROPERTIES[4].img,
-                        selectorName: entities.PROPERTIES[4].name,
-                        logicCells: [
-                            [false, false, false],
-                            [null, null, null],
-                            [null, null, null]
-                        ]
-                    }],
-                [{
+
+                {
+                    selectorImg: entities.PROPERTIES[3].img,
+                    selectorName: entities.PROPERTIES[3].name,
+                    logicCells: [
+                        [true, true, true],
+                        ["empty", "triangle", "empty"]
+                    ]
+                },
+                {
+                    selectorImg: entities.PROPERTIES[1].img,
+                    selectorName: entities.PROPERTIES[1].name,
+                    logicCells: [
+                        ["empty", true],
+                        ["yellow", true],
+                        ["empty", true]
+                    ]
+                },
+                {
+                    selectorImg: entities.PROPERTIES[4].img,
+                    selectorName: entities.PROPERTIES[4].name,
+                    logicCells: [
+                        [false, false, false],
+                        [null, null, null],
+                        [null, null, null]
+                    ]
+                },
+                {
                     selectorImg: entities.PROPERTIES[5].img,
                     selectorName: entities.PROPERTIES[5].name,
                     logicCells: [
@@ -47,7 +47,7 @@ const puzzle = (entities) => {
                             [false, null, null],
                             [null, false, null]
                         ]
-                    }]
+                    }
 
             ],
         size: {

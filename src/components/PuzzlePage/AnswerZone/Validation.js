@@ -72,7 +72,7 @@ export const normalizeLogic = (puzzle, entities) => {
     };
 
     // TODO: Code review of this map
-    var newLogic = deepMap(puzzle.logic, (puzzleCell) => {
+    var newLogic = puzzle.logic.map( (puzzleCell) => {
         if (sameSizeAsPuzzle(puzzle, puzzleCell.logicCells)
             ||
             containsSelector(puzzleCell.logicCells, entities)) {
@@ -215,7 +215,7 @@ export const validateAnswer = (puzzle, entities, containers) => {
 
 
     var validationArray;
-    validationArray = deepMap(puzzle.logic, (puzzleCell) => {
+    validationArray = puzzle.logic.map( (puzzleCell) => {
         var selector = puzzleCell.selectorName;
 
         // This is the check that's performed on every single logic cell in a puzzle cell
@@ -293,7 +293,7 @@ export const validateAnswer = (puzzle, entities, containers) => {
     });
 
     console.log("validation array: ", validationArray);
-    var valid = deepEvery(validationArray, (i) => {
+    var valid = validationArray.every( (i) => {
         return i
     });
 
