@@ -12,7 +12,7 @@ import {
     from '../../Shared/TwoDimensionalMethods.js';
 
 
-// NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
+// NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
 // checks whether the logicCells contains a selector
 // takes a x by y grid of logic cells, and checks whether any of the cells contain
 // a selector, as defined in the Entities file
@@ -45,7 +45,7 @@ export const containsSelector = (logicCells, entities) => {
 // TEMP
 // DEBUG
 // CHANGED
-// NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
+// NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
 // checks whether the provided selector is partial or not
 const selectorIsPartial = (selector, entities) => {
     var partialSelectorList = entities.PROPERTIES.map((property) => {
@@ -59,12 +59,12 @@ const selectorIsPartial = (selector, entities) => {
 // if there's no selector, transforms puzzleLogic array to be the same size as the expected puzzle
 // returns normalized logic, which must then be saved to the puzzle state
 // TODO rename to getNormalizedLogic
-// NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
+// NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
 export const normalizeLogic = (puzzle, entities) => {
     var start = Date.now(); //used to calculate validation time
 
     // checks whether the logicCells is the same size as the puzzle
-    // NOTE: TESTED and works GREAT! :) Delete comment after Jeff.test.js runs smoothly
+    // NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
     var sameSizeAsPuzzle = (puzzle, logicCells) => {
         return getGridY(logicCells) === puzzle.size.y
             &&

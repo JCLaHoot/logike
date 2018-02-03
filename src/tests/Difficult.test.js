@@ -1,10 +1,10 @@
 import {validateAnswer, normalizeLogic} from '../components/PuzzlePage/AnswerZone/Validation';
 import entities from '../components/Shared/Entities';
-import extremePuzzle from '../puzzles/Difficult';
+import difficultPuzzle from '../puzzles/Difficult';
 
 import {generateAnsContainer} from './TestHelpers';
 
-var puzzle = extremePuzzle(entities);
+var puzzle = difficultPuzzle(entities);
 
 // normalizing logic:
 var newLogic = normalizeLogic(puzzle, entities);
@@ -17,7 +17,18 @@ const ansArray =
 
 const containers = generateAnsContainer(ansArray);
 
-test("testing Jeff's puzzle example", () => {
-    // expect(validateAnswer(puzzle, entities, ))
+test("Difficult puzzle validates", () => {
     expect(validateAnswer(puzzle, entities, containers)).toEqual(true);
+});
+
+
+const incorrectAnsArray =
+    [["blue-triangle", "blue-square", "blue-circle"],
+        ["yellow-circle", "red-circle", "red-triangle"],
+        ["yellow-triangle", "yellow-square", "red-square"]];
+
+const incorrectContainers = generateAnsContainer(incorrectAnsArray);
+
+test("Difficult puzzle does not validate incorrect answers", () => {
+    expect(validateAnswer(puzzle, entities, incorrectContainers)).toEqual(false);
 });
