@@ -1,4 +1,4 @@
-import Entities from './Entities.js';
+import eColoredShapes from './eColoredShapes';
 
 // import CustomTest from '../../puzzles/Custom-Test.js';
 import Tutorial from '../../puzzles/Tutorial.js';
@@ -10,9 +10,9 @@ import Difficult from '../../puzzles/Difficult.js';
 
 const PuzzleFiles = [Tutorial, Easy, Medium, Difficult];
 
-// injects entities into puzzles
+// injects eColoredShapes into puzzles
 const PuzzleList = PuzzleFiles.map((puzzle) => {
-    return (puzzle(Entities));
+    return (puzzle(eColoredShapes));
 });
 
 export default PuzzleList;

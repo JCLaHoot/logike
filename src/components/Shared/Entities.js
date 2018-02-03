@@ -1,27 +1,9 @@
-// an entity the main element that is manipulated in the puzzle.
-// it has properties, a name based on the properties,
-// a common name which may differ from the name, and an image
-// TODO: allow for custom adding of images without hardcoding it here.
-// TODO: create property list programatically with categories as keys
-class Entity {
-    constructor(commonName, properties, img) {
-        this.properties = properties; // an array;
-        this.name = Object.values(properties.map((property) => {
-                return property.name
-            }
-        )).join("-");
-        this.commonName = commonName; // for display purposes ONLY
-        this.img = img;
-    }
-}
+import Entity from './Entity';
+import Property from './Property';
 
-class Property {
-    constructor(category, name, img) {
-        this.category = category;
-        this.name = name;
-        this.img = img; //can be a HEX for colours
-    }
-}
+
+// DEPRECATED FILE (replaced with JSON)
+
 
 
 const PROPERTIES = [
@@ -51,34 +33,8 @@ const groupArrayBy = (arrayOfObjects, keytoGroupBy) => {
 
 const groupedProperties = groupArrayBy(PROPERTIES, "category");
 
-// generates a list of all possible selectors based on the list of names and properties of entities;
-const fetchAllProperties = (entities) => {
-    var list = [];
-    // lists all the names of entities used (since they are sometimes selectors)
-    entities.list.forEach((entity) => {
-        list.push(entity.name);
-    });
-    // lists all selectors, regardless of type
-    entities.PROPERTIES.forEach((property) => {
-        list = list.concat(property.name);
-    });
-    return list;
-};
-
-
-// generates a list of all selectors. This list mixes Properties AND Entities,
-// and should only be used to access name or img of the selector.
-const fetchAllPossibleSelectors = (entities) => {
-    var list = [];
-    list = list.concat(entities.list);
-    list = list.concat(entities.PROPERTIES);
-    return list;
-};
-
 
 const Entities = {
-    fetchAllProperties: fetchAllProperties,
-    fetchAllPossibleSelectors: fetchAllPossibleSelectors,
     PROPERTIES: PROPERTIES,
     list: [
         new Entity("red Square",

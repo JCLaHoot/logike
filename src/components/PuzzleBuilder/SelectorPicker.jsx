@@ -1,4 +1,5 @@
 import React from 'react';
+import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
 
 
 const SelectorPicker = ({entities, chooseSelector, chosenSelector}) => {
@@ -34,7 +35,7 @@ const SelectorPicker = ({entities, chooseSelector, chosenSelector}) => {
 
     return (
         <div className="selector-picker">
-            {entities ? selectorFactory(entities.fetchAllPossibleSelectors(entities)) : ""}
+            {entities ? selectorFactory(fetchAllPossibleSelectors(entities)) : ""}
         </div>
     )
 

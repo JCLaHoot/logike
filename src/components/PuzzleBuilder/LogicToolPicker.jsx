@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
 import FlexGrid from '../Shared/FlexGrid';
 import {deepMap} from "../Shared/TwoDimensionalMethods";
 import {LogicCellStates} from '../Shared/Constants';
@@ -46,7 +47,7 @@ const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
                                          className={isSelected ? "selected" : ""}/>;
             }
             else { //go through all the selectors until you find the one that matches, and get its image
-                var selectors = entities.fetchAllPossibleSelectors(entities);
+                var selectors = fetchAllPossibleSelectors(entities);
                 var img;
                 selectors.forEach((selector) => {
                     if (selector.name === logicCell) {

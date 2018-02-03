@@ -172,7 +172,7 @@ class AnswerZone extends Component {
     runValidation = () => {
 
         // TODO add alert to fill in additional spaces
-        // checks to make sure that all entities have been placed
+        // checks to make sure that all eColoredShapes have been placed
         // also shows a different message if user keeps spamming the button.
         var allFilled = deepEvery(this.state.containers, (container) => {
             this.emptyCount = 0;

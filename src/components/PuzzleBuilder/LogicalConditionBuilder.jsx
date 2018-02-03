@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import FlexGrid from '../Shared/FlexGrid';
 import {createTwoDimensionalArray, deepMap, getGridX, getGridY} from '../Shared/TwoDimensionalMethods';
+import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
 
 import SelectorPicker from './SelectorPicker';
 import LogicToolPicker from './LogicToolPicker';
@@ -58,7 +59,7 @@ class LogicalConditionBuilder extends Component {
                                              onClick={_applyTool}/>;
                 }
                 else { //go through all the selectors until you find the one that matches, and get its image
-                    var selectors = this.props.selectedEntityList.fetchAllPossibleSelectors(this.props.selectedEntityList);
+                    var selectors = fetchAllPossibleSelectors(this.props.selectedEntityList);
                     var img;
                     selectors.forEach((selector) => {
                         if (selector.name === logicCell) {

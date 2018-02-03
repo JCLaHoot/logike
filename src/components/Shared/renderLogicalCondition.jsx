@@ -1,6 +1,8 @@
 import React from 'react';
 import {deepMap} from "./TwoDimensionalMethods";
 import {LogicCellStates} from "./Constants";
+import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
+
 
 import LogicCellDisplay from './LogicCellDisplay';
 import LogicalCondition from './LogicalCondition';
@@ -21,7 +23,7 @@ export const renderLogicCells = (logicCell, entities) => {
                 return <LogicCellDisplay content={null}/>;
             }
             else { //go through all the selectors until you find the one that matches, and get its image
-                var selectors = entities.fetchAllPossibleSelectors(entities);
+                var selectors = fetchAllPossibleSelectors(entities);
                 var img;
                 selectors.forEach((selector) => {
                     if (selector.name === logicCell) {
@@ -39,7 +41,7 @@ export const renderLogicCells = (logicCell, entities) => {
 // builds a 2d array of LogicalConditions
  const renderLogicalCondition = (puzzleLogic, entities) => {
 
-     //wraps renderLogicCells() so that it's easier to pass entities and makes it more exportable
+     //wraps renderLogicCells() so that it's easier to pass eColoredShapes and makes it more exportable
      const _renderLogicCells = (logicCell) => {
          return renderLogicCells(logicCell, entities);
      }

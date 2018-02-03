@@ -1,13 +1,13 @@
 import {validateAnswer, normalizeLogic} from '../components/PuzzlePage/AnswerZone/Validation';
-import entities from '../components/Shared/Entities';
+import eColoredShapes from '../components/Shared/eColoredShapes';
 import mediumPuzzle from '../puzzles/Medium';
 
 import {generateAnsContainer} from './TestHelpers';
 
-var puzzle = mediumPuzzle(entities);
+var puzzle = mediumPuzzle(eColoredShapes);
 
 // normalizing logic:
-var newLogic = normalizeLogic(puzzle, entities);
+var newLogic = normalizeLogic(puzzle, eColoredShapes);
 puzzle.logic = newLogic;
 
 const ansArray =
@@ -18,7 +18,7 @@ const ansArray =
 const containers = generateAnsContainer(ansArray);
 
 test("Medium puzzle validates", () => {
-    expect(validateAnswer(puzzle, entities, containers)).toEqual(true);
+    expect(validateAnswer(puzzle, eColoredShapes, containers)).toEqual(true);
 });
 
 
@@ -32,5 +32,5 @@ const incorrectAnsArray =
 const incorrectContainers = generateAnsContainer(incorrectAnsArray);
 
 test("Medium puzzle does not validate incorrect answers", () => {
-    expect(validateAnswer(puzzle, entities, incorrectContainers)).toEqual(false);
+    expect(validateAnswer(puzzle, eColoredShapes, incorrectContainers)).toEqual(false);
 });

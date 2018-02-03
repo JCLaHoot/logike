@@ -10,14 +10,15 @@ import {
     createTwoDimensionalArray
 }
     from '../../Shared/TwoDimensionalMethods.js';
+import {fetchAllProperties} from '../../Shared/EntityHelpers'
 
 
 // NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
 // checks whether the logicCells contains a selector
 // takes a x by y grid of logic cells, and checks whether any of the cells contain
-// a selector, as defined in the Entities file
+// a selector, as defined in the eColoredShapes file
 export const containsSelector = (logicCells, entities) => {
-    var entityProperties = entities.fetchAllProperties(entities);
+    var entityProperties = fetchAllProperties(entities);
 
     return deepSome(logicCells, (logicCell) => {
         if (typeof logicCell === "string"
@@ -227,7 +228,7 @@ export const validateAnswer = (puzzle, entities, containers) => {
         // different check depending on whether or not there's a selector in the logicCells.
         if (containsSelector(puzzleCell.logicCells, entities)) {
             // finds the inner selector
-            var entityProperties = entities.fetchAllProperties(entities);
+            var entityProperties = fetchAllProperties(entities);
             var innerSelector;
             deepForEach(puzzleCell.logicCells, (logicCell) => {
                 if (typeof logicCell === "string"
