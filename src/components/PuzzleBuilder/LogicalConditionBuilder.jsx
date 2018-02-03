@@ -82,15 +82,15 @@ class LogicalConditionBuilder extends Component {
 
         if(this.state.logicStemCells === null) {
             let cells = createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null);
-            this.setState({logicStemCells : cells})
+            this.setState({logicStemCells : cells});
             return
         }
 
-        if( getGridX(this.state.logicStemCells) != this.props.puzzleSize.x
+        if( getGridX(this.state.logicStemCells) !== this.props.puzzleSize.x
             ||
-            getGridY(this.state.logicStemCells) != this.props.puzzleSize.y ) {
+            getGridY(this.state.logicStemCells) !== this.props.puzzleSize.y ) {
             let cells = createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null);
-            this.setState({logicStemCells : cells})
+            this.setState({logicStemCells : cells});
             return
         }
 

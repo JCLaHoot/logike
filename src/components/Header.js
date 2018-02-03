@@ -17,7 +17,7 @@ const Header = ({returnToMainMenu}) => {
         }
     };
 
-    let img = '/assets/' + 'logike_white_trimmed' + '.png';
+    let img = '/assets/logike_white_trimmed.png';
 
     return (
         <header>

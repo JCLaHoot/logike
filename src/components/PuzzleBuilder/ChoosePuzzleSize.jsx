@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import FlexGrid from '../Shared/FlexGrid';
 
 
-const defaultSliderValue = 3;
-
 class ChoosePuzzleSize extends Component {
 
 

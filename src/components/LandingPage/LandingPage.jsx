@@ -5,7 +5,7 @@ import PuzzleListView from './PuzzleListView'
 
 const LandingPage = ({onSelectHandler, validPuzzleNames, goToBuilder}) => {
 
-    let img = '/assets/' + 'colour_shapes@2x' + '.png';
+    let img = '/assets/colour_shapes@2x.png';
 
     return (
         <div className="float-wrapper">

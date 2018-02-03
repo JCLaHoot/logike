@@ -23,9 +23,9 @@ const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
         //wraps the function so it doesn't run instantly
         const _chooseTool = () => {
             chooseTool(logicCell);
-        }
+        };
 
-        let isSelected = selectedLogicTool == logicCell;
+        let isSelected = selectedLogicTool === logicCell;
 
     switch (logicCell) {
         case null:
