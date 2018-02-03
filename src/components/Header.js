@@ -1,7 +1,5 @@
 import React from 'react';
 
-import logo from '../assets/logike_white_trimmed.png';
-
 const Header = ({returnToMainMenu}) => {
 
 // changes the class name to trigger CSS to open the nav bar
@@ -19,13 +17,15 @@ const Header = ({returnToMainMenu}) => {
         }
     };
 
+    let img = '/assets/' + 'logike_white_trimmed' + '.png';
+
     return (
         <header>
             <nav>
                 <div className="float-wrapper">
                     <div id="nav-logo" onClick={returnToMainMenu}>
                         <a title="Home">
-                            <img src={logo} alt="logike logo"/>
+                            <img src={img} alt="logike logo"/>
                         </a>
                     </div>
                     <a id="nav-burger" onClick={toggleNav}><i className="fa fa-navicon fa-2x"></i></a>

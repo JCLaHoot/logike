@@ -3,10 +3,9 @@ import React from 'react';
 import PuzzleList from '../Shared/PuzzleList.js';
 import PuzzleListView from './PuzzleListView'
 
-
-import background from '../../assets/colour_shapes@2x.png'
-
 const LandingPage = ({onSelectHandler, validPuzzleNames, goToBuilder}) => {
+
+    let img = '/assets/' + 'colour_shapes@2x' + '.png';
 
     return (
         <div className="float-wrapper">
@@ -23,7 +22,7 @@ const LandingPage = ({onSelectHandler, validPuzzleNames, goToBuilder}) => {
                     </button>
 
                 </div>
-                <img src={background} alt=""/>
+                <img src={img} alt=""/>
 
             </div>
         </div>

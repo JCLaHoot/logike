@@ -18,7 +18,6 @@ const ansArray =
 const containers = generateAnsContainer(ansArray);
 
 test("Easy puzzle validates", () => {
-    // expect(validateAnswer(puzzle, entities, ))
     expect(validateAnswer(puzzle, entities, containers)).toEqual(true);
 });
 
@@ -32,6 +31,5 @@ const incorrectAnsArray =
 const incorrectContainers = generateAnsContainer(incorrectAnsArray);
 
 test("Easy puzzle does not validate incorrect answers", () => {
-    // expect(validateAnswer(puzzle, entities, ))
     expect(validateAnswer(puzzle, entities, incorrectContainers)).toEqual(false);
 });
