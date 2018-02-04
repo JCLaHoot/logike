@@ -1,0 +1,66 @@
+{
+  "name": "Experiment 🍋🍒🍌🍓🌽🌶",
+  "entitySetID": "FRUITS_AND_VEGETABLES",
+  "logic": [
+    {
+      "selectorImg": "paint_red",
+      "selectorName": "red",
+      "logicCells": [
+        [
+          true,
+          null
+        ],
+        [
+          true,
+          null
+        ]
+      ]
+    },
+    {
+      "selectorImg": "paint_yellow",
+      "selectorName": "yellow",
+      "logicCells": [
+        [
+          null,
+          true
+        ],
+        [
+          null,
+          true
+        ]
+      ]
+    },
+    {
+      "selectorImg": "vegetables",
+      "selectorName": "vegetable",
+      "logicCells": [
+        [
+          null,
+          null
+        ],
+        [
+          true,
+          true
+        ]
+      ]
+    },
+    {
+      "selectorImg": "fruits",
+      "selectorName": "fruit",
+      "logicCells": [
+        [
+          null,
+          null
+        ],
+        [
+          false,
+          false
+        ]
+      ]
+    }
+  ],
+  "size": {
+    "x": 2,
+    "y": 2
+  }
+}

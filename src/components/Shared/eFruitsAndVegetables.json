@@ -1,0 +1,168 @@
+{
+  "ID": "FRUITS_AND_VEGETABLES",
+  "PROPERTIES": [
+    {
+      "category": "colors",
+      "name": "red",
+      "img": "paint_red"
+    },
+    {
+      "category": "colors",
+      "name": "yellow",
+      "img": "paint_yellow"
+    },
+    {
+      "category": "type",
+      "name": "fruit",
+      "img": "fruits"
+    },
+    {
+      "category": "type",
+      "name": "vegetable",
+      "img": "vegetables"
+    }
+  ],
+  "list": [
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "red",
+          "img": "paint_red"
+        },
+        {
+          "category": "type",
+          "name": "fruit",
+          "img": "fruits"
+        }
+      ],
+      "name": "red-fruit",
+      "commonName": "raspberry",
+      "img": "raspberries"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "red",
+          "img": "paint_red"
+        },
+        {
+          "category": "type",
+          "name": "fruit",
+          "img": "fruits"
+        }
+      ],
+      "name": "red-fruit",
+      "commonName": "strawberry",
+      "img": "strawberry"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "red",
+          "img": "paint_red"
+        },
+        {
+          "category": "type",
+          "name": "fruit",
+          "img": "fruits"
+        },
+        {
+          "category": "type",
+          "name": "vegetable",
+          "img": "vegetables"
+        }
+      ],
+      "name": "red-fruit-vegetable",
+      "commonName": "tomato",
+      "img": "tomato"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "red",
+          "img": "paint_red"
+        },
+        {
+          "category": "type",
+          "name": "vegetable",
+          "img": "vegetables"
+        }
+      ],
+      "name": "red-vegetable",
+      "commonName": "radish",
+      "img": "radish"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "yellow",
+          "img": "paint_yellow"
+        },
+        {
+          "category": "type",
+          "name": "vegetable",
+          "img": "vegetables"
+        }
+      ],
+      "name": "yellow-vegetable",
+      "commonName": "yellow pepper",
+      "img": "yellow_pepper"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "yellow",
+          "img": "paint_yellow"
+        },
+        {
+          "category": "type",
+          "name": "vegetable",
+          "img": "vegetables"
+        }
+      ],
+      "name": "yellow-vegetable",
+      "commonName": "corn",
+      "img": "corn"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "yellow",
+          "img": "paint_yellow"
+        },
+        {
+          "category": "type",
+          "name": "fruit",
+          "img": "fruits"
+        }
+      ],
+      "name": "yellow-fruit",
+      "commonName": "banana",
+      "img": "bananas"
+    },
+    {
+      "properties": [
+        {
+          "category": "colors",
+          "name": "yellow",
+          "img": "paint_yellow"
+        },
+        {
+          "category": "type",
+          "name": "fruit",
+          "img": "fruits"
+        }
+      ],
+      "name": "yellow-fruit",
+      "commonName": "lemon",
+      "img": "lemon"
+    }
+  ]
+}
