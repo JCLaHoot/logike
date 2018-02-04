@@ -1,10 +1,10 @@
 import {validateAnswer, normalizeLogic} from '../components/PuzzlePage/AnswerZone/Validation';
 import eColoredShapes from '../components/Shared/eColoredShapes';
-import easyPuzzle from '../puzzles/Easy';
+import easyPuzzle from '../puzzles/Easy.json';
 
 import {generateAnsContainer} from './TestHelpers';
 
-var puzzle = easyPuzzle(eColoredShapes);
+var puzzle = easyPuzzle;
 
 // normalizing logic:
 var newLogic = normalizeLogic(puzzle, eColoredShapes);

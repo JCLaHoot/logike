@@ -1,18 +1,15 @@
 import eColoredShapes from './eColoredShapes';
 
-// import CustomTest from '../../puzzles/Custom-Test.js';
-import Tutorial from '../../puzzles/Tutorial.js';
-import Easy from '../../puzzles/Easy.js';
-import Medium from '../../puzzles/Medium.js';
-import Difficult from '../../puzzles/Difficult.js';
+// import CustomTest from '../../puzzles/Custom-Test.json';
+import Tutorial from '../../puzzles/Tutorial.json';
+import Easy from '../../puzzles/Easy.json';
 
-// TODO: save puzzles as JSON instead...
+import Medium from '../../puzzles/Medium.json';
+import Difficult from '../../puzzles/Difficult.json';
 
-const PuzzleFiles = [Tutorial, Easy, Medium, Difficult];
+// OPTIMIZE: replace entities in puzzles with UID of entity list, then swap in entity list on the fly
 
-// injects eColoredShapes into puzzles
-const PuzzleList = PuzzleFiles.map((puzzle) => {
-    return (puzzle(eColoredShapes));
-});
+const PuzzleList = [Tutorial, Easy, Medium, Difficult];
+
 
 export default PuzzleList;
