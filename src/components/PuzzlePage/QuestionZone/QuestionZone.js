@@ -5,10 +5,11 @@ import renderLogicalCondition from '../../Shared/renderLogicalCondition';
 // TODO: make component functional instead of class based
 class QuestionZone extends Component {
 
-    constructor({props, puzzle, textContent}) {
+    constructor({props, puzzle, entities, textContent}) {
         super(props);
         this.state = {
-            puzzle
+            puzzle,
+            entities
         };
     }
 
@@ -18,7 +19,7 @@ class QuestionZone extends Component {
             <div className="question-zone">
                 {this.props.textContent}
                 <div className="wrap-row">
-                    {renderLogicalCondition(this.state.puzzle.logic, this.state.puzzle.entities)}
+                    {renderLogicalCondition(this.state.puzzle.logic, this.state.entities)}
                 </div>
             </div>
         )

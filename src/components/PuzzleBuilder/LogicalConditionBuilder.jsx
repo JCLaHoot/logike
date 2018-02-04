@@ -78,18 +78,19 @@ class LogicalConditionBuilder extends Component {
 
     // Sounds like a fucked up function name, but it makes sense since this creates the cells
     // that can be customized and become full fledged Logic Cells afterwards.
-    createLogicStemCells = () => {
+    createLogicStemCells = (puzzleSize) => {
 
         if(this.state.logicStemCells === null) {
-            let cells = createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null);
+            let cells = createTwoDimensionalArray(puzzleSize.x, puzzleSize.y, null);
             this.setState({logicStemCells : cells});
             return
         }
 
-        if( getGridX(this.state.logicStemCells) !== this.props.puzzleSize.x
+        if( getGridX(this.state.logicStemCells) !== puzzleSize.x
             ||
-            getGridY(this.state.logicStemCells) !== this.props.puzzleSize.y ) {
-            let cells = createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null);
+            getGridY(this.state.logicStemCells) !== puzzleSize.y ) {
+            let cells = createTwoDimensionalArray(puzzleSize.x, puzzleSize.y, null);
+            console.log("cells: ",cells);
             // this.setState({logicStemCells : cells});
             return
         }
@@ -125,7 +126,7 @@ class LogicalConditionBuilder extends Component {
                                  chooseTool={this.chooseTool}
                                  selectedLogicTool={this.state.selectedLogicTool}/>
                 <div className="logic-stem-cell-container">
-                    <FlexGrid cells={this.createLogicStemCells()}/>
+                    <FlexGrid cells={this.createLogicStemCells(this.props.puzzleSize)}/>
                 </div>
                 <button><i className="fa fa-plus" aria-hidden="true">
                 </i></button>

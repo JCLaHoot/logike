@@ -24,3 +24,11 @@ export const fetchAllPossibleSelectors = (entities) => {
     list = list.concat(entities.PROPERTIES);
     return list;
 };
+
+// gets the entity list for a puzzle by matching the entity List IDs
+export const getPuzzleEntities = (puzzle, entityLists) => {
+    let entitySetID = puzzle.entitySetID;
+    return entityLists.find((entityList) => {
+        return entityList.ID === entitySetID;
+    })
+};

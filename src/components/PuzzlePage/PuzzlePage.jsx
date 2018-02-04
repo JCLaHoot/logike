@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+import EntityLists from '../Shared/EntityLists';
+import {getPuzzleEntities} from '../Shared/EntityHelpers';
+
 import QuestionZone from './QuestionZone/QuestionZone.js';
 import AnswerZone from './AnswerZone/AnswerZone.js';
 import Modal from '../Shared/Modal';
@@ -28,6 +31,7 @@ class PuzzlePage extends Component {
         super(props);
         this.state = {
             puzzle: puzzle,
+            entities: getPuzzleEntities(puzzle, EntityLists),
             returnToMainMenu: returnToMainMenu,
             nextPuzzle: nextPuzzle,
             logPuzzleCompletion: logPuzzleCompletion,
@@ -45,7 +49,10 @@ class PuzzlePage extends Component {
                 show: false
             }
         }
+
     }
+
+
 
     showToast = (toastMessage) => {
         this.setState({
@@ -86,9 +93,12 @@ class PuzzlePage extends Component {
         return (
             <div className="puzzle-page">
                 <div className="float-wrapper">
-                    <QuestionZone puzzle={this.state.puzzle} textContent={isTutorial ? questionZoneTutorialText : null}/>
+                    <QuestionZone puzzle={this.state.puzzle}
+                                  entities={this.state.entities}
+                                  textContent={isTutorial ? questionZoneTutorialText : null}/>
                     <AnswerZone
                         puzzle={this.state.puzzle}
+                        entities={this.state.entities}
                         textContent={ isTutorial ? ansZoneTutorialText : null}
                         updateModal={this.updateModal}
                         closeModal={this.closeModal}

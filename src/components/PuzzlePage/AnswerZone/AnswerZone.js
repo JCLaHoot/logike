@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-// import {deepMap, deepEvery, deepForEach, deepSome, getGridY, getGridX} from '../../Shared/Grid.js';
 import {
     deepMap,
     deepEvery
@@ -10,6 +9,7 @@ import {
     validateAnswer
 }
     from './Validation';
+
 import FlexGrid from '../../Shared/FlexGrid.js';
 import DropContainer from './DropContainer';
 import DraggableEntityPreview from './DraggableEntityPreview';
@@ -18,15 +18,15 @@ import TouchBackend from 'react-dnd-touch-backend';
 
 class AnswerZone extends Component {
 
-    constructor({props, puzzle, textContent, showToast, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
+    constructor({props, puzzle, entities, textContent, showToast, updateModal, closeModal, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
         super(props);
         this.state = {
             puzzle: puzzle,
-            entities: puzzle.entities,
+            entities: entities,
             validAns: null,
             entityBin: {
                 id: "entity-bin",
-                contents: puzzle.entities.list.map((entity) => {
+                contents: entities.list.map((entity) => {
                     return {
                         name: entity.name,
                         img: entity.img
@@ -76,7 +76,7 @@ class AnswerZone extends Component {
             validAns: null,
             entityBin: {
                 id: "entity-bin",
-                contents: this.state.puzzle.entities.list.map((entity) => {
+                contents: this.state.entities.list.map((entity) => {
                     return {
                         name: entity.name,
                         img: entity.img
