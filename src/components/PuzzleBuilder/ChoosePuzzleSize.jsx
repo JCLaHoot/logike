@@ -16,13 +16,13 @@ class ChoosePuzzleSize extends Component {
 
 
     updateX = (event) => {
-        let xVal = event.target.value;
+        let xVal = parseInt(event.target.value, 10);
         this.setState({x: xVal});
         this.state.selectPuzzleSize(xVal, this.state.y);
     };
 
     updateY = (event) => {
-        let yVal = event.target.value;
+        let yVal = parseInt(event.target.value, 10);
         this.setState({y: yVal});
         this.state.selectPuzzleSize(this.state.x, yVal);
     };

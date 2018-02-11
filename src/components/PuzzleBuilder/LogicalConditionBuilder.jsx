@@ -16,8 +16,6 @@ class LogicalConditionBuilder extends Component {
     constructor({props, puzzleSize, selectedEntityList}) {
         super(props);
         this.state = {
-            puzzleSize: puzzleSize,
-            selectedEntityList: selectedEntityList,
             chosenSelector: null,
             selectedLogicTool: undefined,
             logicStemCells: null
@@ -90,8 +88,7 @@ class LogicalConditionBuilder extends Component {
             ||
             getGridY(this.state.logicStemCells) !== puzzleSize.y ) {
             let cells = createTwoDimensionalArray(puzzleSize.x, puzzleSize.y, null);
-            console.log("cells: ",cells);
-            // this.setState({logicStemCells : cells});
+            this.setState({logicStemCells : cells});
             return
         }
 

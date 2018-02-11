@@ -19,10 +19,7 @@ class PuzzleBuilder extends Component {
         this.state = {
             entityLists: EntityLists,
             selectedEntityList: null,
-            puzzleSize: {
-                x: this.defaultPuzzleSize,
-                y: this.defaultPuzzleSize
-            }
+            puzzleSize: null //must be formatted as a plain object with x and y as keys
         }
     }
 
@@ -56,11 +53,20 @@ class PuzzleBuilder extends Component {
                         selectEntityList={this.selectEntityList}
                         selectedEntityList={this.state.selectedEntityList}/>
                     <br/>
-                    <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}
-                                      defaultPuzzleSize={this.defaultPuzzleSize}/>
-                    <LogicalConditionBuilder
-                        puzzleSize={this.state.puzzleSize}
-                        selectedEntityList={this.state.selectedEntityList}/>
+                    {this.state.selectedEntityList
+                        ?
+                        <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}
+                                          defaultPuzzleSize={this.defaultPuzzleSize}/>
+                        :
+                        null}
+                    {this.state.puzzleSize
+                        ?
+                        <LogicalConditionBuilder
+                            puzzleSize={this.state.puzzleSize}
+                            selectedEntityList={this.state.selectedEntityList}/>
+                        :
+                        null}
+
                 </div>
             </div>
         )
