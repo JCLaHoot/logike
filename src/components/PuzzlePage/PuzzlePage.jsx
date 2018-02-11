@@ -9,22 +9,6 @@ import Modal from '../Shared/Modal';
 import Toast from './Toast';
 
 
-const questionZoneTutorialText = (
-    <div className={"question-zone-text"}>
-        <h5>Welcome to Logike!</h5>
-        <p>The cards below represent logical conditions.
-            All of them must be "true" in order to solve the puzzle.</p>
-    </div>
-);
-const ansZoneTutorialText = (
-    <div className={"answer-zone-text"}>
-        <p>Drag the shapes onto the board below in order to satisfy the logical conditions.</p>
-        <p>Hint: the red square goes in the top-left corner...</p>
-
-    </div>
-);
-
-
 class PuzzlePage extends Component {
 
     constructor({props, puzzle, returnToMainMenu, nextPuzzle, logPuzzleCompletion}) {
@@ -85,9 +69,24 @@ class PuzzlePage extends Component {
     };
 
     render() {
-        var isTutorial = false;
-        if(this.state.puzzle.name === "Tutorial 🍼") {
-            isTutorial = true;
+
+        // renders the text for the tutorial if the puzzle is a tutorial.
+        // tutorial text fields may be null
+        var isTutorial = this.state.puzzle.isTutorial;
+        var questionZoneTutorialText;
+        var ansZoneTutorialText;
+        if(isTutorial) {
+            questionZoneTutorialText = (
+                <div className={"question-zone-text"}>
+                    <h5>{this.state.puzzle.tutorialQuestionHeader}</h5>
+                    <p>{this.state.puzzle.tutorialQuestionBody}</p>
+                </div>
+            );
+            ansZoneTutorialText = (
+                <div className={"answer-zone-text"}>
+                    <p>{this.state.puzzle.tutorialAnswerBody}</p>
+                </div>
+            );
         }
 
         return (
@@ -95,7 +94,7 @@ class PuzzlePage extends Component {
                 <div className="float-wrapper">
                     <QuestionZone puzzle={this.state.puzzle}
                                   entities={this.state.entities}
-                                  textContent={isTutorial ? questionZoneTutorialText : null}/>
+                                  textContent={isTutorial ? questionZoneTutorialText: null}/>
                     <AnswerZone
                         puzzle={this.state.puzzle}
                         entities={this.state.entities}

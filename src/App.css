@@ -24,6 +24,8 @@ time, mark, audio, video {
     /*noinspection CssOverwrittenProperties*/
     font: inherit;
     vertical-align: baseline;
+
+
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -737,7 +739,11 @@ footer {
 .puzzle-page {
     width: 90%;
     margin: 1em auto;
+}
 
+.answer-zone-text, .question-zone-text {
+    /*used to support \n character in the text*/
+    white-space: pre-line;
 }
 
 @media (max-width: 600px) {
