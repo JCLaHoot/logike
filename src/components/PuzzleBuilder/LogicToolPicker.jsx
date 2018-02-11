@@ -1,31 +1,51 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
 import FlexGrid from '../Shared/FlexGrid';
 import {deepMap} from "../Shared/TwoDimensionalMethods";
 import {LogicCellStates} from '../Shared/Constants';
 import LogicCellDisplay from '../Shared/LogicCellDisplay';
+import SelectorPicker from './SelectorPicker';
 
 
 
-const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
+class LogicToolPicker extends Component {
 
-    if(!entities) {
-        return null;
+    constructor(props, {selectedLogicTool, chooseTool, entities}) {
+        super(props);
+        this.state = {
+            popupOpen: false
+        }
     }
 
-    const tools = [[false, LogicCellStates.EMPTY, null, true, "blue"]];
+
+    // = ({selectedLogicTool, chooseTool, entities}) =>
+    //
+
+
+     tools = [[false, LogicCellStates.EMPTY, null, true, this.props.entities.list[0].name]];
+
+     // popupOpen = false;
+
 
 
     // converts logicCell values to symbols and renders them.
-    const renderLogicCells = (logicCell) => {
+    renderLogicCells = (logicCell) => {
 
         //wraps the function so it doesn't run instantly
         const _chooseTool = () => {
-            chooseTool(logicCell);
+            this.props.chooseTool(logicCell);
         };
 
-        let isSelected = selectedLogicTool === logicCell;
+        //wraps the function so it doesn't run instantly
+        const _chooseInnerSelector = () => {
+            this.setState({
+                popupOpen: true
+            });
+            this.props.chooseTool(logicCell);
+        };
+
+        let isSelected = this.props.selectedLogicTool === logicCell;
 
     switch (logicCell) {
         case null:
@@ -47,7 +67,7 @@ const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
                                          className={isSelected ? "selected" : ""}/>;
             }
             else { //go through all the selectors until you find the one that matches, and get its image
-                var selectors = fetchAllPossibleSelectors(entities);
+                var selectors = fetchAllPossibleSelectors(this.props.entities);
                 var img;
                 selectors.forEach((selector) => {
                     if (selector.name === logicCell) {
@@ -56,21 +76,33 @@ const LogicToolPicker = ({selectedLogicTool, chooseTool, entities}) => {
                 });
 
 
-                return <LogicCellDisplay content={img}
-                                         onClick={_chooseTool}
-                                         className={isSelected ? "selected" : ""}/>;
+                return (<LogicCellDisplay content={img}
+                                         onClick={_chooseInnerSelector}
+                                         className={isSelected ? "selected" : ""}/>);
             }
     }
 
 };
 
+    render() {
+        if(!this.props.entities) {
+            return null;
+        }
 
-    return (
-        <div className="logic-tools">
-            <FlexGrid cells={deepMap(tools,renderLogicCells)}/>
-        </div>
+        return (
+            <div className="logic-tools">
+                {this.state.popupOpen
+                    ?
+                    <SelectorPicker entities={this.props.entities} />
+                    :
+                    null}
+                <FlexGrid cells={deepMap(this.tools, this.renderLogicCells)}/>
+            </div>
 
-    )
+        )
+    }
+
+
 
 };
 
