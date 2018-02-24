@@ -46,14 +46,14 @@ export const renderLogicCells = (logicCell, entities) => {
          return renderLogicCells(logicCell, entities);
      }
 
-    return puzzleLogic.map( (puzzleCell, x, y) => {
+    return puzzleLogic.map( (puzzleCell, x) => {
         let img = puzzleCell.selectorImg;
         img = '/assets/' + img + '.png';
 
 
 // returns the UI contents of each puzzleCell (which contains logicCells)
         return (<LogicalCondition
-            key={`${x}${y}`}
+            key={`${x}`}
             selectorImg={img}
             selectorName={puzzleCell.selectorName}
             cells={deepMap(puzzleCell.logicCells, _renderLogicCells)}

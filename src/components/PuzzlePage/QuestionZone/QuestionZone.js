@@ -15,6 +15,7 @@ class QuestionZone extends Component {
 
 
     render() {
+
         return (
             <div className="question-zone">
                 {this.props.textContent}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FlexGrid from '../Shared/FlexGrid';
-import {createTwoDimensionalArray, deepMap, getGridX, getGridY} from '../Shared/TwoDimensionalMethods';
+import {createTwoDimensionalArray, deepForEach, deepMap, getGridX, getGridY} from '../Shared/TwoDimensionalMethods';
 import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
 
 import SelectorPicker from './SelectorPicker';
@@ -9,6 +9,7 @@ import {LogicCellStates} from "../Shared/Constants";
 
 import LogicCellDisplay from '../Shared/LogicCellDisplay';
 
+import renderLogicalCondition from '../Shared/renderLogicalCondition'
 
 class LogicalConditionBuilder extends Component {
 
@@ -20,7 +21,8 @@ class LogicalConditionBuilder extends Component {
             chosenSelector: null,
             chosenInnerSelector: selectedEntityList.list[0],
             selectedLogicTool: undefined,
-            logicStemCells: null
+            logicStemCells: null,
+            newPuzzle: []
         }
     }
 
@@ -126,14 +128,38 @@ class LogicalConditionBuilder extends Component {
         this.setState({chosenInnerSelector: innerSelector});
     };
 
+    exportLogicalCondition = () => {
+        let cleanStemCells = this.state.logicStemCells;
+
+        cleanStemCells = deepMap(cleanStemCells, (cell) => {
+            if(cell !=  null && typeof cell === "object"){
+                return cell.name;
+            }
+            return cell;
+        });
+
+        let logicalCondition = {
+            logicCells: cleanStemCells,
+            selectorImg: this.state.chosenSelector.img,
+            selectorName: this.state.chosenSelector.name
+        };
+
+        let newPuzzle = this.state.newPuzzle;
+        newPuzzle.push(logicalCondition);
+
+        this.setState({
+            newPuzzle : newPuzzle,
+            chosenSelector: null,
+            logicStemCells: createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null)
+        });
+
+    };
+
 
     render() {
         return (
             <div className="logical-condition-builder">
                 <h4>Create Logical Conditions</h4>
-                <div className="wrap-row logical-condition-list">
-                    {/*{renderLogicalCondition(this.state.puzzle.logic, this.state.puzzle.entities)}*/}
-                </div>
                 <SelectorPicker entities={this.props.selectedEntityList}
                                 chooseSelector={this.chooseSelector}
                                 chosenSelector={this.state.chosenSelector}/>
@@ -145,8 +171,11 @@ class LogicalConditionBuilder extends Component {
                 <div className="logic-stem-cell-container">
                     <FlexGrid cells={this.renderLogicStemCells(this.state.logicStemCells)}/>
                 </div>
-                <button><i className="fa fa-plus" aria-hidden="true">
+                <button disabled={this.state.chosenSelector ? false : true} onClick={this.exportLogicalCondition}><i className="fa fa-plus" aria-hidden="true">
                 </i></button>
+                <div className="wrap-row logical-condition-list">
+                    {renderLogicalCondition(this.state.newPuzzle, this.props.selectedEntityList)}
+                </div>
 
             </div>
         )
