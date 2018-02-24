@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import Modal from '../Shared/Modal';
-import Toast from '../PuzzlePage/Toast';
+// import Modal from '../Shared/Modal';
+// import Toast from '../PuzzlePage/Toast';
 
 import EntityLists from '../Shared/EntityLists'
 import ChooseEntityList from './ChooseEntityList'
@@ -46,7 +46,7 @@ class PuzzleBuilder extends Component {
             <div className="puzzle-builder">
                 <div className="float-wrapper">
                     <h3>Puzzle Builder</h3>
-                    <p>(This is currently under construction 🏗️, but you can check it out anyway)</p>
+                    <p>(This is currently under construction <span>🏗</span>️, but you can check it out anyway)</p>
                     <br/>
                     <ChooseEntityList
                         entityLists={this.state.entityLists}

@@ -10,7 +10,7 @@ const SelectorPicker = ({entities, chooseSelector, chosenSelector}) => {
 
 
     const selectorFactory = (selectors) => {
-        return selectors.map((selector) => {
+        return selectors.map((selector, i) => {
 
             const _chooseSelector = () => {
                 chooseSelector(selector);
@@ -18,11 +18,13 @@ const SelectorPicker = ({entities, chooseSelector, chosenSelector}) => {
 
             const isChosen = selector === chosenSelector;
 
+
             let img = selector.img;
             img = '/assets/' + img + '.png';
 
             return (
-                <img src={img}
+                <img key={i}
+                     src={img}
                      alt={selector.name}
                      onClick={_chooseSelector}
                      className={isChosen ? 'selected' : ""}/>

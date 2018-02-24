@@ -1,5 +1,3 @@
-import eColoredShapes from './eColoredShapes';
-
 // import CustomTest from '../../puzzles/Custom-Test.json';
 import FruitVegetablePuzzle from '../../puzzles/FruitVegetablePuzzle.json';
 import Tutorial from '../../puzzles/Tutorial.json';

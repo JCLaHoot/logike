@@ -5,11 +5,11 @@ const EntityListPreview = ({entities, selectEntityList, selected}) => {
 
     
     const entityFactory = (entities) => {
-        return entities.list.map((entity) => {
+        return entities.list.map((entity, i) => {
             let img = entity.img;
                 img = '/assets/' + img + '.png';
             return (
-                <img src={img} alt={entity.name}/>
+                <img key={i} src={img} alt={entity.name}/>
             )
         })
     };

@@ -6,13 +6,14 @@ import EntityListPreview from './EntityListPreview';
 const ChooseEntityList = ({entityLists, selectEntityList, selectedEntityList}) => {
 
     const generateEntityPreviews = (entityLists) => {
-        return entityLists.map((entities) => {
+        return entityLists.map((entities, i) => {
             var selected = false;
             if (entities === selectedEntityList) {
                 selected = true;
             }
             return (
                 <EntityListPreview
+                    key = {i}
                     entities={entities}
                     selectEntityList={selectEntityList}
                     selected={selected}/>

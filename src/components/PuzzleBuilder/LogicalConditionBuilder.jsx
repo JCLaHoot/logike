@@ -15,12 +15,23 @@ class LogicalConditionBuilder extends Component {
 
     constructor({props, puzzleSize, selectedEntityList}) {
         super(props);
+
         this.state = {
             chosenSelector: null,
+            chosenInnerSelector: selectedEntityList.list[0],
             selectedLogicTool: undefined,
             logicStemCells: null
         }
     }
+
+    componentWillMount() {
+        this.updateLogicStemCellsSize(this.props.puzzleSize);
+    }
+
+    componentDidUpdate() {
+        this.updateLogicStemCellsSize(this.props.puzzleSize);
+    }
+
 
 
     applyTool = (x, y) => {
@@ -60,7 +71,7 @@ class LogicalConditionBuilder extends Component {
                     var selectors = fetchAllPossibleSelectors(this.props.selectedEntityList);
                     var img;
                     selectors.forEach((selector) => {
-                        if (selector.name === logicCell) {
+                        if (selector === logicCell) {
                             img = selector.img;
                         }
                     });
@@ -74,10 +85,9 @@ class LogicalConditionBuilder extends Component {
 
 
 
-    // Sounds like a fucked up function name, but it makes sense since this creates the cells
+    // Sounds like a fucked up function name, but it makes sense since this updates the cells
     // that can be customized and become full fledged Logic Cells afterwards.
-    createLogicStemCells = (puzzleSize) => {
-
+    updateLogicStemCellsSize = (puzzleSize) => {
         if(this.state.logicStemCells === null) {
             let cells = createTwoDimensionalArray(puzzleSize.x, puzzleSize.y, null);
             this.setState({logicStemCells : cells});
@@ -89,24 +99,32 @@ class LogicalConditionBuilder extends Component {
             getGridY(this.state.logicStemCells) !== puzzleSize.y ) {
             let cells = createTwoDimensionalArray(puzzleSize.x, puzzleSize.y, null);
             this.setState({logicStemCells : cells});
-            return
         }
+    };
 
-        return deepMap(this.state.logicStemCells, this.renderLogicCells);
+
+
+    renderLogicStemCells = (stemCells) => {
+        return deepMap(stemCells, this.renderLogicCells);
     };
 
 
     // chooses the selector for the new logical condition.
     chooseSelector = (selector) => {
         this.setState({chosenSelector: selector});
-    }
+    };
 
 
     // chooses the selector for the new logical condition.
     chooseTool = (tool) => {
         this.setState({selectedLogicTool: tool});
-        console.log(tool);
-    }
+        console.log("selected logic tool is: ", tool);
+    };
+
+    chooseInnerSelector = (innerSelector) => {
+        console.log("inner selector is: ", innerSelector);
+        this.setState({chosenInnerSelector: innerSelector});
+    };
 
 
     render() {
@@ -121,9 +139,11 @@ class LogicalConditionBuilder extends Component {
                                 chosenSelector={this.state.chosenSelector}/>
                 <LogicToolPicker entities={this.props.selectedEntityList}
                                  chooseTool={this.chooseTool}
-                                 selectedLogicTool={this.state.selectedLogicTool}/>
+                                 selectedLogicTool={this.state.selectedLogicTool}
+                                 chooseInnerSelector={this.chooseInnerSelector}
+                                 chosenInnerSelector={this.state.chosenInnerSelector}/>
                 <div className="logic-stem-cell-container">
-                    <FlexGrid cells={this.createLogicStemCells(this.props.puzzleSize)}/>
+                    <FlexGrid cells={this.renderLogicStemCells(this.state.logicStemCells)}/>
                 </div>
                 <button><i className="fa fa-plus" aria-hidden="true">
                 </i></button>

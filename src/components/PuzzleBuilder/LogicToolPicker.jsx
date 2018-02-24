@@ -11,21 +11,19 @@ import SelectorPicker from './SelectorPicker';
 
 class LogicToolPicker extends Component {
 
-    constructor(props, {selectedLogicTool, chooseTool, entities}) {
+    constructor(props, {selectedLogicTool, chosenInnerSelector, chooseInnerSelector, chooseTool, entities}) {
         super(props);
         this.state = {
-            popupOpen: false
+            popupOpen: false,
+
         }
     }
 
 
-    // = ({selectedLogicTool, chooseTool, entities}) =>
-    //
-
-
-     tools = [[false, LogicCellStates.EMPTY, null, true, this.props.entities.list[0].name]];
-
-     // popupOpen = false;
+    getTools = (chosenInnerSelector) => {
+        let tools = [[false, LogicCellStates.EMPTY, null, true, chosenInnerSelector]];
+        return tools;
+    }
 
 
 
@@ -51,26 +49,26 @@ class LogicToolPicker extends Component {
         case null:
             return <LogicCellDisplay content={LogicCellStates.WHITE}
                                      onClick={_chooseTool}
-                                     className={isSelected ? "selected" : ""}/>;
+                                     selected={isSelected ? "selected" : ""}/>;
         case true:
             return <LogicCellDisplay content={"true"}
                                      onClick={_chooseTool}
-                                     className={isSelected ? "selected" : ""}/>;
+                                     selected={isSelected ? "selected" : ""}/>;
         case false:
             return <LogicCellDisplay content={"false"}
                                      onClick={_chooseTool}
-                                     className={isSelected ? "selected" : ""}/>;
+                                     selected={isSelected ? "selected" : ""}/>;
         default:
             if (logicCell === LogicCellStates.EMPTY) {
                 return <LogicCellDisplay content={null}
                                          onClick={_chooseTool}
-                                         className={isSelected ? "selected" : ""}/>;
+                                         selected={isSelected ? "selected" : ""}/>;
             }
             else { //go through all the selectors until you find the one that matches, and get its image
                 var selectors = fetchAllPossibleSelectors(this.props.entities);
                 var img;
                 selectors.forEach((selector) => {
-                    if (selector.name === logicCell) {
+                    if (selector === logicCell) {
                         img = selector.img;
                     }
                 });
@@ -78,13 +76,25 @@ class LogicToolPicker extends Component {
 
                 return (<LogicCellDisplay content={img}
                                          onClick={_chooseInnerSelector}
-                                         className={isSelected ? "selected" : ""}/>);
+                                          selected={isSelected ? "selected" : ""}/>);
             }
     }
 
 };
 
+    // wraps the method to close the popup and choose the tool
+    _chooseInnerSelector = (innerSelector) => {
+        this.props.chooseInnerSelector(innerSelector);
+
+        this.setState({
+            popupOpen: false
+        });
+        this.props.chooseTool(innerSelector);
+
+    }
+
     render() {
+
         if(!this.props.entities) {
             return null;
         }
@@ -93,10 +103,13 @@ class LogicToolPicker extends Component {
             <div className="logic-tools">
                 {this.state.popupOpen
                     ?
-                    <SelectorPicker entities={this.props.entities} />
+                    <SelectorPicker
+                        entities={this.props.entities}
+                        chooseSelector={this._chooseInnerSelector}
+                        chosenSelector={this.props.chosenInnerSelector}/>
                     :
                     null}
-                <FlexGrid cells={deepMap(this.tools, this.renderLogicCells)}/>
+                <FlexGrid cells={deepMap(this.getTools(this.props.chosenInnerSelector), this.renderLogicCells)}/>
             </div>
 
         )
