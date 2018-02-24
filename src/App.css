@@ -690,8 +690,8 @@ footer {
 
 
 .selector-picker img.selected {
-    opacity: 1;
-}
+     opacity: 1;
+ }
 
 /*
   ========================================
@@ -706,11 +706,23 @@ footer {
 }
 
 .logic-tools .empty-bg {
-    background-color: rgba(244,244,244,0.25);
+    background-color: rgba(120,144,156 ,1);
 }
 
 .logic-tools {
     position: relative;
+}
+
+
+.logic-tools .logic-cell {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.logic-tools .logic-cell.selected {
+    filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, 0.32));
+    transform: scale(1.15);
+    opacity: 1;
 
 }
 
@@ -721,8 +733,8 @@ footer {
     border-radius: 1em;
     background-color: #78909C;
     -webkit-mask-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 1) 10%,
-    rgba(0, 0, 0, 1) 90%,
+    rgba(0, 0, 0, 1) 5%,
+    rgba(0, 0, 0, 1) 95%,
     rgba(0, 0, 0, 0));
     mask-image: linear-gradient(right, rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 1) 10%,
@@ -734,8 +746,19 @@ footer {
     object-fit: contain;
     height: 2.5em;
     margin: 0.25em;
-    opacity: 0.75;
+    opacity: 0.5;
 }
+
+.logic-tools .selector-picker img.selected {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 2555, 1));
+}
+
+.logic-tools .selector-picker img:hover {
+    opacity: 1;
+}
+
+
 /*
   ========================================
   Logic Cell Builder (Logic Stem Cells 😉)
@@ -749,12 +772,24 @@ footer {
     border-bottom-right-radius: 1em;
 }
 
+.logic-stem-cell-container .flex-cell {
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.32));
+}
+
+
+.logic-stem-cell-container .empty-bg {
+    background-color: rgba(120,144,156 ,1);
+}
+
+
 .logic-stem-cell {
     width: 2em;
     height: 2em;
     border-radius: 0.25em;
     margin: 0.125em;
     background-color: red;
+
 }
 
 
