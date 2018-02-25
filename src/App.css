@@ -612,14 +612,12 @@ footer {
     height: 12em;
     /* margin-top: 1em; */
     float: left;
-
 }
 
 .vertical-slider {
     display: block;
     transform-origin: 0.5em 0;
     transform: rotate(90deg);
-
 }
 
 .puzzle-size-preview {
@@ -792,6 +790,48 @@ footer {
 
 }
 
+.logic-stem-cell-container .slider {
+    width: 11.25em; /* Full-width */
+    height: 0.5em; /* Specified height */
+    /* margin: 1em; */
+    margin: 0em;
+    background: #cfd8dc; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+}
+
+
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */
+.logic-stem-cell-container .slider::-webkit-slider-thumb {
+    width: 1.5em; /* Set a specific slider handle width */
+    height: 1.5em; /* Slider handle height */
+    background: #90a4ae; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 2em;
+}
+
+.logic-stem-cell-container .slider::-moz-range-thumb {
+    width: 1em; /* Set a specific slider handle width */
+    height: 1em; /* Slider handle height */
+    background: #90a4ae; /* Green background */
+    border-radius: 2em;
+}
+
+.logic-stem-cell-container .horizontal-slider {
+    margin-left: 1.25em;
+    margin-bottom: 0.75em;
+}
+
+.logic-stem-cell-container .vertical-slider-wrapper {
+    width: 1em;
+    height: 6em;
+    /* margin-top: 1em; */
+}
+
+.logic-stem-cell-container .vertical-slider {
+    transform-origin: 0.5em 0;
+    transform: rotate(90deg);
+}
 
 /*
   ========================================

@@ -18,6 +18,7 @@ class LogicalConditionBuilder extends Component {
         super(props);
 
         this.state = {
+            logicalConditionSize: puzzleSize,
             chosenSelector: null,
             chosenInnerSelector: selectedEntityList.list[0],
             selectedLogicTool: undefined,
@@ -28,10 +29,18 @@ class LogicalConditionBuilder extends Component {
 
     componentWillMount() {
         this.updateLogicStemCellsSize(this.props.puzzleSize);
+        console.log("componentwillmount");
     }
 
-    componentDidUpdate() {
-        this.updateLogicStemCellsSize(this.props.puzzleSize);
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.puzzleSize !== this.props.puzzleSize) {
+            console.log("componentDidUpdate");
+            this.updateLogicStemCellsSize(this.props.puzzleSize);
+            console.log("puzz size: ", this.props.puzzleSize);
+            console.log("logical condition size: ", this.state.logicalConditionSize);
+        }
+
     }
 
 
@@ -156,6 +165,23 @@ class LogicalConditionBuilder extends Component {
     };
 
 
+    updateX = (event) => {
+        let xVal = parseInt(event.target.value, 10);
+        let logicalConditionSize = this.state.logicalConditionSize;
+        logicalConditionSize.x = xVal;
+        this.setState({logicalConditionSize: logicalConditionSize});
+        this.updateLogicStemCellsSize(this.state.logicalConditionSize);
+    };
+
+    updateY = (event) => {
+        let yVal = parseInt(event.target.value, 10);
+        let logicalConditionSize = this.state.logicalConditionSize;
+        logicalConditionSize.y = yVal;
+        this.setState({logicalConditionSize: logicalConditionSize});
+        this.updateLogicStemCellsSize(this.state.logicalConditionSize);
+    };
+
+
     render() {
         return (
             <div className="logical-condition-builder">
@@ -169,7 +195,17 @@ class LogicalConditionBuilder extends Component {
                                  chooseInnerSelector={this.chooseInnerSelector}
                                  chosenInnerSelector={this.state.chosenInnerSelector}/>
                 <div className="logic-stem-cell-container">
-                    <FlexGrid cells={this.renderLogicStemCells(this.state.logicStemCells)}/>
+                    <input type="range" min="1" defaultValue={this.props.puzzleSize.x}  max={this.props.puzzleSize.x} className="slider horizontal-slider"
+                           onInput={this.updateX}/>
+                    <div className="float-wrapper">
+                        <div className="vertical-slider-wrapper">
+                            <input type="range" min="1" defaultValue={this.props.puzzleSize.y}  max={this.props.puzzleSize.y} className="slider vertical-slider"
+                                   onInput={this.updateY}/>
+                        </div>
+                        <div>
+                            <FlexGrid cells={this.renderLogicStemCells(this.state.logicStemCells)}/>
+                        </div>
+                    </div>
                 </div>
                 <button disabled={this.state.chosenSelector ? false : true} onClick={this.exportLogicalCondition}><i className="fa fa-plus" aria-hidden="true">
                 </i></button>
