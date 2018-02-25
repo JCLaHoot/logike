@@ -1,0 +1,173 @@
+{
+  "ID": "ANIMALS",
+  "PROPERTIES": [
+    {
+      "category": "diet",
+      "name": "carnivore",
+      "img": "carnivore"
+    },
+    {
+      "category": "diet",
+      "name": "herbivore",
+      "img": "herbivore"
+    },
+    {
+      "category": "diet",
+      "name": "omnivore",
+      "img": "omnivore"
+    },
+    {
+      "category": "family",
+      "name": "bird",
+      "img": "bird"
+    },
+    {
+      "category": "family",
+      "name": "mammal",
+      "img": "mammal"
+    },
+    {
+      "category": "family",
+      "name": "fish",
+      "img": "fish"
+    }
+  ],
+  "list": [
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "herbivore",
+          "img": "herbivore"
+        },
+        {
+          "category": "family",
+          "name": "mammal",
+          "img": "mammal"
+        }
+      ],
+      "name": "herbivore-mammal",
+      "commonName": "bunny",
+      "img": "bunny"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "carnivore",
+          "img": "carnivore"
+        },
+        {
+          "category": "family",
+          "name": "mammal",
+          "img": "mammal"
+        }
+      ],
+      "name": "carnivore-mammal",
+      "commonName": "cat",
+      "img": "cat"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "omnivore",
+          "img": "omnivore"
+        },
+        {
+          "category": "family",
+          "name": "mammal",
+          "img": "mammal"
+        }
+      ],
+      "name": "omnivore-mammal",
+      "commonName": "dog",
+      "img": "dog"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "herbivore",
+          "img": "herbivore"
+        },
+        {
+          "category": "family",
+          "name": "mammal",
+          "img": "mammal"
+        }
+      ],
+      "name": "herbivore-mammal",
+      "commonName": "hippo",
+      "img": "hippo"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "carnivore",
+          "img": "carnivore"
+        },
+        {
+          "category": "family",
+          "name": "mammal",
+          "img": "mammal"
+        }
+      ],
+      "name": "carnivore-mammal",
+      "commonName": "dolphin",
+      "img": "dolphin"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "carnivore",
+          "img": "carnivore"
+        },
+        {
+          "category": "family",
+          "name": "fish",
+          "img": "fish"
+        }
+      ],
+      "name": "carnivore-fish",
+      "commonName": "clownfish",
+      "img": "clownfish"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "omnivore",
+          "img": "omnivore"
+        },
+        {
+          "category": "family",
+          "name": "bird",
+          "img": "bird"
+        }
+      ],
+      "name": "omnivore-bird",
+      "commonName": "hummingbird",
+      "img": "hummingbird"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "omnivore",
+          "img": "omnivore"
+        },
+        {
+          "category": "family",
+          "name": "bird",
+          "img": "bird"
+        }
+      ],
+      "name": "omnivore-bird",
+      "commonName": "blue jay",
+      "img": "jay"
+    }
+  ]
+}
