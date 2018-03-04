@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FlexGrid from '../Shared/FlexGrid';
-import {createTwoDimensionalArray, deepForEach, deepMap, getGridX, getGridY} from '../Shared/TwoDimensionalMethods';
+import {createTwoDimensionalArray, deepMap, getGridX, getGridY} from '../Shared/TwoDimensionalMethods';
 import {fetchAllPossibleSelectors} from '../Shared/EntityHelpers'
 
 import SelectorPicker from './SelectorPicker';
@@ -14,7 +14,7 @@ import renderLogicalCondition from '../Shared/renderLogicalCondition'
 class LogicalConditionBuilder extends Component {
 
 
-    constructor({props, puzzleSize, selectedEntityList}) {
+    constructor({props, puzzleSize, selectedEntityList, sendLogicalConditionsToPuzzleBuilder}) {
         super(props);
 
         this.state = {
@@ -23,7 +23,7 @@ class LogicalConditionBuilder extends Component {
             chosenInnerSelector: selectedEntityList.list[0],
             selectedLogicTool: undefined,
             logicStemCells: null, //used to temporarily store logic cells that are being built
-            newPuzzle: [] // stores the puzzle being created. Logical conditions are pushed into it as they're created
+            newLogicalConditions: [] // stores the logical conditions being created. Logical conditions are pushed into it as they're created
         }
     }
 
@@ -162,15 +162,16 @@ class LogicalConditionBuilder extends Component {
             selectorName: this.state.chosenSelector.name
         };
 
-        let newPuzzle = this.state.newPuzzle;
-        newPuzzle.push(logicalCondition);
+        let newLogicalConditions = this.state.newLogicalConditions;
+        newLogicalConditions.push(logicalCondition);
 
         this.setState({
-            newPuzzle : newPuzzle,
+            newLogicalConditions : newLogicalConditions,
             chosenSelector: null,
             logicStemCells: createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null)
         });
 
+        this.props.sendLogicalConditionsToPuzzleBuilder(newLogicalConditions);
     };
 
 
@@ -237,7 +238,7 @@ class LogicalConditionBuilder extends Component {
                 <button disabled={this.state.chosenSelector ? false : true} onClick={this.exportLogicalCondition}><i className="fa fa-plus" aria-hidden="true">
                 </i></button>
                 <div className="wrap-row logical-condition-list">
-                    {renderLogicalCondition(this.state.newPuzzle, this.props.selectedEntityList)}
+                    {renderLogicalCondition(this.state.newLogicalConditions, this.props.selectedEntityList)}
                 </div>
 
             </div>

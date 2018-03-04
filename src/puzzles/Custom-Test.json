@@ -1,56 +1,66 @@
 {
-  "name": "Testing Features",
-  "entitySetID": "COLORED_SHAPES",
+  "name": "HOLY SHIT THIS WORKS!!!!",
+  "entitySetID": "ANIMALS",
   "logic": [
-    [
-      {
-        "selectorImg": "blue_square",
-        "selectorName": "blue-square",
-        "logicCells": [
-          [
-            false,
-            true
-          ],
-          [
-            false,
-            false
-          ]
+    {
+      "logicCells": [
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          true,
+          null
+        ],
+        [
+          null,
+          null,
+          null
         ]
-      },
-      {
-        "selectorImg": "paint_yellow",
-        "selectorName": "yellow",
-        "logicCells": [
-          [
-            true,
-            false
-          ],
-          [
-            true,
-            "red"
-          ]
+      ],
+      "selectorImg": "dog",
+      "selectorName": "omnivore-mammal"
+    },
+    {
+      "logicCells": [
+        [
+          null,
+          true
+        ],
+        [
+          "omnivore-mammal",
+          null
         ]
-      }
-    ],
-    [
-      {
-        "selectorImg": "red_circle",
-        "selectorName": "red-circle",
-        "logicCells": [
-          [
-            false,
-            false
-          ],
-          [
-            false,
-            true
-          ]
+      ],
+      "selectorImg": "cat",
+      "selectorName": "carnivore-mammal"
+    },
+    {
+      "logicCells": [
+        [
+          null,
+          null,
+          false
+        ],
+        [
+          null,
+          false,
+          null
+        ],
+        [
+          null,
+          null,
+          null
         ]
-      }
-    ]
+      ],
+      "selectorImg": "bunny",
+      "selectorName": "herbivore-mammal"
+    }
   ],
   "size": {
-    "x": 2,
-    "y": 2
+    "x": 3,
+    "y": 3
   }
 }

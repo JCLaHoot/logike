@@ -19,12 +19,17 @@ class PuzzleBuilder extends Component {
         this.state = {
             entityLists: EntityLists,
             selectedEntityList: null,
-            puzzleSize: null //must be formatted as a plain object with x and y as keys
+            puzzleSize: null, //must be formatted as a plain object with x and y as keys
+            logicalConditions: null, //array of logical conditions expected
+            puzzleName: null,
+            exportedPuzzle: null
         }
     }
 
     //sets the selected entity list on click
     selectEntityList = (entityList) => {
+        console.log(entityList);
+
         this.setState({
             selectedEntityList: entityList
         });
@@ -39,6 +44,28 @@ class PuzzleBuilder extends Component {
             }
         });
     };
+
+    // allows the logical condition to be passed up to the puzzle builder
+    sendLogicalConditionsToPuzzleBuilder = (logicalConditions) => {
+        this.setState({logicalConditions: logicalConditions});
+    };
+
+    puzzleNameChangeHandler = (event) =>{
+        var text = event.target.value;
+        this.setState({puzzleName: text});
+    };
+
+    exportPuzzle = () => {
+        let puzzle = {
+            name: this.state.puzzleName,
+            entitySetID: this.state.selectedEntityList.ID,
+            logic: this.state.logicalConditions,
+            size: this.state.puzzleSize
+        }
+        this.setState({exportedPuzzle: puzzle})
+        console.log(puzzle);
+    };
+
 
 
     render() {
@@ -63,9 +90,22 @@ class PuzzleBuilder extends Component {
                         ?
                         <LogicalConditionBuilder
                             puzzleSize={this.state.puzzleSize}
-                            selectedEntityList={this.state.selectedEntityList}/>
+                            selectedEntityList={this.state.selectedEntityList}
+                            sendLogicalConditionsToPuzzleBuilder={this.sendLogicalConditionsToPuzzleBuilder}/>
                         :
                         null}
+                    {this.state.logicalConditions
+                        ?
+                        <div>
+                            <h4>What Should this puzzle be called?</h4>
+                            <br/>
+                            <input type="text" onChange={this.puzzleNameChangeHandler}/>
+                            <br/>
+                            <button onClick={this.exportPuzzle}>Save Puzzle File</button>
+                        </div>
+                        :
+                        null}
+                    <p>{`${JSON.stringify(this.state.exportedPuzzle)}`}</p>
 
 
                 </div>
