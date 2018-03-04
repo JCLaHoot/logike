@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 // import Modal from '../Shared/Modal';
 // import Toast from '../PuzzlePage/Toast';
+import FileSaver from 'file-saver';
+// import BlobJS from 'blob.js'
 
 import EntityLists from '../Shared/EntityLists'
 import ChooseEntityList from './ChooseEntityList'
@@ -21,8 +23,7 @@ class PuzzleBuilder extends Component {
             selectedEntityList: null,
             puzzleSize: null, //must be formatted as a plain object with x and y as keys
             logicalConditions: null, //array of logical conditions expected
-            puzzleName: null,
-            exportedPuzzle: null
+            puzzleName: null
         }
     }
 
@@ -55,16 +56,22 @@ class PuzzleBuilder extends Component {
         this.setState({puzzleName: text});
     };
 
+    //exports the puzzle as JSON and pushes it into the puzzle list
     exportPuzzle = () => {
         let puzzle = {
             name: this.state.puzzleName,
             entitySetID: this.state.selectedEntityList.ID,
             logic: this.state.logicalConditions,
             size: this.state.puzzleSize
-        }
-        this.setState({exportedPuzzle: puzzle})
+        };
         this.props.appendPuzzleList(puzzle);
-        console.log(puzzle);
+
+        //downloads the puzzle as a JSON file
+        let blob = new Blob([JSON.stringify(puzzle)], {type: "application/json;charset=utf-8"});
+        FileSaver.saveAs(blob, `puzzle-${this.state.puzzleName}.json`);
+
+        //returns to the menu
+        this.props.returnToMainMenu();
     };
 
 
@@ -102,26 +109,10 @@ class PuzzleBuilder extends Component {
                             <br/>
                             <input type="text" onChange={this.puzzleNameChangeHandler}/>
                             <br/>
-                            <button onClick={this.exportPuzzle}>Save Puzzle File</button>
+                            <button onClick={this.exportPuzzle}>Download Puzzle File and Return to Puzzle List</button>
                         </div>
                         :
                         null}
-                    {this.state.exportedPuzzle
-                        ?
-                        <div>
-                            <br/>
-                            <h5>Exported Puzzle:</h5>
-                            <br/>
-                            <p>doesn't save the puzzle yet, but it's A LOT easier to copy/paste this JSON than to write it by hand!</p>
-                            <br/>
-                            <p>{`${JSON.stringify(this.state.exportedPuzzle)}`}</p>
-                            <br/>
-                            <button onClick={this.props.returnToMainMenu}>Try out the puzzle!</button>
-                        </div>
-                        :
-                        null}
-
-
                 </div>
             </div>
         )
