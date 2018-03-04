@@ -27,6 +27,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            puzzleList: PuzzleList,
             puzzle: null,
             activeInterface: UINames.LANDING_PAGE,
             validPuzzleNames: []
@@ -42,6 +43,14 @@ class App extends Component {
             }
         );
     };
+
+    // adds to the puzzle list (from an upload, or the puzzle builder)
+    appendPuzzleList = (puzzle) => {
+        let newPuzzleList = this.state.puzzleList;
+        newPuzzleList.push(puzzle);
+        this.setState({puzzleList: newPuzzleList});
+    }
+
 
 // runs when a puzzle is selected and changes the state
     onSelectHandler = (puzzle) => {
@@ -59,13 +68,13 @@ class App extends Component {
 // takes the provided puzzle and then begins the next one in the list.
     nextPuzzle = (completedPuzzle) => {
 
-        var currentIndex = PuzzleList.findIndex((puzzle) => {
+        var currentIndex = this.state.puzzleList.findIndex((puzzle) => {
             return puzzle.name === completedPuzzle.name;
         });
 
-        if (currentIndex + 1 < PuzzleList.length) {
+        if (currentIndex + 1 < this.state.puzzleList.length) {
             this.setState(
-                {puzzle: PuzzleList[currentIndex + 1]}
+                {puzzle: this.state.puzzleList[currentIndex + 1]}
             );
         }
         else {
@@ -99,7 +108,9 @@ class App extends Component {
             if (this.state.activeInterface === UINames.LANDING_PAGE) {
                 return (
                     <LandingPage
+                        puzzleList={this.state.puzzleList}
                         onSelectHandler={this.onSelectHandler}
+                        appendPuzzleList={this.appendPuzzleList}
                         validPuzzleNames={this.state.validPuzzleNames}
                         goToBuilder={this.goToBuilder}
                     />
@@ -108,7 +119,8 @@ class App extends Component {
             if (this.state.activeInterface === UINames.PUZZLE_BUILDER) {
                 return (
                     <PuzzleBuilder
-
+                        appendPuzzleList={this.appendPuzzleList}
+                        returnToMainMenu={this.returnToMainMenu}
                     />
                 )
             }

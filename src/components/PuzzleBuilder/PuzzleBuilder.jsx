@@ -14,7 +14,7 @@ class PuzzleBuilder extends Component {
     defaultPuzzleSize = 3;
 
 
-    constructor({props}) {
+    constructor({props, appendPuzzleList, returnToMainMenu}) {
         super(props);
         this.state = {
             entityLists: EntityLists,
@@ -63,6 +63,7 @@ class PuzzleBuilder extends Component {
             size: this.state.puzzleSize
         }
         this.setState({exportedPuzzle: puzzle})
+        this.props.appendPuzzleList(puzzle);
         console.log(puzzle);
     };
 
@@ -97,7 +98,7 @@ class PuzzleBuilder extends Component {
                     {this.state.logicalConditions
                         ?
                         <div>
-                            <h4>What Should this puzzle be called?</h4>
+                            <h4>What do you want to call your masterpiece?</h4>
                             <br/>
                             <input type="text" onChange={this.puzzleNameChangeHandler}/>
                             <br/>
@@ -114,6 +115,8 @@ class PuzzleBuilder extends Component {
                             <p>doesn't save the puzzle yet, but it's A LOT easier to copy/paste this JSON than to write it by hand!</p>
                             <br/>
                             <p>{`${JSON.stringify(this.state.exportedPuzzle)}`}</p>
+                            <br/>
+                            <button onClick={this.props.returnToMainMenu}>Try out the puzzle!</button>
                         </div>
                         :
                         null}
