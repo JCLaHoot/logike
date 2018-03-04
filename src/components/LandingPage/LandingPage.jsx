@@ -13,13 +13,27 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
 
         var reader = new FileReader();
 
-        reader.onload = (event) => {
-            let puzzle = JSON.parse(event.target.result);
-            appendPuzzleList(puzzle);
+        // checks if the JSON is a valid puzzle
+        const validPuzzle = (puzzle) => {
+            let keys = ["name", "entitySetID", "logic", "size"];
+            return keys.every((key) => {return puzzle.hasOwnProperty(key)});
         };
 
+        reader.onload = (event) => {
+            let puzzle = JSON.parse(event.target.result);
+            if(validPuzzle(puzzle)) {
+                appendPuzzleList(puzzle);
+            }
+            else {
+                console.log("JSON file does not contain a properly formatted Logike puzzle")
+            }
+        };
+
+        //checks the file type before attempting to read it
         for (let i = 0; i < selectedFiles.length; i++) {
-            reader.readAsText(selectedFiles[i]);
+            if(selectedFiles[i].type === 'application/json') {
+                reader.readAsText(selectedFiles[i]);
+            }
         }
     };
 
@@ -36,7 +50,7 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                     <br/>
                     <h6>You can also upload your own puzzle:</h6>
                     <br/>
-                    <input type="file" id="puzzleUpload" onChange={handleFiles}/>
+                    <input type="file" accept="application/json" id="puzzleUpload" onChange={handleFiles}/>
 
 
                     <button onClick={goToBuilder}>
