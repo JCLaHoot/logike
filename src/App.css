@@ -461,23 +461,23 @@ footer {
     display: inline;
 }
 
-.landing button {
-    background-color: #DFDFDF;
-    font-size: 1.5em;
-    color: #A5A5A5;
-    box-shadow: none;
+/*.landing button {*/
+    /*background-color: #DFDFDF;*/
+    /*font-size: 1.5em;*/
+    /*color: #A5A5A5;*/
+    /*box-shadow: none;*/
 
-}
+/*}*/
 
-.landing button:hover {
-    background-color: #DFDFDF;
-    /*color: #fff;*/
+/*.landing button:hover {*/
+    /*background-color: #DFDFDF;*/
+    /*!*color: #fff;*!*/
 
-}
+/*}*/
 
-.landing button:focus {
-    outline: none;
-}
+/*.landing button:focus {*/
+    /*outline: none;*/
+/*}*/
 
 /*
   ========================================

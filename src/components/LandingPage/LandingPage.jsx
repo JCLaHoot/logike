@@ -54,7 +54,7 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
 
 
                     <button onClick={goToBuilder}>
-                        <p><i className="fa fa-cubes" aria-hidden="true"></i> Puzzle Builder (coming soon)</p>
+                        <p><i className="fa fa-cubes" aria-hidden="true"></i> Puzzle Builder (beta)</p>
                     </button>
 
                 </div>

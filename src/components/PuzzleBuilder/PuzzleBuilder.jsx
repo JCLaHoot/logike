@@ -81,7 +81,8 @@ class PuzzleBuilder extends Component {
             <div className="puzzle-builder">
                 <div className="float-wrapper">
                     <h3>Puzzle Builder</h3>
-                    <p>(This is currently under construction <span>🏗</span>️, but you can check it out anyway)</p>
+                    <p>(This is currently under construction <span>🏗</span>️, but you can use it anyway!
+                        There's no validation (yet) to stop you from making impossible puzzles <span>😉</span></p>
                     <br/>
                     <ChooseEntityList
                         entityLists={this.state.entityLists}
@@ -105,11 +106,21 @@ class PuzzleBuilder extends Component {
                     {this.state.logicalConditions
                         ?
                         <div>
+                            <br/>
                             <h4>What do you want to call your masterpiece?</h4>
                             <br/>
                             <input type="text" onChange={this.puzzleNameChangeHandler}/>
                             <br/>
-                            <button onClick={this.exportPuzzle}>Download Puzzle File and Return to Puzzle List</button>
+                            <br/>
+                        </div>
+                        :
+                        null}
+                    {this.state.puzzleName
+                        ?
+                        <div>
+                            <button onClick={this.exportPuzzle}>
+                                <i className="fa fa-download" aria-hidden="true"></i> Download Puzzle File and Return to Puzzle List
+                            </button>
                         </div>
                         :
                         null}
