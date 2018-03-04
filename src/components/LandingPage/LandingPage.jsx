@@ -48,11 +48,10 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                         validPuzzleNames={validPuzzleNames}
                     />
                     <br/>
-                    <h6>You can also upload your own puzzle:</h6>
+                    <h6>You can also upload your own puzzle, or use the builder:</h6>
                     <br/>
                     <input type="file" accept="application/json" id="puzzleUpload" onChange={handleFiles}/>
-
-
+                    <br/>
                     <button onClick={goToBuilder}>
                         <p><i className="fa fa-cubes" aria-hidden="true"></i> Puzzle Builder (beta)</p>
                     </button>
