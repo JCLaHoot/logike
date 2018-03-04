@@ -67,6 +67,7 @@ class PuzzleBuilder extends Component {
                         :
                         null}
 
+
                 </div>
             </div>
         )

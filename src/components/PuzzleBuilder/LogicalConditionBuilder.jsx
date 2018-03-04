@@ -22,42 +22,46 @@ class LogicalConditionBuilder extends Component {
             chosenSelector: null,
             chosenInnerSelector: selectedEntityList.list[0],
             selectedLogicTool: undefined,
-            logicStemCells: null,
-            newPuzzle: []
+            logicStemCells: null, //used to temporarily store logic cells that are being built
+            newPuzzle: [] // stores the puzzle being created. Logical conditions are pushed into it as they're created
         }
     }
 
     componentWillMount() {
         this.updateLogicStemCellsSize(this.props.puzzleSize);
-        console.log("componentwillmount");
+        console.log("componentWillMount, puzzle size: ",this.props.puzzleSize);
+        // this.setState({logicalConditionSize: this.props.puzzleSize});
+        // console.log("logical condition size: ", this.state.logicalConditionSize);
+
     }
 
 
-    componentDidUpdate(prevProps) {
-        if(prevProps.puzzleSize !== this.props.puzzleSize) {
-            console.log("componentDidUpdate");
-            this.updateLogicStemCellsSize(this.props.puzzleSize);
-            console.log("puzz size: ", this.props.puzzleSize);
-            console.log("logical condition size: ", this.state.logicalConditionSize);
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.puzzleSize !== this.props.puzzleSize) {
+            this.updateLogicStemCellsSize(nextProps.puzzleSize);
+            this.setState({logicalConditionSize: nextProps.puzzleSize});
         }
 
     }
 
 
 
+    // applies the currently selected tool to the selected logic cell, and updates the state
+    // OPTIMIZE: add to renderLogicCells?
     applyTool = (x, y) => {
         var logicStemCells = this.state.logicStemCells;
         logicStemCells[y][x] = this.state.selectedLogicTool;
         this.setState({logicStemCells: logicStemCells});
     }
 
-    // converts logicCell values to symbols and renders them.
+    // converts logicCell values to symbols and renders them. also primes the applyTool callback to give it the x,y coordinates to write to
     renderLogicCells = (logicCell, x, y) => {
 
         // wraps the function so it doesn't run instantly
         const _applyTool = () => {
             this.applyTool(x, y);
-        }
+        };
 
         switch (logicCell) {
             case null:
@@ -72,24 +76,24 @@ class LogicalConditionBuilder extends Component {
                 return <LogicCellDisplay content={"false"}
                                          location={{x: x, y: y}}
                                          onClick={_applyTool}/>;
+            case LogicCellStates.EMPTY:
+                return <LogicCellDisplay content={null}
+                                         location={{x: x, y: y}}
+                                         onClick={_applyTool}/>;
             default:
-                if (logicCell === LogicCellStates.EMPTY) {
-                    return <LogicCellDisplay content={null}
-                                             location={{x: x, y: y}}
-                                             onClick={_applyTool}/>;
-                }
-                else { //go through all the selectors until you find the one that matches, and get its image
-                    var selectors = fetchAllPossibleSelectors(this.props.selectedEntityList);
-                    var img;
-                    selectors.forEach((selector) => {
-                        if (selector === logicCell) {
-                            img = selector.img;
-                        }
-                    });
-                    return <LogicCellDisplay content={img}
-                                             location={{x: x, y: y}}
-                                             onClick={_applyTool}/>;
-                }
+                //goes through all the selectors until it finds one that matches, and get its image
+                let selectors = fetchAllPossibleSelectors(this.props.selectedEntityList);
+                let img;
+                //OPTIMIZE: exit loop if the selector is found. (requires UIDs)
+                selectors.forEach((selector) => {
+                    if (selector === logicCell) {
+                        img = selector.img;
+                    }
+                });
+                return <LogicCellDisplay content={img}
+                                         location={{x: x, y: y}}
+                                         onClick={_applyTool}/>;
+
         }
 
     };
@@ -126,20 +130,25 @@ class LogicalConditionBuilder extends Component {
     };
 
 
-    // chooses the selector for the new logical condition.
+    // chooses the active tool that will populate the logic cells of the new logical condition.
     chooseTool = (tool) => {
         this.setState({selectedLogicTool: tool});
         console.log("selected logic tool is: ", tool);
     };
 
+    // chooses the active innerSelector that will populate the logic cells of the new logical condition.
+    //TODO: make it impossible to use more than one inner selector, for now...
     chooseInnerSelector = (innerSelector) => {
         console.log("inner selector is: ", innerSelector);
         this.setState({chosenInnerSelector: innerSelector});
     };
 
+
+    // cleans the data for the logical conditions and exports it in the same format that it will be read in
     exportLogicalCondition = () => {
         let cleanStemCells = this.state.logicStemCells;
 
+        // strings are extracted from selectors in StemCells.
         cleanStemCells = deepMap(cleanStemCells, (cell) => {
             if(cell !=  null && typeof cell === "object"){
                 return cell.name;
@@ -165,20 +174,20 @@ class LogicalConditionBuilder extends Component {
     };
 
 
+    // Changes the x value (width) of the logicStemCells based on the slider position
     updateX = (event) => {
         let xVal = parseInt(event.target.value, 10);
-        let logicalConditionSize = this.state.logicalConditionSize;
-        logicalConditionSize.x = xVal;
-        this.setState({logicalConditionSize: logicalConditionSize});
-        this.updateLogicStemCellsSize(this.state.logicalConditionSize);
+        let size = {x: xVal, y: this.state.logicalConditionSize.y}
+        this.setState({logicalConditionSize: size});
+        this.updateLogicStemCellsSize(size);
     };
 
+    // Changes the y value (height) of the logicStemCells based on the slider position
     updateY = (event) => {
         let yVal = parseInt(event.target.value, 10);
-        let logicalConditionSize = this.state.logicalConditionSize;
-        logicalConditionSize.y = yVal;
-        this.setState({logicalConditionSize: logicalConditionSize});
-        this.updateLogicStemCellsSize(this.state.logicalConditionSize);
+        let size = {x: this.state.logicalConditionSize.x, y: yVal}
+        this.setState({logicalConditionSize: size});
+        this.updateLogicStemCellsSize(size);
     };
 
 
@@ -186,27 +195,45 @@ class LogicalConditionBuilder extends Component {
         return (
             <div className="logical-condition-builder">
                 <h4>Create Logical Conditions</h4>
+
                 <SelectorPicker entities={this.props.selectedEntityList}
                                 chooseSelector={this.chooseSelector}
                                 chosenSelector={this.state.chosenSelector}/>
+
                 <LogicToolPicker entities={this.props.selectedEntityList}
                                  chooseTool={this.chooseTool}
                                  selectedLogicTool={this.state.selectedLogicTool}
                                  chooseInnerSelector={this.chooseInnerSelector}
                                  chosenInnerSelector={this.state.chosenInnerSelector}/>
+
                 <div className="logic-stem-cell-container">
-                    <input type="range" min="1" defaultValue={this.props.puzzleSize.x}  max={this.props.puzzleSize.x} className="slider horizontal-slider"
-                           onInput={this.updateX}/>
+                    <input type="range"
+                           min="1"
+                           max={this.props.puzzleSize.x}
+                           defaultValue={this.props.puzzleSize.x}
+                           className="slider horizontal-slider"
+                           onInput={this.updateX}
+                           style={{width: `${2.8*this.props.puzzleSize.x}em`}}
+                    />
                     <div className="float-wrapper">
-                        <div className="vertical-slider-wrapper">
-                            <input type="range" min="1" defaultValue={this.props.puzzleSize.y}  max={this.props.puzzleSize.y} className="slider vertical-slider"
-                                   onInput={this.updateY}/>
+                        <div className="vertical-slider-wrapper"
+                             style={{height: `${2.8*this.props.puzzleSize.y}em`}}
+                        >
+                            <input type="range"
+                                   min="1"
+                                   max={this.props.puzzleSize.y}
+                                   defaultValue={this.props.puzzleSize.y}
+                                   className="slider vertical-slider"
+                                   onInput={this.updateY}
+                                   style={{width: `${2.8*this.props.puzzleSize.y}em`}}
+                            />
                         </div>
                         <div>
                             <FlexGrid cells={this.renderLogicStemCells(this.state.logicStemCells)}/>
                         </div>
                     </div>
                 </div>
+
                 <button disabled={this.state.chosenSelector ? false : true} onClick={this.exportLogicalCondition}><i className="fa fa-plus" aria-hidden="true">
                 </i></button>
                 <div className="wrap-row logical-condition-list">
