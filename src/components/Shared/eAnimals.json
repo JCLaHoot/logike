@@ -46,7 +46,7 @@
           "img": "mammal"
         }
       ],
-      "name": "herbivore-mammal",
+      "name": "bunny-herbivore-mammal",
       "commonName": "bunny",
       "img": "bunny"
     },
@@ -63,7 +63,7 @@
           "img": "mammal"
         }
       ],
-      "name": "carnivore-mammal",
+      "name": "cat-carnivore-mammal",
       "commonName": "cat",
       "img": "cat"
     },
@@ -80,7 +80,7 @@
           "img": "mammal"
         }
       ],
-      "name": "omnivore-mammal",
+      "name": "dog-omnivore-mammal",
       "commonName": "dog",
       "img": "dog"
     },
@@ -97,7 +97,7 @@
           "img": "mammal"
         }
       ],
-      "name": "herbivore-mammal",
+      "name": "hippo-herbivore-mammal",
       "commonName": "hippo",
       "img": "hippo"
     },
@@ -114,7 +114,7 @@
           "img": "mammal"
         }
       ],
-      "name": "carnivore-mammal",
+      "name": "dolphin-carnivore-mammal",
       "commonName": "dolphin",
       "img": "dolphin"
     },
@@ -131,9 +131,26 @@
           "img": "fish"
         }
       ],
-      "name": "carnivore-fish",
+      "name": "clownfish-carnivore-fish",
       "commonName": "clownfish",
       "img": "clownfish"
+    },
+    {
+      "properties": [
+        {
+          "category": "diet",
+          "name": "carnivore",
+          "img": "carnivore"
+        },
+        {
+          "category": "family",
+          "name": "fish",
+          "img": "fish"
+        }
+      ],
+      "name": "pufferfish-carnivore-fish",
+      "commonName": "pufferfish",
+      "img": "pufferfish"
     },
     {
       "properties": [
@@ -148,7 +165,7 @@
           "img": "bird"
         }
       ],
-      "name": "omnivore-bird",
+      "name": "hummingbird-omnivore-bird",
       "commonName": "hummingbird",
       "img": "hummingbird"
     },
@@ -165,7 +182,7 @@
           "img": "bird"
         }
       ],
-      "name": "omnivore-bird",
+      "name": "jay-omnivore-bird",
       "commonName": "blue jay",
       "img": "jay"
     }

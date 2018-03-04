@@ -1,5 +1,5 @@
 {
-  "name": "HOLY SHIT THIS WORKS!!!!",
+  "name": "OMG THE BUILDER WORKS! I made this with it! 🏗️",
   "entitySetID": "ANIMALS",
   "logic": [
     {
@@ -21,7 +21,7 @@
         ]
       ],
       "selectorImg": "dog",
-      "selectorName": "omnivore-mammal"
+      "selectorName": "dog-omnivore-mammal"
     },
     {
       "logicCells": [
@@ -30,20 +30,31 @@
           true
         ],
         [
-          "omnivore-mammal",
+          "dog-omnivore-mammal",
           null
         ]
       ],
       "selectorImg": "cat",
-      "selectorName": "carnivore-mammal"
+      "selectorName": "cat-carnivore-mammal"
     },
     {
       "logicCells": [
         [
+          "mammal",
           null,
-          null,
-          false
+          null
         ],
+        [
+          null,
+          true,
+          true
+        ]
+      ],
+      "selectorImg": "fish",
+      "selectorName": "fish"
+    },
+    {
+      "logicCells": [
         [
           null,
           false,
@@ -53,10 +64,69 @@
           null,
           null,
           null
+        ],
+        [
+          false,
+          false,
+          null
         ]
       ],
-      "selectorImg": "bunny",
-      "selectorName": "herbivore-mammal"
+      "selectorImg": "mammal",
+      "selectorName": "mammal"
+    },
+    {
+      "logicCells": [
+        [
+          false,
+          null,
+          null
+        ],
+        [
+          null,
+          false,
+          null
+        ],
+        [
+          null,
+          false,
+          false
+        ]
+      ],
+      "selectorImg": "bird",
+      "selectorName": "bird"
+    },
+    {
+      "logicCells": [
+        [
+          null,
+          true,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          true,
+          null,
+          null
+        ]
+      ],
+      "selectorImg": "omnivore",
+      "selectorName": "omnivore"
+    },
+    {
+      "logicCells": [
+        [
+          true
+        ],
+        [
+          true
+        ]
+      ],
+      "selectorImg": "herbivore",
+      "selectorName": "herbivore"
     }
   ],
   "size": {

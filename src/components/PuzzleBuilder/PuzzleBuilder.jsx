@@ -105,7 +105,18 @@ class PuzzleBuilder extends Component {
                         </div>
                         :
                         null}
-                    <p>{`${JSON.stringify(this.state.exportedPuzzle)}`}</p>
+                    {this.state.exportedPuzzle
+                        ?
+                        <div>
+                            <br/>
+                            <h5>Exported Puzzle:</h5>
+                            <br/>
+                            <p>doesn't save the puzzle yet, but it's A LOT easier to copy/paste this JSON than to write it by hand!</p>
+                            <br/>
+                            <p>{`${JSON.stringify(this.state.exportedPuzzle)}`}</p>
+                        </div>
+                        :
+                        null}
 
 
                 </div>
