@@ -382,7 +382,7 @@ footer {
   ========================================
 */
 
-.landing-modal {
+.landing {
     /*position: fixed; /* Stay in place*/
     left: 0;
     top: 0;
@@ -396,57 +396,77 @@ footer {
     align-items: center;
 }
 
-.landing-modal .modal-content {
+.landing .modal-content {
     background-color: #fefefe;
     border: none;
     border-radius: 1em;
     box-shadow: 24px 24px 24px rgba(0, 0, 0, 0.2);
-    padding: 24px;
+    padding: 0;
     margin: 3em;
     width: 60%;
     height: auto;
 }
 
+.landing .modal-header {
+    background-color: #ECEFF1;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    padding: 1.5em 0;
+}
+
+.landing .modal-footer {
+    background-color: #ECEFF1;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    padding: 1.5em;
+}
+
 @media (max-width: 600px) {
-    .landing-modal .modal-content {
+    .landing .modal-content {
         width: 70%;
     }
 }
 
 @media (min-width: 601px) {
-    .landing-modal .modal-content {
+    .landing .modal-content {
         width: 60%;
     }
 }
 
 @media (min-width: 993px) {
-    .landing-modal .modal-content {
+    .landing .modal-content {
         width: 45%;
     }
 }
 
 @media (min-width: 1200px) {
-    .landing-modal .modal-content {
+    .landing .modal-content {
         width: 40%;
     }
 }
 
-.landing-modal img {
+.landing img {
     z-index: -1;
     position: fixed;
     height: 100%;
     width: auto;
     filter: blur(7px);
-
 }
 
-.puzzle-list h2 {
-    margin: 0.5em 0;
+.landing .puzzle-list {
+    padding: 1.5em 0;
 }
+
 
 .puzzle-name {
-    padding: 0.5em 0;
+    padding: 0.3em 1.5em;
     cursor: pointer;
+    font-size: 1.75em;
+    /*text-align: left;*/
+}
+
+.puzzle-name:hover {
+    transform: scale(1.05);
 }
 
 .puzzle-name .fa {
@@ -461,7 +481,44 @@ footer {
     display: inline;
 }
 
-/*.landing button {*/
+.file-input-wrapper {
+    display: inline-block;
+}
+
+.file-input-wrapper, .landing .modal-footer button {
+    margin: 1em 0.5em 0 0.5em;
+}
+
+/*used to get rid of ugly input*/
+.file-input-wrapper input {
+    opacity: 0;
+    height: 0.1px;
+    width: 0.1px;
+    pointer-events: none;
+}
+
+.file-input-wrapper label {
+    display: inline;
+    cursor: pointer;
+    background-color: #78909C;
+    color: #FFFFFF;
+    padding: 1em 1em;
+}
+
+
+.file-input-wrapper label:hover {
+    background-color: #455A64;
+}
+
+
+.landing .modal-footer button {
+    display: inline-block;
+}
+
+
+
+
+    /*.landing button {*/
     /*background-color: #DFDFDF;*/
     /*font-size: 1.5em;*/
     /*color: #A5A5A5;*/
@@ -502,6 +559,9 @@ footer {
   ========================================
 */
 
+.puzzle-builder button {
+    margin: 1em;
+}
 
 /*
   ========================================
@@ -849,6 +909,10 @@ footer {
     white-space: pre-line;
 }
 
+.answer-zone button {
+    margin: 1em;
+}
+
 @media (max-width: 600px) {
     .puzzle-page {
         width: 90%;
@@ -997,6 +1061,7 @@ footer {
     background-color: #78909C;
     color: #fff;
     cursor: pointer;
+    margin: 0 0.5em;
 }
 
 .modal-button-container button:hover {
@@ -1264,11 +1329,16 @@ footer {
 }
 
 .entity-bin img, .drop-zone img, .drop-container img {
+    cursor: grab;
     width: 6em;
     vertical-align: top;
     margin: 0 auto;
     -webkit-filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
     filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.16));
+}
+
+.entity-bin img:hover, .drop-zone img:hover, .drop-container img:hover {
+    transform: scale(1.075);
 }
 
 .drop-zone-container {
@@ -1303,25 +1373,32 @@ footer {
     background-color: #DFDFDF;
 }
 
-button {
+button, .file-input-wrapper label{
     min-width: 10em;
     padding: 1em 1em;
     font-size: 1em;
-    margin: 1em 1em;
     border-radius: 2em;
     border: none;
     box-shadow: 0.15em 0.15em 0.25em rgba(0, 0, 0, 0.5);
 }
 
-button:hover {
+button:hover{
     background-color: #ECEFF1;
     /*color: #fff;*/
     cursor: pointer;
 }
 
-button:focus {
+button:focus, .file-input-wrapper label:focus {
     outline: none;
+}
 
+.button-dark:hover {
+    background-color: #455A64;
+}
+
+.button-dark {
+    background-color: #78909C;
+    color: #FFFFFF;
 }
 
 /*
@@ -1339,12 +1416,15 @@ button:focus {
 
 .item-preview img {
     width: 6em;
-    filter: drop-shadow(16px 16px 8px rgba(0, 0, 0, 0.24))
+    filter: drop-shadow(16px 16px 8px rgba(0, 0, 0, 0.24));
+    transform: scale(1.075);
+
 }
 
 .is-dragging img {
     opacity: 0.6;
     filter: none;
+
 }
 
 

@@ -1,6 +1,9 @@
 {
-  "name": "OMG THE BUILDER WORKS! I made this with it! 🏗️",
+  "name": "Builder Test 🏗️",
   "entitySetID": "ANIMALS",
+  "isTutorial": true,
+  "tutorialQuestionHeader": "The Puzzle Builder Works!",
+  "tutorialQuestionBody": "This is the first puzzle created using the new puzzle builder! Before, puzzles had to be written by hand in JSON, without any interface to help you out! Using the new builder is MUCH faster!",
   "logic": [
     {
       "logicCells": [

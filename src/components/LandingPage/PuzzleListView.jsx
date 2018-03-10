@@ -20,8 +20,6 @@ const PuzzleListView = ({puzzleList, onSelectHandler, validPuzzleNames}) => {
 
     return (
         <div className="puzzle-list">
-            <h2>Select a puzzle</h2>
-
             {PuzzleListItems}
         </div>
     )

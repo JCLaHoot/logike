@@ -1,6 +1,9 @@
 {
-  "name": "Experiment 🍋🍒🍌🍓🌽🌶",
+  "name": "Entity Test 🍒",
   "entitySetID": "FRUITS_AND_VEGETABLES",
+  "isTutorial": true,
+  "tutorialQuestionHeader": "New Entities!",
+  "tutorialQuestionBody": "This is a test to see if I can put things other than the original coloured shapes into a puzzle... It looks like I can, but there's a few bugs that need ironing out 😉",
   "logic": [
     {
       "selectorImg": "paint_red",

@@ -40,21 +40,27 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
 
     return (
         <div className="float-wrapper">
-            <div className="landing landing-modal">
+            <div className="landing">
                 <div className="modal-content">
+                    <div className="modal-header">
+                        <h2>Select a puzzle</h2>
+                    </div>
                     <PuzzleListView
                         puzzleList={puzzleList}
                         onSelectHandler={onSelectHandler}
                         validPuzzleNames={validPuzzleNames}
                     />
-                    <br/>
-                    <h6>You can also upload your own puzzle, or use the builder:</h6>
-                    <br/>
-                    <input type="file" accept="application/json" id="puzzleUpload" onChange={handleFiles}/>
-                    <br/>
-                    <button onClick={goToBuilder}>
-                        <p><i className="fa fa-cubes" aria-hidden="true"></i> Puzzle Builder (beta)</p>
-                    </button>
+                    <div className="modal-footer">
+                        <h6>Or, make your own!</h6>
+                        <div className="file-input-wrapper">
+                            <label for="puzzleUpload" className="button-dark">Upload Puzzle</label>
+                            <input type="file" accept="application/json" id="puzzleUpload" onChange={handleFiles}/>
+
+                        </div>
+                        <button className="button-dark" onClick={goToBuilder}>
+                            Puzzle Builder (beta)
+                        </button>
+                    </div>
 
                 </div>
                 <img src={img} alt=""/>
