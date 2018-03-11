@@ -13,6 +13,7 @@ const collect = (monitor) => {
         offset.y += window.pageYOffset;
     }
 
+
     return {
         name: item && item.name,
         img: item && item.img,
@@ -26,19 +27,23 @@ const getItemStyles = (currentOffset) => {
     if (!currentOffset) {
         return {
             display: 'none'
+
         };
     }
+
 
     // http://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/
     var x = currentOffset.x;
     var y = currentOffset.y;
     var transform = `translate(${x}px, ${y}px)`;
 
+
     return {
         pointerEvents: 'none',
         transform: transform,
         WebkitTransform: transform
     };
+
 };
 
 

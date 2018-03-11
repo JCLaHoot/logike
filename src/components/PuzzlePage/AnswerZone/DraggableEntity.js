@@ -9,6 +9,7 @@ import {DragSource} from 'react-dnd';
 const entitySource = {
     // beginDrag must be implemented. It returns a plain JS object describing the object being dragged
     beginDrag(props) {
+
         return {
             name: props.name,
             img: props.img,
@@ -19,6 +20,8 @@ const entitySource = {
 
 // retrieves info on the drag and drop state from the monitor.
 const collect = (connect, monitor) => {
+
+
     return {
         connectDragSource: connect.dragSource(), //required
         connectDragPreview: connect.dragPreview(), //required if using the touch backend

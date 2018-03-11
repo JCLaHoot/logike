@@ -11,7 +11,6 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
     const handleFiles = () => {
         var selectedFiles = document.getElementById('puzzleUpload').files;
 
-        var reader = new FileReader();
 
         // checks if the JSON is a valid puzzle
         const validPuzzle = (puzzle) => {
@@ -19,7 +18,8 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
             return keys.every((key) => {return puzzle.hasOwnProperty(key)});
         };
 
-        reader.onload = (event) => {
+
+        const onLoad = (event) => {
             let puzzle = JSON.parse(event.target.result);
             if(validPuzzle(puzzle)) {
                 appendPuzzleList(puzzle);
@@ -32,6 +32,10 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
         //checks the file type before attempting to read it
         for (let i = 0; i < selectedFiles.length; i++) {
             if(selectedFiles[i].type === 'application/json') {
+                //creates new readers so that it can read many files sequentially.
+                var reader = new FileReader();
+                reader.onload = onLoad;
+
                 reader.readAsText(selectedFiles[i]);
             }
         }
@@ -53,8 +57,8 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                     <div className="modal-footer">
                         <h6>Or, make your own!</h6>
                         <div className="file-input-wrapper">
-                            <label for="puzzleUpload" className="button-dark">Upload Puzzle</label>
-                            <input type="file" accept="application/json" id="puzzleUpload" onChange={handleFiles}/>
+                            <label for="puzzleUpload" className="button-dark">Upload Puzzle(s)</label>
+                            <input type="file" accept="application/json" multiple id="puzzleUpload" onChangeCapture={handleFiles} />
 
                         </div>
                         <button className="button-dark" onClick={goToBuilder}>

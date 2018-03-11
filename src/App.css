@@ -1423,6 +1423,7 @@ button:focus, .file-input-wrapper label:focus {
 
 }
 
+
 .item-preview img {
     width: 6em;
     filter: drop-shadow(16px 16px 8px rgba(0, 0, 0, 0.24));
