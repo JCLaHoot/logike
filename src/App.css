@@ -411,7 +411,7 @@ footer {
     background-color: #ECEFF1;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
-    padding: 1.5em 0;
+    padding: 1.5em 0.5em;
 }
 
 .landing .modal-footer {
@@ -498,11 +498,13 @@ footer {
 }
 
 .file-input-wrapper label {
-    display: inline;
+    display: inline-block;
     cursor: pointer;
     background-color: #78909C;
     color: #FFFFFF;
     padding: 1em 1em;
+    line-height: 1.25em;
+
 }
 
 
@@ -511,8 +513,15 @@ footer {
 }
 
 
+.file-input-wrapper label:hover, .landing .modal-footer button:hover {
+    transform: scale(1.05);
+}
+
+
 .landing .modal-footer button {
     display: inline-block;
+    line-height: 1.25em;
+
 }
 
 

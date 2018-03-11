@@ -43,7 +43,7 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
             <div className="landing">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2>Select a puzzle</h2>
+                        <h3>Select a puzzle</h3>
                     </div>
                     <PuzzleListView
                         puzzleList={puzzleList}
