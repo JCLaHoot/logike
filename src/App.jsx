@@ -91,6 +91,7 @@ class App extends Component {
         }
     };
 
+
 // specifies which views will be displayed depending on which data is available
     displayCorrectViews = (puzzle) => {
         if (puzzle) {

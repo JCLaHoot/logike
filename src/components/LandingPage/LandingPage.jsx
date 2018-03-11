@@ -41,7 +41,6 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
     };
 
 
-
     return (
         <div className="float-wrapper">
             <div className="landing">
@@ -57,10 +56,12 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                     <div className="modal-footer">
                         <h6>Or, make your own!</h6>
                         <div className="file-input-wrapper">
-
                             <label for="puzzleUpload" className="button-dark">Upload Puzzle(s)</label>
-                            <input type="file" accept="application/json" multiple id="puzzleUpload" onChange={(evt) => handleFiles(evt)}/>
-
+                            <input type="file"
+                                   accept="application/json"
+                                   multiple
+                                   id="puzzleUpload"
+                                   onChange={handleFiles}/>
                         </div>
 
                         <button className="button-dark" onClick={goToBuilder}>
