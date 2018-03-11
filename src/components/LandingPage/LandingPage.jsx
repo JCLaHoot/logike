@@ -6,7 +6,6 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
 
     let img = '/assets/colour_shapes@2x.png';
 
-
     // when a file is uploaded, this checks to see that it's the right type, then adds it to the puzzle list
     const handleFiles = () => {
         var selectedFiles = document.getElementById('puzzleUpload').files;
@@ -42,6 +41,7 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
     };
 
 
+
     return (
         <div className="float-wrapper">
             <div className="landing">
@@ -57,10 +57,12 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                     <div className="modal-footer">
                         <h6>Or, make your own!</h6>
                         <div className="file-input-wrapper">
+
                             <label for="puzzleUpload" className="button-dark">Upload Puzzle(s)</label>
-                            <input type="file" accept="application/json" multiple id="puzzleUpload" onChangeCapture={handleFiles} />
+                            <input type="file" accept="application/json" multiple id="puzzleUpload" onChange={(evt) => handleFiles(evt)}/>
 
                         </div>
+
                         <button className="button-dark" onClick={goToBuilder}>
                             Puzzle Builder (beta)
                         </button>
@@ -72,7 +74,9 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
             </div>
         </div>
 
-    )
+    );
+
+
 
 };
 
