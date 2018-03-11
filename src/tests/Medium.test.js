@@ -7,8 +7,7 @@ import {generateAnsContainer} from './TestHelpers';
 var puzzle = mediumPuzzle;
 
 // normalizing logic:
-var newLogic = normalizeLogic(puzzle, eColoredShapes);
-puzzle.logic = newLogic;
+var preProcessedLogic = normalizeLogic(puzzle, eColoredShapes);
 
 const ansArray =
     [["blue-triangle", "blue-square", "blue-circle"],
@@ -18,7 +17,7 @@ const ansArray =
 const containers = generateAnsContainer(ansArray);
 
 test("Medium puzzle validates", () => {
-    expect(validateAnswer(puzzle, eColoredShapes, containers)).toEqual(true);
+    expect(validateAnswer(preProcessedLogic, eColoredShapes, containers)).toEqual(true);
 });
 
 
@@ -32,5 +31,5 @@ const incorrectAnsArray =
 const incorrectContainers = generateAnsContainer(incorrectAnsArray);
 
 test("Medium puzzle does not validate incorrect answers", () => {
-    expect(validateAnswer(puzzle, eColoredShapes, incorrectContainers)).toEqual(false);
+    expect(validateAnswer(preProcessedLogic, eColoredShapes, incorrectContainers)).toEqual(false);
 });

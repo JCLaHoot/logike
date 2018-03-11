@@ -7,8 +7,7 @@ import {generateAnsContainer} from './TestHelpers';
 var puzzle = difficultPuzzle;
 
 // normalizing logic:
-var newLogic = normalizeLogic(puzzle, eColoredShapes);
-puzzle.logic = newLogic;
+var preProcessedLogic = normalizeLogic(puzzle, eColoredShapes);
 
 const ansArray =
     [["yellow-square", "red-square", "blue-square"],
@@ -18,7 +17,7 @@ const ansArray =
 const containers = generateAnsContainer(ansArray);
 
 test("Difficult puzzle validates", () => {
-    expect(validateAnswer(puzzle, eColoredShapes, containers)).toEqual(true);
+    expect(validateAnswer(preProcessedLogic, eColoredShapes, containers)).toEqual(true);
 });
 
 
@@ -30,5 +29,5 @@ const incorrectAnsArray =
 const incorrectContainers = generateAnsContainer(incorrectAnsArray);
 
 test("Difficult puzzle does not validate incorrect answers", () => {
-    expect(validateAnswer(puzzle, eColoredShapes, incorrectContainers)).toEqual(false);
+    expect(validateAnswer(preProcessedLogic, eColoredShapes, incorrectContainers)).toEqual(false);
 });

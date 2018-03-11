@@ -134,12 +134,10 @@ export const normalizeLogic = (puzzle, entities) => {
                 });
             }
 
-            // puzzleCell.logicCells = newGrid;
-            // return puzzleCell;
             var newPuzzleCell = puzzleCell;
-            newPuzzleCell.logicCells = newGrid; // for some reason puzzleCell.logicCells is ALSO changing
+            newPuzzleCell.logicCells = newGrid;
+
             return newPuzzleCell;
-            // TODO: fix problem where entire originalLogic gets new logic for no reason... it's not fatal but its weird.
         }
     });
 
@@ -163,7 +161,7 @@ export const normalizeLogic = (puzzle, entities) => {
 // MANY partial selectors in the ans, so it needs to check all of the possibilities
 // and return true if any of them evaluates properly.
 // I think... I'll have to test but with a specific selector.
-export const validateAnswer = (puzzle, entities, containers) => {
+export const validateAnswer = (preProcessedLogic, entities, containers) => {
 
     var start = Date.now(); //used to calculate validation time
     console.log("validating...");
@@ -216,7 +214,7 @@ export const validateAnswer = (puzzle, entities, containers) => {
 
 
     var validationArray;
-    validationArray = puzzle.logic.map( (puzzleCell) => {
+    validationArray = preProcessedLogic.map( (puzzleCell) => {
         var selector = puzzleCell.selectorName;
 
         // This is the check that's performed on every single logic cell in a puzzle cell

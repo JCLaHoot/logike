@@ -22,6 +22,7 @@ class AnswerZone extends Component {
         super(props);
         this.state = {
             puzzle: puzzle,
+            preProcessedLogic: null,
             entities: entities,
             validAns: null,
             entityBin: {
@@ -66,8 +67,11 @@ class AnswerZone extends Component {
 
     componentDidMount() {
         // normalizing the logic upfront saves time when validating
-        var newLogic = normalizeLogic(this.state.puzzle, this.state.entities);
-        this.setState(this.state.puzzle.logic : newLogic);
+        var newPuzzle = JSON.parse(JSON.stringify(this.state.puzzle));
+        var newLogic = normalizeLogic(newPuzzle, this.state.entities);
+        newPuzzle.logic = newLogic;
+        console.log("newLogic: ", newLogic)
+        this.setState({preProcessedLogic : newLogic});
     }
 
 // resets the puzzle so that you can complete it again
@@ -200,7 +204,7 @@ class AnswerZone extends Component {
         }
 
         // does all of the heavy lifting for the validation.
-        var valid = validateAnswer(this.state.puzzle, this.state.entities, this.state.containers);
+        var valid = validateAnswer(this.state.preProcessedLogic, this.state.entities, this.state.containers);
 
 
         this.setState({validAns: valid});
