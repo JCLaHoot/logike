@@ -118,7 +118,7 @@ class PuzzleBuilder extends Component {
                     {this.state.puzzleName
                         ?
                         <div>
-                            <button onClick={this.exportPuzzle}>
+                            <button className="button-dark" onClick={this.exportPuzzle}>
                                 <i className="fa fa-download" aria-hidden="true"></i> Download Puzzle File and Return to Puzzle List
                             </button>
                         </div>
