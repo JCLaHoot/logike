@@ -10,31 +10,47 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
     const handleFiles = () => {
         var selectedFiles = document.getElementById('puzzleUpload').files;
 
-
         // checks if the JSON is a valid puzzle
         const validPuzzle = (puzzle) => {
             let keys = ["name", "entitySetID", "logic", "size"];
             return keys.every((key) => {return puzzle.hasOwnProperty(key)});
         };
 
+        //checks if the file is JSON
+        //OPTIMIZE by implementing magic number solution: https://stackoverflow.com/questions/49225475/file-input-files-not-read-onchange-on-mobile/49229215#49229215
+        const validJSON = (file) => {
+            if(file.name.includes('.json')){
+                let maxSizeInKB = 25;
+                if(file.size < (maxSizeInKB * 1000)) {
+                    return true;
+                }
+                else {
+                    alert(`${file.name} is bigger than ${maxSizeInKB}kB. \nHarass @JCLaHoot on Twitter and he'll fix it!`)
+                }
+            }
+            else {
+                alert(`${file.name} is not a valid JSON file`)
+            }
+        };
 
+
+        // runs for each puzzle uploaded
         const onLoad = (event) => {
             let puzzle = JSON.parse(event.target.result);
             if(validPuzzle(puzzle)) {
                 appendPuzzleList(puzzle);
             }
             else {
-                console.log("JSON file does not contain a properly formatted Logike puzzle")
+                console.log("JSON file does not contain a properly formatted Logike puzzle");
             }
         };
 
         //checks the file type before attempting to read it
         for (let i = 0; i < selectedFiles.length; i++) {
-            if(selectedFiles[i].type === 'application/json') {
-                //creates new readers so that it can read many files sequentially.
+            if(validJSON(selectedFiles[i])) {
+                // creates new readers so that it can read many files sequentially.
                 var reader = new FileReader();
                 reader.onload = onLoad;
-
                 reader.readAsText(selectedFiles[i]);
             }
         }
@@ -58,8 +74,8 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                         <div className="file-input-wrapper">
                             <label for="puzzleUpload" className="button-dark">Upload Puzzle(s)</label>
                             <input type="file"
-                                   accept="application/json"
                                    multiple
+                                   accept="application/json"
                                    id="puzzleUpload"
                                    onChange={handleFiles}/>
                         </div>

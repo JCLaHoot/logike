@@ -494,7 +494,7 @@ footer {
     opacity: 0;
     height: 0.1px;
     width: 0.1px;
-    pointer-events: none;
+    /*pointer-events: none;*/
 }
 
 .file-input-wrapper label {
