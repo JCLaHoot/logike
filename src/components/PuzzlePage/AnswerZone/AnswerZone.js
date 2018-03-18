@@ -185,21 +185,21 @@ class AnswerZone extends Component {
         if (!allFilled) {
             this.emptyCount++;
             if (this.emptyCount > 50) {
-                this.state.showToast("Are you trying to break my app? 🤔");
+                this.state.showToast("Are you trying to break my app? 🤔", 3000);
                 return;
             }
             if (this.emptyCount > 30) {
-                this.state.showToast("Why are you doing this?");
+                this.state.showToast("Why are you doing this?", 3000);
                 return;
             }
             if (this.emptyCount > 15) {
-                this.state.showToast("Stop Spamming this button!");
+                this.state.showToast("Stop Spamming this button!", 3000);
                 return;
             }
             this.state.showToast(this.drawFrom(["Some blocks haven't been placed!",
                 "Are you forgetting something?",
                 "Some spaces are still empty!"]
-            ));
+            ), 3000);
             return;
         }
 

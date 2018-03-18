@@ -2,6 +2,7 @@
   "name": "Tutorial 🍼",
   "entitySetID": "COLORED_SHAPES",
   "isTutorial": true,
+  "difficulty": 0,
   "tutorialQuestionHeader": "Welcome to Logike!",
   "tutorialQuestionBody": "The cards below represent logical conditions.\n All of them must be \"true\" in order to solve the puzzle.",
   "tutorialAnswerBody": "Drag the shapes onto the board below in order to satisfy the logical conditions.\n Hint: the red square goes in the top-left corner...",

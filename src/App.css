@@ -1007,22 +1007,23 @@ footer {
     margin-bottom: 0.5em;
 }
 
-.save-puzzle-section input {
+.save-puzzle-section input[type=text] {
+    margin-bottom: 1em;
     padding: 0.25em 0.5em;
     font-size: 1.5em;
     border-radius: 3em;
     border: #90A4AE solid 3px;
 }
 
-.save-puzzle-section input::-webkit-input-placeholder {
+.save-puzzle-section input[type=text]::-webkit-input-placeholder {
     color: #B0BEC5;
 }
 
-.save-puzzle-section input:hover {
+.save-puzzle-section input[type=text]:hover {
     border: #607D8B solid 3px;
 }
 
-.save-puzzle-section input:focus {
+.save-puzzle-section input[type=text]:focus {
     border: #607D8B solid 3px;
     outline: none;
 }
@@ -1033,6 +1034,21 @@ footer {
     color: #455A64;
     border: #607D8B solid 3px;
 }
+
+.difficulty-picker h4, input[type=range] {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.difficulty-picker h4 {
+    margin: 0;
+}
+
+.difficulty-picker input[type=range] {
+    margin: 0 0.5em;
+
+}
+
 /*
   ========================================
   PuzzlePage
@@ -1230,7 +1246,7 @@ footer {
 */
 
 .toast {
-    visibility: hidden;
+    /*visibility: hidden;*/
     /* Hidden by default. Visible on click */
     min-width: 50%;
     width: 0;
@@ -1247,16 +1263,25 @@ footer {
     position: fixed; /* Sit on top of the screen */
     z-index: 2; /* Add a z-index if needed */
     bottom: 2.5em; /* 30px from the bottom */
+    bottom: 0;
+    opacity: 0;
+
+
+    transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out;
 }
 
 /* Show the toast when clicking on a button */
 .toast.show {
-    visibility: visible;
+    /*visibility: visible;*/
 
     /* Add animation: Take 0.5 seconds to fade in and out the toast.
     However, delay the fade out process for 2.5 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    opacity: 1;
+    bottom: 2.5em; /* 30px from the bottom */
+
+
+    /*-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;*/
+    /*animation: fadein 0.5s, fadeout 0.5s 2.5s;*/
 }
 
 /* Animations to fade the toast in and out */

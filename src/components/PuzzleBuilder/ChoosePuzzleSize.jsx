@@ -5,7 +5,7 @@ import FlexGrid from '../Shared/FlexGrid';
 class ChoosePuzzleSize extends Component {
 
 
-    constructor({props, selectPuzzleSize, defaultPuzzleSize}) {
+    constructor({props, selectPuzzleSize, defaultPuzzleSize, showToast}) {
         super(props);
         this.state = {
             x: defaultPuzzleSize,

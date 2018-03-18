@@ -13,7 +13,7 @@ import LogicCellDisplay from '../Shared/LogicCellDisplay';
 class LogicalConditionBuilder extends Component {
 
 
-    constructor({props, puzzleSize, selectedEntityList, sendLogicalConditionsToPuzzleBuilder}) {
+    constructor({props, puzzleSize, selectedEntityList, logicalConditions, sendLogicalConditionsToPuzzleBuilder}) {
         super(props);
 
         this.state = {
@@ -22,7 +22,6 @@ class LogicalConditionBuilder extends Component {
             chosenInnerSelector: selectedEntityList.list[0],
             selectedLogicTool: undefined,
             logicStemCells: null, //used to temporarily store logic cells that are being built
-            newLogicalConditions: [] // stores the logical conditions being created. Logical conditions are pushed into it as they're created
         }
     }
 
@@ -161,16 +160,12 @@ class LogicalConditionBuilder extends Component {
             selectorName: this.state.chosenSelector.name
         };
 
-        let newLogicalConditions = this.state.newLogicalConditions;
-        newLogicalConditions.push(logicalCondition);
-
         this.setState({
-            newLogicalConditions : newLogicalConditions,
             chosenSelector: null,
             logicStemCells: createTwoDimensionalArray(this.props.puzzleSize.x, this.props.puzzleSize.y, null)
         });
 
-        this.props.sendLogicalConditionsToPuzzleBuilder(newLogicalConditions);
+        this.props.sendLogicalConditionsToPuzzleBuilder(logicalCondition);
     };
 
 
@@ -229,7 +224,7 @@ class LogicalConditionBuilder extends Component {
                                      ?
                                      0
                                      :
-                                     2.95*(this.props.puzzleSize.y - 1)+1.45}em`}}
+                                     2.8*(this.props.puzzleSize.y - 1)+2.1}em`}}
                         >
                             <input type="range"
                                    min="1"
@@ -241,7 +236,7 @@ class LogicalConditionBuilder extends Component {
                                            ?
                                            0
                                            :
-                                           2.95*(this.props.puzzleSize.y - 1)+1.45}em`}}
+                                           2.8*(this.props.puzzleSize.y - 1)+2.1}em`}}
                             />
                         </div>
                         <div>

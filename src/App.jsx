@@ -44,10 +44,25 @@ class App extends Component {
         );
     };
 
+    // allows puzzles to be sorted by difficulty
+    byDifficulty = (a, b) => {
+        if (a.difficulty < b.difficulty) {
+            return -1;
+        }
+        if (a.difficulty > b.difficulty) {
+            return 1;
+        }
+        // a must be equal to b
+        return 0;
+    };
+
+
     // adds to the puzzle list (from an upload, or the puzzle builder)
     appendPuzzleList = (puzzle) => {
         let newPuzzleList = this.state.puzzleList;
         newPuzzleList.push(puzzle);
+        newPuzzleList.sort(this.byDifficulty);
+        console.log(newPuzzleList);
         this.setState({puzzleList: newPuzzleList});
     }
 

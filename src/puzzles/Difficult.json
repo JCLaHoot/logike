@@ -1,6 +1,7 @@
 {
   "name": "Difficult 💀",
   "entitySetID": "COLORED_SHAPES",
+  "difficulty": 9,
   "logic": [
     {
       "selectorImg": "square",

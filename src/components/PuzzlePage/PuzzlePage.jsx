@@ -38,7 +38,7 @@ class PuzzlePage extends Component {
 
 
 
-    showToast = (toastMessage) => {
+    showToast = (toastMessage, timeout) => {
         this.setState({
             toastContents: {
                 toastMessage: toastMessage,
@@ -53,9 +53,7 @@ class PuzzlePage extends Component {
                     show: false
                 }
             });
-        }, 3000);
-
-
+        }, timeout);
     };
 
     updateModal = (modalContents) => {

@@ -10,4 +10,19 @@ import Difficult from '../../puzzles/Difficult.json';
 let PuzzleList = [Tutorial, Easy, Medium, Difficult, FruitVegetablePuzzle, CustomTest];
 
 
+const byDifficulty = (a, b) => {
+    if (a.difficulty < b.difficulty) {
+        return -1;
+    }
+    if (a.difficulty > b.difficulty) {
+        return 1;
+    }
+    // a must be equal to b
+    return 0;
+}
+
+PuzzleList.sort(byDifficulty);
+
+
+
 export default PuzzleList;
