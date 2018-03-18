@@ -36,7 +36,7 @@
           "img": "fruits"
         }
       ],
-      "name": "red-fruit",
+      "name": "raspberry-red-fruit",
       "commonName": "raspberry",
       "img": "raspberries"
     },
@@ -53,7 +53,7 @@
           "img": "fruits"
         }
       ],
-      "name": "red-fruit",
+      "name": "strawberry-red-fruit",
       "commonName": "strawberry",
       "img": "strawberry"
     },
@@ -75,7 +75,7 @@
           "img": "vegetables"
         }
       ],
-      "name": "red-fruit-vegetable",
+      "name": "tomato-red-fruit-vegetable",
       "commonName": "tomato",
       "img": "tomato"
     },
@@ -92,7 +92,7 @@
           "img": "vegetables"
         }
       ],
-      "name": "red-vegetable",
+      "name": "radish-red-vegetable",
       "commonName": "radish",
       "img": "radish"
     },
@@ -109,7 +109,7 @@
           "img": "vegetables"
         }
       ],
-      "name": "yellow-vegetable",
+      "name": "pepper-yellow-vegetable",
       "commonName": "yellow pepper",
       "img": "yellow_pepper"
     },
@@ -126,7 +126,7 @@
           "img": "vegetables"
         }
       ],
-      "name": "yellow-vegetable",
+      "name": "corn-yellow-vegetable",
       "commonName": "corn",
       "img": "corn"
     },
@@ -143,7 +143,7 @@
           "img": "fruits"
         }
       ],
-      "name": "yellow-fruit",
+      "name": "banana-yellow-fruit",
       "commonName": "banana",
       "img": "bananas"
     },
@@ -160,7 +160,7 @@
           "img": "fruits"
         }
       ],
-      "name": "yellow-fruit",
+      "name": "lemon-yellow-fruit",
       "commonName": "lemon",
       "img": "lemon"
     }
