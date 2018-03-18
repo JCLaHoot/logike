@@ -62,7 +62,6 @@ class App extends Component {
         let newPuzzleList = this.state.puzzleList;
         newPuzzleList.push(puzzle);
         newPuzzleList.sort(this.byDifficulty);
-        console.log(newPuzzleList);
         this.setState({puzzleList: newPuzzleList});
     }
 

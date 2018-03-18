@@ -70,7 +70,6 @@ class AnswerZone extends Component {
         var newPuzzle = JSON.parse(JSON.stringify(this.state.puzzle));
         var newLogic = normalizeLogic(newPuzzle, this.state.entities);
         newPuzzle.logic = newLogic;
-        console.log("newLogic: ", newLogic)
         this.setState({preProcessedLogic : newLogic});
     }
 

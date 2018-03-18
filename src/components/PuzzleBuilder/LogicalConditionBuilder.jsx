@@ -27,7 +27,6 @@ class LogicalConditionBuilder extends Component {
 
     componentWillMount() {
         this.updateLogicStemCellsSize(this.props.puzzleSize);
-        console.log("componentWillMount, puzzle size: ",this.props.puzzleSize);
         // this.setState({logicalConditionSize: this.props.puzzleSize});
         // console.log("logical condition size: ", this.state.logicalConditionSize);
 
@@ -131,13 +130,11 @@ class LogicalConditionBuilder extends Component {
     // chooses the active tool that will populate the logic cells of the new logical condition.
     chooseTool = (tool) => {
         this.setState({selectedLogicTool: tool});
-        console.log("selected logic tool is: ", tool);
     };
 
     // chooses the active innerSelector that will populate the logic cells of the new logical condition.
     //TODO: make it impossible to use more than one inner selector, for now...
     chooseInnerSelector = (innerSelector) => {
-        console.log("inner selector is: ", innerSelector);
         this.setState({chosenInnerSelector: innerSelector});
     };
 

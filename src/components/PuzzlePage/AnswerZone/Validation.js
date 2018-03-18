@@ -142,7 +142,7 @@ export const normalizeLogic = (puzzle, entities) => {
     });
 
     // returns the normalized logic, so that it can be injected in props
-    console.log("millis to normalize logic: ", Date.now() - start);
+    // console.log("millis to normalize logic: ", Date.now() - start);
     return newLogic;
 };
 
@@ -163,8 +163,8 @@ export const normalizeLogic = (puzzle, entities) => {
 // I think... I'll have to test but with a specific selector.
 export const validateAnswer = (preProcessedLogic, entities, containers) => {
 
-    var start = Date.now(); //used to calculate validation time
-    console.log("validating...");
+    // var start = Date.now(); //used to calculate validation time
+    // console.log("validating...");
 
     var userAns = deepMap(containers, (container) => {
         return container.contents[0].name;
@@ -291,12 +291,12 @@ export const validateAnswer = (preProcessedLogic, entities, containers) => {
 
     });
 
-    console.log("validation array: ", validationArray);
+    // console.log("validation array: ", validationArray);
     var valid = validationArray.every( (i) => {
         return i
     });
 
-    console.log("millis to validate: ", Date.now() - start);
+    // console.log("millis to validate: ", Date.now() - start);
     // returns a bool to indicate whether or not the answer is valid
     return valid;
 };

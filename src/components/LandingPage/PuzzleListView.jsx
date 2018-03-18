@@ -4,7 +4,6 @@ import PuzzleListItem from './PuzzleListItem';
 
 const PuzzleListView = ({puzzleList, onSelectHandler, validPuzzleNames}) => {
 
-    console.log("validPuzzleNames: ", validPuzzleNames);
     const PuzzleListItems = puzzleList.map((puzzle) => {
         var isValidated = false;
         if (validPuzzleNames.includes(puzzle.name)) {

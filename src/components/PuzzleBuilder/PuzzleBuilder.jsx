@@ -58,8 +58,6 @@ class PuzzleBuilder extends Component {
 
     //sets the selected entity list on click
     selectEntityList = (entityList) => {
-        console.log(entityList);
-
         // if the entity list is changed and logical conditions have been made, display a warning.
         if(this.state.logicalConditions
             &&
