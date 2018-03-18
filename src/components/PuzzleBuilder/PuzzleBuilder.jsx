@@ -10,10 +10,15 @@ import ChooseEntityList from './ChooseEntityList'
 import ChoosePuzzleSize from './ChoosePuzzleSize'
 import LogicalConditionBuilder from './LogicalConditionBuilder';
 
+import renderLogicalCondition from '../Shared/renderLogicalCondition'
+
+
 
 class PuzzleBuilder extends Component {
 
     defaultPuzzleSize = 3;
+
+    iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
 
     constructor({props, appendPuzzleList, returnToMainMenu}) {
@@ -74,57 +79,67 @@ class PuzzleBuilder extends Component {
         this.props.returnToMainMenu();
     };
 
+    //mixing styling in CSS and here because YOLO 🔥
+    warningStyle = {
+        color: '#ff1744',
+        fontWeight: 'bold'
+    };
 
 
     render() {
         return (
             <div className="puzzle-builder">
-                <div className="float-wrapper">
-                    <h3>Puzzle Builder</h3>
-                    <p>(This is currently under construction <span>🏗</span>️, but you can use it anyway!
-                        There's no validation (yet) to stop you from making impossible puzzles <span>😉</span></p>
-                    <br/>
+
+                    <div className="builder-header">
+                        <h3>Puzzle Builder</h3>
+                        <p>(This is currently under construction <span>🏗</span>️, but you can use it anyway!
+                            There's no validation (yet) to stop you from making impossible puzzles <span>😉</span></p>
+                        {this.iOS ? <p style={this.warningStyle}>*using the puzzle builder on iOS is NOT recommended</p> : ''}
+                    </div>
                     <ChooseEntityList
                         entityLists={this.state.entityLists}
                         selectEntityList={this.selectEntityList}
                         selectedEntityList={this.state.selectedEntityList}/>
-                    <br/>
-                    {this.state.selectedEntityList
-                        ?
-                        <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}
-                                          defaultPuzzleSize={this.defaultPuzzleSize}/>
-                        :
-                        null}
-                    {this.state.puzzleSize
-                        ?
-                        <LogicalConditionBuilder
-                            puzzleSize={this.state.puzzleSize}
-                            selectedEntityList={this.state.selectedEntityList}
-                            sendLogicalConditionsToPuzzleBuilder={this.sendLogicalConditionsToPuzzleBuilder}/>
-                        :
-                        null}
-                    {this.state.logicalConditions
-                        ?
-                        <div>
-                            <br/>
-                            <h4>What do you want to call your masterpiece?</h4>
-                            <br/>
-                            <input type="text" onChange={this.puzzleNameChangeHandler}/>
-                            <br/>
-                            <br/>
-                        </div>
-                        :
-                        null}
-                    {this.state.puzzleName
-                        ?
-                        <div>
-                            <button className="button-dark" onClick={this.exportPuzzle}>
-                                <i className="fa fa-download" aria-hidden="true"></i> Download Puzzle File and Return to Puzzle List
-                            </button>
-                        </div>
-                        :
-                        null}
-                </div>
+                    <div className={`builder-section ${this.state.selectedEntityList ? 'enabled' : ''}`}>
+                        {this.state.selectedEntityList
+                            ?
+                            <ChoosePuzzleSize selectPuzzleSize={this.selectPuzzleSize}
+                                              defaultPuzzleSize={this.defaultPuzzleSize}/>
+                            :
+                            null}
+                    </div>
+                    <div className={`builder-section ${this.state.puzzleSize ? 'enabled' : ''}`}>
+                        {this.state.puzzleSize
+                            ?
+                            <LogicalConditionBuilder
+                                puzzleSize={this.state.puzzleSize}
+                                selectedEntityList={this.state.selectedEntityList}
+                                sendLogicalConditionsToPuzzleBuilder={this.sendLogicalConditionsToPuzzleBuilder}/>
+                            :
+                            null}
+                    </div>
+                    <div className={`builder-section ${this.state.logicalConditions ? 'enabled' : ''}`}>
+                        {this.state.logicalConditions
+                            ?
+                            <div className="save-puzzle-section">
+                                <div className="wrap-row logical-condition-list">
+                                    {renderLogicalCondition(this.state.logicalConditions, this.state.selectedEntityList)}
+                                </div>
+                                <h4>What do you want to call your masterpiece?</h4>
+                                <input type="text"
+                                       onChange={this.puzzleNameChangeHandler}
+                                       placeholder="puzzle name"
+                                       className={this.state.puzzleName ? 'hasContent' : ''}/>
+                                <div>
+                                    <button className="button-dark" onClick={this.exportPuzzle} disabled={this.state.puzzleName ? false : true}>
+                                        <i className="fa fa-download" aria-hidden="true"></i> Download Puzzle File and Return to Puzzle List
+                                    </button>
+                                </div>
+                            </div>
+                            :
+                            null}
+                    </div>
+
             </div>
         )
     }

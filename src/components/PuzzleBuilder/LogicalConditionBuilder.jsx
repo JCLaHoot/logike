@@ -9,7 +9,6 @@ import {LogicCellStates} from "../Shared/Constants";
 
 import LogicCellDisplay from '../Shared/LogicCellDisplay';
 
-import renderLogicalCondition from '../Shared/renderLogicalCondition'
 
 class LogicalConditionBuilder extends Component {
 
@@ -201,6 +200,7 @@ class LogicalConditionBuilder extends Component {
                                 chooseSelector={this.chooseSelector}
                                 chosenSelector={this.state.chosenSelector}/>
 
+
                 <LogicToolPicker entities={this.props.selectedEntityList}
                                  chooseTool={this.chooseTool}
                                  selectedLogicTool={this.state.selectedLogicTool}
@@ -208,17 +208,28 @@ class LogicalConditionBuilder extends Component {
                                  chosenInnerSelector={this.state.chosenInnerSelector}/>
 
                 <div className="logic-stem-cell-container">
-                    <input type="range"
-                           min="1"
-                           max={this.props.puzzleSize.x}
-                           defaultValue={this.props.puzzleSize.x}
-                           className="slider horizontal-slider"
-                           onInput={this.updateX}
-                           style={{width: `${2.8*this.props.puzzleSize.x}em`}}
-                    />
+                    <div className="horizontal-slider-wrapper">
+                        <input type="range"
+                               min="1"
+                               max={this.props.puzzleSize.x}
+                               defaultValue={this.props.puzzleSize.x}
+                               className="slider horizontal-slider"
+                               onInput={this.updateX}
+                               style={{width: `${this.props.puzzleSize.x <= 1
+                                       ?
+                                       0
+                                       :
+                                       3*(this.props.puzzleSize.x - 1)+1.4}em`}}
+                        />
+                    </div>
+
                     <div className="float-wrapper">
                         <div className="vertical-slider-wrapper"
-                             style={{height: `${2.8*this.props.puzzleSize.y}em`}}
+                             style={{height: `${this.props.puzzleSize.y <= 1
+                                     ?
+                                     0
+                                     :
+                                     2.95*(this.props.puzzleSize.y - 1)+1.45}em`}}
                         >
                             <input type="range"
                                    min="1"
@@ -226,19 +237,22 @@ class LogicalConditionBuilder extends Component {
                                    defaultValue={this.props.puzzleSize.y}
                                    className="slider vertical-slider"
                                    onInput={this.updateY}
-                                   style={{width: `${2.8*this.props.puzzleSize.y}em`}}
+                                   style={{width: `${this.props.puzzleSize.y <= 1
+                                           ?
+                                           0
+                                           :
+                                           2.95*(this.props.puzzleSize.y - 1)+1.45}em`}}
                             />
                         </div>
                         <div>
                             <FlexGrid cells={this.renderLogicStemCells(this.state.logicStemCells)}/>
                         </div>
                     </div>
-                </div>
+                    <button disabled={this.state.chosenSelector ? false : true}
+                            onClick={this.exportLogicalCondition}>
+                        <i className="fa fa-plus" aria-hidden="true"></i>
+                    </button>
 
-                <button disabled={this.state.chosenSelector ? false : true} onClick={this.exportLogicalCondition}><i className="fa fa-plus" aria-hidden="true">
-                </i></button>
-                <div className="wrap-row logical-condition-list">
-                    {renderLogicalCondition(this.state.newLogicalConditions, this.props.selectedEntityList)}
                 </div>
 
             </div>

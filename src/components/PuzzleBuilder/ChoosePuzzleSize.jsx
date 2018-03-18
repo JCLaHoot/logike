@@ -44,17 +44,20 @@ class ChoosePuzzleSize extends Component {
         return (
             <div className="choose-puzzle-size">
                 <h4>Choose the puzzle size</h4>
-                <input type="range" min="1" defaultValue={this.props.defaultPuzzleSize}  max="5" className="slider horizontal-slider"
-                       onInput={this.updateX}/>
-                <div className="float-wrapper">
-                    <div className="vertical-slider-wrapper">
-                        <input type="range" min="1" defaultValue={this.props.defaultPuzzleSize}  max="5" className="slider vertical-slider"
-                               onInput={this.updateY}/>
-                    </div>
-                    <div className="puzzle-size-preview">
-                        <FlexGrid cells={this.getGridCells()}/>
+                <div className="puzzle-size-pickers">
+                    <input type="range" min="1" defaultValue={this.props.defaultPuzzleSize}  max="5" className="slider horizontal-slider"
+                           onInput={this.updateX}/>
+                    <div className="float-wrapper">
+                        <div className="vertical-slider-wrapper">
+                            <input type="range" min="1" defaultValue={this.props.defaultPuzzleSize}  max="5" className="slider vertical-slider"
+                                   onInput={this.updateY}/>
+                        </div>
+                        <div className="puzzle-size-preview">
+                            <FlexGrid cells={this.getGridCells()}/>
+                        </div>
                     </div>
                 </div>
+
             </div>
         )
     }
