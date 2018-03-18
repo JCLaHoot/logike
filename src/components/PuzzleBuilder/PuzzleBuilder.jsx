@@ -176,8 +176,8 @@ class PuzzleBuilder extends Component {
 
                     <div className="builder-header">
                         <h3>Puzzle Builder</h3>
-                        <p>(This is currently under construction <span>🏗</span>️, but you can use it anyway!
-                            There's no validation (yet) to stop you from making impossible puzzles <span>😉</span></p>
+                        <p>(This is currently under construction <span role="img" aria-label="crane">🏗</span>️, but you can use it anyway!
+                            There's no validation (yet) to stop you from making impossible puzzles <span role="img" aria-label="wink">😉</span></p>
                         {this.iOS ? <p style={this.warningStyle}>*using the puzzle builder on iOS is NOT recommended</p> : ''}
                     </div>
                     <ChooseEntityList
@@ -218,11 +218,11 @@ class PuzzleBuilder extends Component {
                                        className={this.state.puzzleName ? 'hasContent' : ''}/>
                                 <h4>How difficult is it?</h4>
                                 <div className="difficulty-picker">
-                                    <h4>🍼</h4>
+                                    <h4> <span role="img" aria-label="baby bottle">🍼</span></h4>
                                     <input type="range" min="0" defaultValue="5"  max="10" className="slider horizontal-slider"
                                            onInput={this.setDifficulty}
                                     />
-                                    <h4>🔥</h4>
+                                    <h4><span role="img" aria-label="fire">🔥</span></h4>
                                 </div>
 
                                 <div>

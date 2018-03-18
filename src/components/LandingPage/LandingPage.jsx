@@ -72,7 +72,7 @@ const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzle
                     <div className="modal-footer">
                         <h6>Or, make your own!</h6>
                         <div className="file-input-wrapper">
-                            <label for="puzzleUpload" className="button-dark">Upload Puzzle(s)</label>
+                            <label htmlFor="puzzleUpload" className="button-dark">Upload Puzzle(s)</label>
                             <input type="file"
                                    multiple
                                    accept="application/json"

@@ -62,7 +62,7 @@ const selectorIsPartial = (selector, entities) => {
 // TODO rename to getNormalizedLogic
 // NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
 export const normalizeLogic = (puzzle, entities) => {
-    var start = Date.now(); //used to calculate validation time
+    // var start = Date.now(); //used to calculate validation time
 
     // checks whether the logicCells is the same size as the puzzle
     // NOTE: TESTED and works GREAT! :) Delete comment after Difficult.test.js runs smoothly
