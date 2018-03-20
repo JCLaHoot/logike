@@ -163,7 +163,7 @@ class PuzzleBuilder extends Component {
         this.props.returnToMainMenu();
     };
 
-    //mixing styling in CSS and here because YOLO 🔥
+    //XXX mixing styling in CSS and here because #YOLO 🔥 #FiteMe
     warningStyle = {
         color: '#ff1744',
         fontWeight: 'bold'
@@ -178,7 +178,7 @@ class PuzzleBuilder extends Component {
                         <h3>Puzzle Builder</h3>
                         <p>(This is currently under construction <span role="img" aria-label="crane">🏗</span>️, but you can use it anyway!
                             There's no validation (yet) to stop you from making impossible puzzles <span role="img" aria-label="wink">😉</span></p>
-                        {this.iOS ? <p style={this.warningStyle}>*using the puzzle builder on iOS is NOT recommended</p> : ''}
+                        {this.iOS ? <p style={this.warningStyle}>*using the puzzle builder on iOS is NOT recommended </p> : ''}
                     </div>
                     <ChooseEntityList
                         entityLists={this.state.entityLists}
@@ -224,6 +224,8 @@ class PuzzleBuilder extends Component {
                                     />
                                     <h4><span role="img" aria-label="fire">🔥</span></h4>
                                 </div>
+
+                                {this.iOS ? <p style={this.warningStyle}>Wow! You've made it this far on iOS! If you press on the button, a new browser window will open with the puzzle exported in plaintext. If you select all of this text, and long press, you should be given the option to "share" it. You will then have the option to download it. If you want to run it, you'll have to rename it to FILENAME.json ... or you can just build the puzzle on desktop, or Android, and send it to yourself to run it on iOS 😉</p> : ''}
 
                                 <div>
                                     <button className="button-dark" onClick={this.exportPuzzle} disabled={this.state.puzzleName ? false : true}>
