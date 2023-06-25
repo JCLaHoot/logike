@@ -20,7 +20,7 @@ const SelectorPicker = ({entities, chooseSelector, chosenSelector}) => {
 
 
             let img = selector.img;
-            img = '/assets/' + img + '.png';
+            img = './assets/' + img + '.png';
 
             return (
                 <img key={i}

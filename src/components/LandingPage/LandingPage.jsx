@@ -4,7 +4,7 @@ import PuzzleListView from './PuzzleListView.jsx';
 
 const LandingPage = ({puzzleList, onSelectHandler, appendPuzzleList, validPuzzleNames, goToBuilder}) => {
 
-    let img = '/assets/colour_shapes@2x.png';
+    let img = './assets/colour_shapes@2x.png';
 
     // when a file is uploaded, this checks to see that it's the right type, then adds it to the puzzle list
     const handleFiles = () => {

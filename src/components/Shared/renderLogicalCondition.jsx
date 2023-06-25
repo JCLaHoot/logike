@@ -48,7 +48,7 @@ export const renderLogicCells = (logicCell, entities) => {
 
     return puzzleLogic.map( (puzzleCell, x) => {
         let img = puzzleCell.selectorImg;
-        img = '/assets/' + img + '.png';
+        img = './assets/' + img + '.png';
 
 
 // returns the UI contents of each puzzleCell (which contains logicCells)

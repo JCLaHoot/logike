@@ -11,7 +11,7 @@ const LogicCellDisplay = ({content, onClick, location, selected}) => {
         return (<div className={`logic-cell ${selected ? 'selected' : ''}`} style={divStyle} onClick={onClick}></div>);
     } else if (content) {
         let img = content;
-        img = '/assets/' + content + '.png';
+        img = './assets/' + content + '.png';
 
         return (
             <div className={`logic-cell white-bg ${selected ? 'selected' : ''}`}><img
