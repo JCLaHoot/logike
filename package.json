@@ -2,7 +2,6 @@
   "name": "logike",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://jclahoot.github.io/logike",
   "dependencies": {
     "blob.js": "^1.0.1",
     "file-saver": "^1.3.3",
